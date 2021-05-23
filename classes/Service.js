@@ -44,11 +44,8 @@ class Service {
             const endpoint = this.endpoints[Object.keys(this.endpoints)[i]];
             const uuid = Object.keys(this.endpoints)[i];
 
-            if(_.get(endpoint, 'read', false)) {
-                app.get(`/${this.service_id}/${uuid}`, (req, res) => {
-                    res.send(await endpoint.read())
-                })
-            }
+            if(_.get(endpoint, 'read', false))
+                app.get(`/${this.service_id}/${uuid}`, (req, res) => {endpoint.read().then(result => res.send(result))})
         }
     }
 

@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "@abandonware/bleno": "github:abandonware/bleno",
+    "cors": "^2.8.5",
+    "dnssd": "^0.4.1",
     "express": "^4.17.1",
     "lodash": "^4.17.21",
     "network": "^0.5.0",

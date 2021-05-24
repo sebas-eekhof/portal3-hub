@@ -1,6 +1,7 @@
 const bleno = require('@abandonware/bleno');
 const util = require('util');
 const _ = require('lodash');
+const { DEVICE_NAME } = require('./general');
 
 class Service {
     constructor(service_id, endpoints = {}) {
@@ -44,8 +45,13 @@ class Service {
             const endpoint = this.endpoints[Object.keys(this.endpoints)[i]];
             const uuid = Object.keys(this.endpoints)[i];
 
+            app.get(`/${this.service_id}`, (req, res) => {res.send(DEVICE_NAME)})
+
             if(_.get(endpoint, 'read', false))
                 app.get(`/${this.service_id}/${uuid}`, (req, res) => {endpoint.read().then(result => res.send(result))})
+
+            if(_.get(endpoint, 'write', false))
+                app.post(`/${this.service_id}/${uuid}`, (req, res) => {endpoint.write(req.body).then(result => res.send(result))})
         }
     }
 

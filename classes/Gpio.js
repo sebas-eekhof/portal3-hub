@@ -33,7 +33,6 @@ const getPin = (name) => {
 }
 
 const getPins = () => {
-    console.log(`i want your pins`, pins)
     return pins;
 };
 const pwmWrite = (pin_name, value) => {getPin(pin_name).pwmWrite(value); return true;}

@@ -5,10 +5,5 @@ module.exports = {
     getPublicIp: network.getPublicIp,
     getPrivateIp: network.getPrivateIp,
     getGatewayIp: network.getGatewayIp,
-    getInterfaces: network.getInterfaces,
-    disconnect: network.disconnectWifi,
-    wifi: {
-        state: network.getWifiState,
-        current_network: network.getConnectedWifiNetwork,
-    }
+    getInterfaces: network.getInterfaces
 }

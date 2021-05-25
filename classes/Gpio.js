@@ -56,6 +56,7 @@ const playEffect = (pin_name, effect, interval = 50, duration = null) => {
     pins[pin_name].running_effect = setInterval(() => effects[effect].call(pin.obj), interval)
     if(duration !== null)
         setTimeout(() => stopEffect(pin_name), (duration * 1000))
+    return true;
 }
 
 const stopEffect = (pin_name) => {
@@ -65,6 +66,7 @@ const stopEffect = (pin_name) => {
     if(!pin)
         throw new Error(`Pin with name ${pin_name} does not exists or is not playing a effect`);
     clearInterval(pins[pin_name].running_effect)
+    return true;
 }
 
 const getPin = (name) => {

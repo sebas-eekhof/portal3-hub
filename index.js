@@ -9,16 +9,21 @@ const Gpio = require('./classes/Gpio');
 const init = async ({console}) => {
     
     Gpio.init();
+    
+    Gpio.playEffect('status_led', 'wave', 1)
 
     const socket = io('ws://192.168.120.213:7474', { query: { hub_serial: 'test123', model: 'Portal3 Hub Lite1' }, maxReconnectionAttempts: Infinity })
 
     socket.connect();
 
     socket.on('disconnect', () => setTimeout(() => {
+        Gpio.playEffect('status_led', 'wave', 1)
         socket.connect();
     }, 5000))
 
-    socket.on('connect', () => { socket.emit('auth::secret', Storage.secret.get()) })
+    socket.on('connect', () => {
+        Gpio.stopEffect('status_led')
+    })
 
     socket.on('auth::secret', (secret) => { Storage.secret.set(secret) })
 

@@ -5,5 +5,6 @@ module.exports = {
     storage: require('./Storage'),
     git: require('./Git'),
     special: require('./Special'),
-    npm: require('./Npm')
+    npm: require('./Npm'),
+    process: require('./Process')
 }

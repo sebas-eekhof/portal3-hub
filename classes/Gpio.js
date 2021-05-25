@@ -6,8 +6,7 @@ if(!Device.IsDevelopment())
 
 let pins = {}
 
-const init = async () => {
-    console.log('start set pins')
+const init = () => {
     pins = {
         fan: {
             type: 'fan',
@@ -22,8 +21,6 @@ const init = async () => {
             })
         }
     }
-    console.log('end set pins')
-    setTimeout(() => {return true}, 1000)
 }
 
 const getPin = (name) => {
@@ -35,7 +32,10 @@ const getPin = (name) => {
     return obj;
 }
 
-const getPins = () => pins;
+const getPins = () => {
+    console.log(`i want your pins`, pins)
+    return pins;
+};
 const pwmWrite = (pin_name, value) => {getPin(pin_name).pwmWrite(value); return true;}
 const digitalWrite = (pin_name, value) => {getPin(pin_name).digitalWrite(value); return true;}
 

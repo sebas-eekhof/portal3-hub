@@ -19,7 +19,7 @@ const init = () => {
 
 const de_init = () => {
     for(let i = 0; i < getPins().length; i++) {
-        const pin = pins[getPins[i]];
+        const pin = pins[getPins()[i]];
         if(pin.type === 'led')
             pin.obj.digitalWrite(false);
     }

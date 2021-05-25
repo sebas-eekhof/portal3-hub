@@ -1,7 +1,14 @@
 const Device = require('../classes/Device');
 
-const getSerialNumber = Device.GetSerialNumber
-
 module.exports = {
-    getSerialNumber
+    getSerialNumber: Device.GetSerialNumber,
+    isDevelopment: Device.IsDevelopment,
+    getUptime: Device.getSystemUptime,
+    getCpus: Device.getCpus,
+    getPlatform: Device.getPlatform,
+    getRelease: Device.getRelease,
+    getType: Device.getType,
+    getLoad: Device.getLoad,
+    getMem: Device.getMem,
+    exec: ({command}) => Device.exec(command)
 }

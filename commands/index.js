@@ -6,5 +6,6 @@ module.exports = {
     git: require('./Git'),
     special: require('./Special'),
     npm: require('./Npm'),
-    process: require('./Process')
+    process: require('./Process'),
+    apt: require('./Apt')
 }

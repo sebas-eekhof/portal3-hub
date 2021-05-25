@@ -7,8 +7,16 @@ const git = simpleGit({
 
 const pull = () => git.pull();
 const fetch = () => git.fetch();
+const reset = () => git.reset('hard');
+const forcePull = () => {
+    await reset();
+    await pull();
+    return true;
+}
 
 module.exports = {
     pull,
-    fetch
+    fetch,
+    reset,
+    forcePull
 }

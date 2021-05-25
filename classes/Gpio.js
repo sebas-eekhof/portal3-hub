@@ -98,6 +98,7 @@ const stopEffect = (pin_name) => {
     if(!_.get(pins, `${pin_name}.running_effect`, false))
         throw new Error(`Pin with name ${pin_name} does not exists or is not playing a effect`);
     clearInterval(pins[pin_name].running_effect)
+    pins[pin_name].obj.digitalWrite(false)
     return true;
 }
 

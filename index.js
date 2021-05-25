@@ -25,7 +25,6 @@ const init = async ({console}) => {
         const executable = _.get(Commands, `${path}`, false);
         
         console.command(path, args)
-        console.log(args.name)
 
         const sendResponse = (response) => {
             console.command_success(path, args)
@@ -44,7 +43,7 @@ const init = async ({console}) => {
             if(!executable || typeof executable !== "function")
                 throw new Error(`Can't find //${path}(${JSON.stringify(args)})`);
             
-            const output = executable();
+            const output = executable(args);
             if(typeof output.then === "function")
                 output.then(sendResponse).catch(sendError);
             else

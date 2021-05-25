@@ -83,6 +83,8 @@ const init = async ({console}) => {
 
     })
 
+    console.log('Full init service initialized')
+
 }
 
 const CreateLogger = () => {

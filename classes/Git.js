@@ -8,7 +8,7 @@ const git = simpleGit({
 const pull = () => git.pull();
 const fetch = () => git.fetch();
 const reset = () => git.reset('hard');
-const forcePull = () => {
+const forcePull = async () => {
     await reset();
     await pull();
     return true;

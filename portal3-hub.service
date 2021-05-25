@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/node /root/portal3-hub/index.js
+ExecStart=/usr/bin/node /root/portal3-hub/index.js
 Restart=on-failure
 
 [Install]

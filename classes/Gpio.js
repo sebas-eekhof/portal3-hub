@@ -17,6 +17,12 @@ let effects = {
             else
                 effects.wave.data.pwmValue--;
             pin.pwmWrite(effects.wave.data.pwmValue)
+            
+            if(effects.wave.data.pwmValue === 255 && effects.wave.data.up)
+                effects.wave.data.up = false;
+
+            if(effects.wave.data.pwmValue === 0 && !effects.wave.data.up)
+                effects.wave.data.up = true;
         }
     }
 }

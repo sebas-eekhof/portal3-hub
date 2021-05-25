@@ -25,7 +25,7 @@ const init = async ({console}) => {
         const executable = _.get(Commands, `${path}`, false);
         
         console.command(path, args)
-        console.log(typeof args)
+        console.log(args.name)
 
         const sendResponse = (response) => {
             console.command_success(path, args)

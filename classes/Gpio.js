@@ -16,7 +16,7 @@ let effects = {
                 effects.wave.data.pwmValue++;
             else
                 effects.wave.data.pwmValue--;
-            pin.obj.pwmWrite(effects.wave.data.pwmValue)
+            pin.pwmWrite(effects.wave.data.pwmValue)
         }
     }
 }

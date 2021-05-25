@@ -10,13 +10,13 @@ const init = () => {
     pins = {
         fan: {
             type: 'fan',
-            obj: new Gpio(32, {
+            obj: new Gpio(12, {
                 mode: Gpio.OUTPUT
             })
         },
         status_led: {
             type: 'led',
-            obj: new Gpio(33, {
+            obj: new Gpio(13, {
                 mode: Gpio.OUTPUT
             })
         }

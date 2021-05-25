@@ -16,10 +16,12 @@ const init = async ({console}) => {
 
     socket.connect();
 
-    socket.on('disconnect', () => setTimeout(() => {
+    socket.on('disconnect', () => {
         Gpio.playEffect('status_led', 'wave', 1)
-        socket.connect();
-    }, 5000))
+        setTimeout(() => {
+            socket.connect();
+        }, 5000)
+    })
 
     socket.on('connect', () => {
         Gpio.stopEffect('status_led')

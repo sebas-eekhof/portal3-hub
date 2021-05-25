@@ -1,5 +1,6 @@
 const Device = require('../classes/Device');
 const _ = require('lodash');
+const { Delay } = require('../classes/Helpers');
 let Gpio;
 if(!Device.IsDevelopment())
     Gpio = require('pigpio').Gpio
@@ -17,12 +18,30 @@ let effects = {
             else
                 effects.wave.data.pwmValue--;
             pin.pwmWrite(effects.wave.data.pwmValue)
-            
+
             if(effects.wave.data.pwmValue === 255 && effects.wave.data.up)
                 effects.wave.data.up = false;
 
             if(effects.wave.data.pwmValue === 0 && !effects.wave.data.up)
                 effects.wave.data.up = true;
+        }
+    },
+    blink_once: {
+        call: async (pin) => {
+            pin.digitalWrite(true)
+            await Delay(10)
+            pin.digitalWrite(false)
+        }
+    },
+    blink_twice: {
+        call: async (pin) => {
+            pin.digitalWrite(true)
+            await Delay(10)
+            pin.digitalWrite(false)
+            await Delay(200)
+            pin.digitalWrite(true)
+            await Delay(10)
+            pin.digitalWrite(false)
         }
     }
 }
@@ -49,7 +68,7 @@ const de_init = () => {
         }
 }
 
-const playEffect = (pin_name, effect, interval = 50, duration = null) => {
+const playEffect = (pin_name, effect, interval = 50, duration = null, once = false) => {
     if(Device.IsDevelopment())
         throw new Error(`Cannot run GPIO on a development device`);
     const pin = _.get(pins, pin_name, false);
@@ -59,17 +78,24 @@ const playEffect = (pin_name, effect, interval = 50, duration = null) => {
         stopEffect(pin_name)
     if(!_.get(effects, effect, false))
         throw new Error(`Effect with name ${effect} does not exists`);
-    pins[pin_name].running_effect = setInterval(() => effects[effect].call(pin.obj), interval)
-    if(duration !== null)
-        setTimeout(() => stopEffect(pin_name), (duration * 1000))
+    if(once)
+        effects[effect].call(pin.obj)
+    else {
+        pins[pin_name].running_effect = setInterval(() => effects[effect].call(pin.obj), interval)
+        if(duration !== null)
+            setTimeout(() => stopEffect(pin_name), (duration * 1000))
+    }
     return true;
+}
+
+const playEffectOnce = (pin_name, effect) => {
+    playEffect(pin_name, effect, 0, null, true)
 }
 
 const stopEffect = (pin_name) => {
     if(Device.IsDevelopment())
         throw new Error(`Cannot run GPIO on a development device`);
-    const playing_effect = _.get(pins, `${pin_name}.running_effect`, false);
-    if(!pin)
+    if(!_.get(pins, `${pin_name}.running_effect`, false))
         throw new Error(`Pin with name ${pin_name} does not exists or is not playing a effect`);
     clearInterval(pins[pin_name].running_effect)
     return true;
@@ -97,5 +123,6 @@ module.exports = {
     pwmWrite,
     digitalWrite,
     playEffect,
+    playEffectOnce,
     stopEffect
 }

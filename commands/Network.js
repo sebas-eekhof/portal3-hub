@@ -9,6 +9,8 @@ module.exports = {
     wifi: {
         state: network.getWifiState,
         current_network: network.getConnectedWifiNetwork,
-        disconnect: network.disconnectWifi
+        disconnect: network.disconnectWifi,
+        scan: network.getWifiScan,
+        connect: ({ssid, psk}) => network.connectWifi(ssid, psk)
     }
 }

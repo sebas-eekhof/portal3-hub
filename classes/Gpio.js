@@ -51,8 +51,7 @@ const playEffect = (pin_name, effect, interval = 50, duration = null) => {
         throw new Error(`Pin with name ${pin_name} does not exists`);
     if(pin.running_effect)
         stopEffect(pin_name)
-    const effect = _.get(effects, effect, false)
-    if(!effect)
+    if(!_.get(effects, effect, false))
         throw new Error(`Effect with name ${effect} does not exists`);
     pins[pin_name].running_effect = setInterval(() => effects[effect].call(pin.obj), interval)
     if(duration !== null)

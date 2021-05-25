@@ -15,11 +15,9 @@ const init = async ({console}) => {
     
     Gpio.playEffect('status_led', 'wave', 1)
 
-    const socket = io(_.get(process.env, 'SOCKET_SERVER', 'wss://portal3.nl:7474'), { transports: ['websocket'], reconnect: true, query: { hub_serial: await Device.GetSerialNumber(), model: await Device.getModel() }, maxReconnectionAttempts: Infinity })
+    const socket = io.connect(_.get(process.env, 'SOCKET_SERVER', 'wss://portal3.nl:7474'), { transports: ['websocket'], reconnect: true, query: { hub_serial: await Device.GetSerialNumber(), model: await Device.getModel() }, maxReconnectionAttempts: Infinity })
 
     console.log('Starting to connect to socket')
-
-    socket.connect();
 
     socket.on('disconnect', () => {
         console.log('Disconnected from socket')

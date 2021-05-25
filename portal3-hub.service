@@ -1,0 +1,11 @@
+[Unit]
+Description=Portal3 hub
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/node /root/portal3-hub/index.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

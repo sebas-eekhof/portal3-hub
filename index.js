@@ -8,14 +8,15 @@ const Gpio = require('./classes/Gpio');
 
 const init = async ({console}) => {
     
-    if(!Device.IsDevelopment())
-        Gpio.init();
+    Gpio.init();
 
     const socket = io('ws://192.168.120.213:7474', { query: { hub_serial: 'test123', model: 'Portal3 Hub Lite1' }, maxReconnectionAttempts: Infinity })
 
     socket.connect();
 
-    socket.on('disconnect', () => setTimeout(() => { socket.connect(); }, 5000))
+    socket.on('disconnect', () => setTimeout(() => {
+        socket.connect();
+    }, 5000))
 
     socket.on('connect', () => { socket.emit('auth::secret', Storage.secret.get()) })
 

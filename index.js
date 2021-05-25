@@ -10,6 +10,7 @@ require('dotenv').config()
 const init = async ({console}) => {
     
     console.log('Starting hub service')
+    console.log(`Device model: ${await Device.getModel()}`)
 
     Gpio.init();
     

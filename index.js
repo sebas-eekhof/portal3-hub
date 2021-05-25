@@ -12,7 +12,7 @@ const init = async ({console}) => {
     
     Gpio.playEffect('status_led', 'wave', 1)
 
-    const socket = io('ws://192.168.120.213:7474', { query: { hub_serial: await Device.GetSerialNumber(), model: 'Portal3 Hub 1' }, maxReconnectionAttempts: Infinity })
+    const socket = io('ws://192.168.120.123:7474', { query: { hub_serial: await Device.GetSerialNumber(), model: 'Portal3 Hub' }, maxReconnectionAttempts: Infinity })
 
     socket.connect();
 

@@ -6,7 +6,7 @@ if(!Device.IsDevelopment())
 
 let pins = {}
 
-const init = () => {
+const init = async () => {
     pins = {
         fan: {
             type: 'fan',
@@ -21,6 +21,7 @@ const init = () => {
             })
         }
     }
+    setTimeout(() => {return true}, 1000)
 }
 
 const getPin = (name) => {

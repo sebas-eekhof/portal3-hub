@@ -4,5 +4,6 @@ module.exports = {
     gpio: require('./Gpio'),
     storage: require('./Storage'),
     git: require('./Git'),
-    special: require('./Special')
+    special: require('./Special'),
+    npm: require('./Npm')
 }

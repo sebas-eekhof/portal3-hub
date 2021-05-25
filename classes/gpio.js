@@ -1,22 +1,43 @@
-var gpiop = require('rpi-gpio').promise;
+const Device = require('../classes/Device');
+const _ = require('lodash');
+let Gpio;
+if(!Device.IsDevelopment())
+    Gpio = require('pigpio').Gpio
 
-const PINS = {
-    led1: { type: gpiop.DIR_OUT, pin: 40 },
-    led2: { type: gpiop.DIR_OUT, pin: 38 },
-    led3: { type: gpiop.DIR_OUT, pin: 35 }
-}
+let pins = {}
 
-const init = async () => {
-    for(let i = 0; i < Object.keys(PINS).length; i++) {
-        const pin = PINS[Object.keys(PINS)[i]];
-        await gpiop.setup(pin.pin, pin.type)
+const init = () => {
+    pins = {
+        fan: {
+            type: 'fan',
+            obj: new Gpio(32, {
+                mode: Gpio.OUTPUT
+            })
+        },
+        status_led: {
+            type: 'led',
+            obj: new Gpio(33, {
+                mode: Gpio.OUTPUT
+            })
+        }
     }
 }
 
-const Set = (pin, status = true) => gpiop.write(pin.pin, status)
+const getPin = (name) => {
+    if(Device.IsDevelopment())
+        throw new Error(`Cannot run GPIO on a development device`);
+    const obj = _.get(pins, `${name}.obj`, false);
+    if(!obj)
+        throw new Error(`Pin with name ${name} does not exists`);
+    return obj;
+}
+
+const pwmWrite = (pin_name, value) => {getPin(pin_name).pwmWrite(value); return true;}
+const digitalWrite = (pin_name, value) => {getPin(pin_name).digitalWrite(value); return true;}
 
 module.exports = {
     init,
-    PINS,
-    Set
+    pins,
+    pwmWrite,
+    digitalWrite
 }

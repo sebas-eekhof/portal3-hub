@@ -9,15 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@abandonware/bleno": "github:abandonware/bleno",
-    "cors": "^2.8.5",
-    "dnssd": "^0.4.1",
-    "express": "^4.17.1",
     "lodash": "^4.17.21",
     "network": "^0.5.0",
+    "node-color-log": "^5.3.0",
+    "pigpio": "^3.3.1",
     "raspi-serial-number": "^1.0.6",
-    "rpi-gpio": "^2.1.7",
     "rpi-wifi-connection": "^1.0.17",
-    "simple-json-db": "^1.2.3"
+    "simple-json-db": "^1.2.3",
+    "socket.io-client": "^4.1.2"
   }
 }

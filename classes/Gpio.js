@@ -33,7 +33,7 @@ const getPin = (name) => {
 }
 
 const getPins = () => {
-    return pins;
+    return Object.keys(pins);
 };
 const pwmWrite = (pin_name, value) => {getPin(pin_name).pwmWrite(value); return true;}
 const digitalWrite = (pin_name, value) => {getPin(pin_name).digitalWrite(value); return true;}

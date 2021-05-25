@@ -10,7 +10,7 @@ const getGatewayIp = () => util.promisify(network.get_gateway_ip)()
 const getInterfaces = () => util.promisify(network.get_interfaces_list)()
 const getWifiState = () => wifi.getState()
 const getConnectedWifiNetwork = () => wifi.getStatus()
-const getWifiScan = () => wifi.scan()
+const getWifiScan = () => wifi.scan().then(console.log)
 const connectWifi = (ssid, psk) => wifi.connect({ssid, psk})
 const disconnectWifi = () => {
     return wifi.wpa_cli('list_networks');

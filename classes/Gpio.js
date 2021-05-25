@@ -31,17 +31,49 @@ let effects = {
             pin.digitalWrite(true)
             await Delay(10)
             pin.digitalWrite(false)
+            return true
+        }
+    },
+    fade_out: {
+        call: async (pin) => {
+            for(let i = 255; i >= 0; i--) {
+                pin.pwmWrite(i)
+                await Delay(4)
+            }
+            return true
+        }
+    },
+    fade_in: {
+        call: async (pin) => {
+            for(let i = 0; i <= 255; i++) {
+                pin.pwmWrite(i)
+                await Delay(4)
+            }
+            return true
+        }
+    },
+    blink_once_fade: {
+        call: async (pin) => {
+            await effects.blink_once.call(pin)
+            await Delay(200)
+            await effect.fade_out.call(pin)
+            return true;
         }
     },
     blink_twice: {
         call: async (pin) => {
-            pin.digitalWrite(true)
-            await Delay(10)
-            pin.digitalWrite(false)
+            await effects.blink_once.call(pin)
             await Delay(200)
-            pin.digitalWrite(true)
-            await Delay(10)
-            pin.digitalWrite(false)
+            await effects.blink_once.call(pin)
+            return true
+        }
+    },
+    blink_twice_fade: {
+        call: async (pin) => {
+            await effects.blink_twice.call(pin)
+            await Delay(200)
+            await effects.fade_out.call(pin)
+            return true
         }
     }
 }
@@ -89,7 +121,9 @@ const playEffect = (pin_name, effect, interval = 50, duration = null, once = fal
 }
 
 const playEffectOnce = (pin_name, effect) => {
-    playEffect(pin_name, effect, 0, null, true)
+    const effect = playEffect(pin_name, effect, 0, null, true)
+    if(typeof effect.then !== "undefined")
+        return effect;
     return true;
 }
 

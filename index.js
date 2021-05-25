@@ -9,24 +9,30 @@ require('dotenv').config()
 
 const init = async ({console}) => {
     
+    console.log('Starting hub service')
+
     Gpio.init();
     
     Gpio.playEffect('status_led', 'wave', 1)
-
-    console.log(_.get(process.env, 'SOCKET_SERVER', 'wss://portal3.nl:7474'))
 
     const socket = io(_.get(process.env, 'SOCKET_SERVER', 'wss://portal3.nl:7474'), { query: { hub_serial: await Device.GetSerialNumber(), model: await Device.getModel() }, maxReconnectionAttempts: Infinity })
 
     socket.connect();
 
     socket.on('disconnect', () => {
+        console.log('Disconnected from socket')
         Gpio.playEffect('status_led', 'wave', 1)
         setTimeout(() => {
             socket.connect();
         }, 5000)
     })
 
+    socket.on('error', (e) => {
+        console.error(`Received socket error: ${e.message}`)
+    })
+
     socket.on('connect', () => {
+        console.log('Connecting to socket')
         socket.emit('auth::secret', Storage.secret.get(null))
         Gpio.stopEffect('status_led')
     })

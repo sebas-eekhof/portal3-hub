@@ -16,6 +16,32 @@ const exec = (command) => new Promise((resolve, reject) => {
     })
 })
 
+const getModel = async () => {
+    const identifiers = [
+        {
+            check: 'Raspberry Pi 4 Model B',
+            result: 'Portal3 Hub Pro'
+        },
+        {
+            check: 'Raspberry Pi 4',
+            result: 'Portal3 Hub Pro'
+        },
+        {
+            check: 'Raspberry Pi 3',
+            result: 'Portal3 Hub'
+        },
+        {
+            check: 'Raspberry Pi zero',
+            result: 'Portal3 Hub Lite'
+        },
+    ];
+    const str = await exec('cat /sys/firmware/devicetree/base/model');
+    for(let i = 0; i < identifiers.length; i++)
+        if(str.includes(identifiers[i].check))
+            return identifiers[i].result;
+    return 'Undefined';
+}
+
 const IsDevelopment = () => {
     return !(os.platform() === 'linux');
 }
@@ -36,6 +62,7 @@ const getMem = () => ({total: os.totalmem(), free: os.freemem()})
 
 module.exports = {
     IsDevelopment,
+    getModel,
     GetSerialNumber,
     getSystemUptime,
     getCpus,

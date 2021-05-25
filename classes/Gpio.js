@@ -90,6 +90,7 @@ const playEffect = (pin_name, effect, interval = 50, duration = null, once = fal
 
 const playEffectOnce = (pin_name, effect) => {
     playEffect(pin_name, effect, 0, null, true)
+    return true;
 }
 
 const stopEffect = (pin_name) => {

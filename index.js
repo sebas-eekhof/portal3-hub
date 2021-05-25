@@ -25,6 +25,8 @@ const init = async ({console}) => {
         console.log(`Reconnecting to socket, attempt (${attempt})`)
     })
 
+    socket.on('ping', () => socket.emit('pong'))
+
     socket.on('reconnect_error', (e) => {
         console.error(`Received socket error: ${e.message}`)
     })

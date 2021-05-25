@@ -24,6 +24,7 @@ const init = async ({console}) => {
     })
 
     socket.on('connect', () => {
+        socket.emit('auth::secret', Storage.secret.get(null))
         Gpio.stopEffect('status_led')
     })
 

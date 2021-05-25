@@ -19,20 +19,16 @@ const exec = (command) => new Promise((resolve, reject) => {
 const getModel = async () => {
     const identifiers = [
         {
-            check: 'Raspberry Pi 4 Model B',
-            result: 'Portal3 Hub Pro'
-        },
-        {
             check: 'Raspberry Pi 4',
-            result: 'Portal3 Hub Pro'
+            result: 'portal3_hub_pro'
         },
         {
             check: 'Raspberry Pi 3',
-            result: 'Portal3 Hub'
+            result: 'portal3_hub'
         },
         {
             check: 'Raspberry Pi zero',
-            result: 'Portal3 Hub Lite'
+            result: 'portal3_hub_lite'
         },
     ];
     const str = await exec('cat /sys/firmware/devicetree/base/model');

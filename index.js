@@ -29,6 +29,10 @@ const init = async ({console}) => {
         console.error(`Received socket error: ${e.message}`)
     })
 
+    socket.on('connect_error', (e) => {
+        console.error(`Received socket error: ${e.message}`)
+    })
+
     socket.on('disconnect', () => {
         console.log('Disconnected from socket')
         Gpio.playEffect('status_led', 'wave', 1)

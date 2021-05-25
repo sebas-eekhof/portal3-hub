@@ -30,14 +30,14 @@ const init = async ({console}) => {
 
     socket.on('auth::secret', (secret) => { Storage.secret.set(secret) })
 
-    socket.on('cmd', ({ path, args = {} }) => {
+    socket.on('cmd', ({ path, uuid, args = {} }) => {
         const executable = _.get(Commands, `${path}`, false);
         
         console.command(path, args)
 
         const sendResponse = (response) => {
             console.command_success(path, args)
-            socket.emit(`cmd::${path}::response`, response)
+            socket.emit(`${uuid}.response`, response)
         }
 
         const sendError = (error) => {
@@ -45,7 +45,7 @@ const init = async ({console}) => {
             if(typeof error.message !== "undefined")
                 ret = error.message;
             console.command_error(path, args)
-            socket.emit(`cmd::${path}::error`, ret)
+            socket.emit(`${uuid}.error`, ret)
         }
 
         try {

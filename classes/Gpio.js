@@ -17,6 +17,14 @@ const init = () => {
     }
 }
 
+const de_init = () => {
+    for(let i = 0; i < getPins().length; i++) {
+        const pin = getPins[i];
+        if(pin.type === 'led')
+            pin.obj.digitalWrite(false);
+    }
+}
+
 const getPin = (name) => {
     if(Device.IsDevelopment())
         throw new Error(`Cannot run GPIO on a development device`);
@@ -34,6 +42,7 @@ const digitalWrite = (pin_name, value) => {getPin(pin_name).digitalWrite(value);
 
 module.exports = {
     init,
+    de_init,
     getPins,
     pwmWrite,
     digitalWrite

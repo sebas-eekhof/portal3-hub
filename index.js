@@ -5,6 +5,7 @@ const Commands = require('./commands');
 const logger = require('node-color-log');
 const _ = require('lodash');
 const Gpio = require('./classes/Gpio');
+require('dotenv').config()
 
 const init = async ({console}) => {
     
@@ -12,7 +13,7 @@ const init = async ({console}) => {
     
     Gpio.playEffect('status_led', 'wave', 1)
 
-    const socket = io('ws://192.168.120.123:7474', { query: { hub_serial: await Device.GetSerialNumber(), model: 'Portal3 Hub' }, maxReconnectionAttempts: Infinity })
+    const socket = io(_.get(process.env, 'SOCKET_SERVER', 'wss://portal3.nl'), { query: { hub_serial: await Device.GetSerialNumber(), model: 'Portal3 Hub' }, maxReconnectionAttempts: Infinity })
 
     socket.connect();
 

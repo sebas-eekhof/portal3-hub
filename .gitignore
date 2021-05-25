@@ -1,3 +1,4 @@
 node_modules
 storage.json
-portal3-hub.service
+
+*.service

@@ -121,9 +121,9 @@ const playEffect = (pin_name, effect, interval = 50, duration = null, once = fal
 }
 
 const playEffectOnce = (pin_name, effect) => {
-    const effect = playEffect(pin_name, effect, 0, null, true)
-    if(typeof effect.then !== "undefined")
-        return effect;
+    const eff = playEffect(pin_name, effect, 0, null, true)
+    if(typeof eff.then !== "undefined")
+        return eff;
     return true;
 }
 

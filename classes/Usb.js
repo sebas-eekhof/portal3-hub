@@ -48,7 +48,7 @@ const getDeviceInfo = async (device) => {
         device_info,
         device_info_str
     }
-    device.close();
+    // device.close();
     return data;
 }
 

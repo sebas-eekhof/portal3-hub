@@ -16,7 +16,7 @@ const doBlacklist = (devices) => devices.filter(device => !(vendorBlackList.incl
 const getDevices = async () => {
     const devices = doBlacklist(usb.getDeviceList());
     const test_device = devices[0];
-    test_device.open()
+    // test_device.open()
     const capabilities = await new Promise((resolve, reject) => test_device.getBosDescriptor((err, resp) => (err) ? reject(err) : resolve(resp)));
     console.log(capabilities)
     return true;

@@ -50,7 +50,7 @@ const getDeviceInfo = async (device) => {
         device_info,
         device_info_str,
         descriptor,
-        interfaces
+        interface: interfaces[0]
     }
     device.close();
     return data;

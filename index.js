@@ -5,7 +5,11 @@ const Commands = require('./commands');
 const logger = require('node-color-log');
 const _ = require('lodash');
 const Gpio = require('./classes/Gpio');
+const Usb = require('./classes/Usb');
 require('dotenv').config()
+
+Usb.getDevices();
+process.exit();
 
 const init = async ({console}) => {
     

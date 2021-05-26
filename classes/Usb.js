@@ -8,7 +8,7 @@ const vendorBlackList = [
 
 const getDevices = async () => {
     const devices = await Device.exec('lsusb');
-    console.log(devices)
+    console.log(devices.split('\n'))
     console.log('done')
     return true;
 }

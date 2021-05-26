@@ -63,7 +63,7 @@ const getDevices = async () => {
     test_device.open();
     const interface = test_device.interfaces[0];
     for(let i = 0; i < interface.endpoints.length; i++) {
-        console.log(typeof interface.endpoints[i])
+        console.log(instanceof interface.endpoints[i])
     }
     test_device.close();
 

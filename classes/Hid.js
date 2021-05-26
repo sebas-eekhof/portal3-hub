@@ -7,7 +7,7 @@ const onData = function(device) {
     const emitter = new EventEmitter();
     const dev = new HID.HID(device.path);
     dev.on('data', data => {
-        console.log(data)
+        console.log(data.toString())
         emitter.emit('data', data)
     })
     dev.on('error', error => emitter.emit('error', error))

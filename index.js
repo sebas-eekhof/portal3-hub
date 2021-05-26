@@ -8,9 +8,14 @@ const Gpio = require('./classes/Gpio');
 const Hid = require('./classes/Hid');
 require('dotenv').config()
 
-console.log(Hid.getDevices())
-
 const init = async ({console}) => {
+
+    console.log(Hid.getDevices())
+    const listener = Hid.onData(Hid.getDevices()[0])
+    listener.on('data', console.log)
+    listener.on('error', console.error)
+
+    await new Promise(() => {});
     
     console.log('Starting hub service')
 
@@ -114,7 +119,7 @@ const CreateLogger = () => {
     }
 }
 
-// init({console: CreateLogger()});
+init({console: CreateLogger()});
 
 process.on('exit', exitHandler.bind(null,{cleanup:true}));
 process.on('SIGINT', exitHandler.bind(null, {exit:true}));

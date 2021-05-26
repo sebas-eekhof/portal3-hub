@@ -41,7 +41,7 @@ const getDeviceInfo = async (device) => {
         }
     }
 
-    console.log(descriptor)
+    console.log(descriptor, interfaces)
 
     const data = {
         name: await getStringDescriptor(device, descriptor.iProduct),

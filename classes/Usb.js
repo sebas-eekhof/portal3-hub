@@ -28,6 +28,7 @@ const getDeviceInfo = async (device) => {
     let device_info = {}
     
     if(descriptor.bDeviceClass === 0 && _.get(interfaces, '[0]', false)) {
+        console.log(`I gonna use the interface`)
         device_info = {
             class: _.get(DeviceClasses, `[${interfaces[0].descriptor.bDeviceClass}]`, null),
             subclass: _.get(DeviceClasses, `[${interfaces[0].descriptor.bDeviceClass}][${interfaces[0].descriptor.bDeviceSubClass}]`, null),

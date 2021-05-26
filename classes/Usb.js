@@ -8,7 +8,7 @@ const vendorBlackList = [
 
 const doBlacklist = (devices) => devices.filter(device => !(vendorBlackList.includes(_.get(device, 'deviceDescriptor.idVendor', 0))));
 
-const getDevices = () => usb.getDeviceList().then(doBlacklist);
+const getDevices = () => doBlacklist(usb.getDeviceList());
 
 module.exports = {
     getDevices

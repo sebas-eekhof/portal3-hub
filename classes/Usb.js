@@ -18,7 +18,7 @@ const getDevices = async () => {
     const test_device = devices[0];
     test_device.open()
     await new Promise(() => {
-        test_device.getCapabilities(console.log)
+        test_device.getStringDescriptor(0, console.log)
     });
     console.log(devices)
     return true;

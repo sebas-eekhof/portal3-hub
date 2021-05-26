@@ -15,6 +15,7 @@
     "lodash": "^4.17.21",
     "network": "^0.5.0",
     "node-color-log": "^5.3.0",
+    "node-hid": "^2.1.1",
     "npm": "^7.14.0",
     "pigpio": "^3.3.1",
     "raspi-serial-number": "^1.0.6",

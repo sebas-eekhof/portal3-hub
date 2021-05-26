@@ -1,5 +1,6 @@
 const usb = require('usb');
 const _ = require('lodash');
+const HID = require('node-hid');
 const { DeviceClasses } = require('./Usb/Descriptor');
 
 const vendorBlackList = [
@@ -53,31 +54,34 @@ const getDeviceInfo = async (device) => {
 }
 
 const getDevices = async () => {
-    const devices = doBlacklist(usb.getDeviceList());
-    let device_infos = [];
-    for(let i = 0; i < devices.length; i++)
-        device_infos.push(await getDeviceInfo(devices[i]))
-    console.log(device_infos)
-    const test_device = devices[0];
-    
-    test_device.open();
-    const interface = test_device.interfaces[0];
-    if (interface.isKernelDriverActive()) {
-        interface.detachKernelDriver()
-     }
-    interface.claim();                    // claim interface
-
-    interface.endpoints[0].startPoll(1,8); // start polling the USB for data event to fire
-
-    // when new data comes in a data event will be fired on the receive endpoint
-    interface.endpoints[0].on("data", function(dataBuf)
-    {
-        console.log(dataBuf.toString('hex'))
-    });
-
-    await new Promise(() => {});
-
+    const devices = HID.devices();
+    console.log(devices);
     return true;
+    // const devices = doBlacklist(usb.getDeviceList());
+    // let device_infos = [];
+    // for(let i = 0; i < devices.length; i++)
+    //     device_infos.push(await getDeviceInfo(devices[i]))
+    // console.log(device_infos)
+    // const test_device = devices[0];
+    
+    // test_device.open();
+    // const interface = test_device.interfaces[0];
+    // if (interface.isKernelDriverActive()) {
+    //     interface.detachKernelDriver()
+    //  }
+    // interface.claim();                    // claim interface
+
+    // interface.endpoints[0].startPoll(1,8); // start polling the USB for data event to fire
+
+    // // when new data comes in a data event will be fired on the receive endpoint
+    // interface.endpoints[0].on("data", function(dataBuf)
+    // {
+    //     console.log(dataBuf.toString('hex'))
+    // });
+
+    // await new Promise(() => {});
+
+    // return true;
 };
 
 module.exports = {

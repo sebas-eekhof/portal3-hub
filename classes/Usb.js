@@ -63,7 +63,16 @@ const getDevices = async () => {
     test_device.open();
     const interface = test_device.interfaces[0];
     for(let i = 0; i < interface.endpoints.length; i++) {
-        console.log(interface.endpoints[i] instanceof usb.InEndpoint)
+        if(interface.endpoints[i] instanceof usb.InEndpoint) {
+            const endpoint = interface.endpoints[i];
+            endpoint.startPoll();
+            await new Promise(() => {
+                endpoint.on('data', data => {
+                    console.log(data.toString())
+                })
+                endpoint.on('error', console.error)
+            })
+        }
     }
     test_device.close();
 

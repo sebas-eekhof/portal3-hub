@@ -59,7 +59,7 @@ const getDevices = async () => {
         device_infos.push(await getDeviceInfo(devices[i]))
     console.log(device_infos)
     const test_device = devices[0];
-    console.log(test_device.__isKernelDriverActive())
+    console.log(test_device.interfaces[0].isKernelDriverActive())
     return true;
 };
 

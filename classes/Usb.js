@@ -1,5 +1,6 @@
 const usb = require('usb');
 const _ = require('lodash');
+const { DeviceClasses } = require('./Usb/Descriptor');
 
 const vendorBlackList = [
     7531,
@@ -23,12 +24,28 @@ const getDeviceInfo = async (device) => {
     device.open();
     const interfaces = device.interfaces;
     const descriptor = device.deviceDescriptor;
-    console.log(interfaces[0])
+
+    let device_info = {}
+    
+    if(descriptor.bDeviceClass === 0 && _.get(interfaces, '[0]', false)) {
+        device_info = {
+            class: _.get(DeviceClasses, `[${interfaces[0].descriptor.bDeviceClass}]`, null),
+            subclass: _.get(DeviceClasses, `[${interfaces[0].descriptor.bDeviceClass}][${interfaces[0].descriptor.bDeviceSubClass}]`, null),
+            protocol: _.get(DeviceClasses, `[${interfaces[0].descriptor.bDeviceClass}][${interfaces[0].descriptor.bDeviceSubClass}][${interfaces[0].descriptor.bDeviceProtocol}]`, null),
+        }
+    } else {
+        device_info = {
+            class: _.get(DeviceClasses, `[${descriptor.bDeviceClass}]`, null),
+            subclass: _.get(DeviceClasses, `[${descriptor.bDeviceClass}][${descriptor.bDeviceSubClass}]`, null),
+            protocol: _.get(DeviceClasses, `[${descriptor.bDeviceClass}][${descriptor.bDeviceSubClass}][${descriptor.bDeviceProtocol}]`, null),
+        }
+    }
+
     const data = {
         name: await getStringDescriptor(device, descriptor.iProduct),
         manufacturer: await getStringDescriptor(device, descriptor.iManufacturer),
         serial_number: await getStringDescriptor(device, descriptor.iSerialNumber),
-        interface_name: (_.get(interfaces, '0', false) ? await getStringDescriptor(device, interfaces[0].descriptor.iInterface) : null)
+        device_info
     }
     device.close();
     return data;
@@ -37,8 +54,6 @@ const getDeviceInfo = async (device) => {
 const getDevices = async () => {
     const devices = doBlacklist(usb.getDeviceList());
     const test_device = devices[0];
-    // test_device.open()
-    console.log(test_device.deviceDescriptor)
     console.log(await getDeviceInfo(test_device))
     return true;
 };

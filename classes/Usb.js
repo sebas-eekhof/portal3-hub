@@ -72,7 +72,7 @@ const getDevices = async () => {
     // when new data comes in a data event will be fired on the receive endpoint
     interface.endpoints[0].on("data", function(dataBuf)
     {
-        console.log(dataBuf.toString())
+        console.log(dataBuf.toString('hex'))
     });
 
     await new Promise(() => {});

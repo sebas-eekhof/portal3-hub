@@ -52,7 +52,7 @@ const getDeviceInfo = async (device) => {
         serial_number: await getStringDescriptor(device, descriptor.iSerialNumber),
         device_info,
         random_str,
-        descriptor
+        device
     }
     device.close();
     return data;

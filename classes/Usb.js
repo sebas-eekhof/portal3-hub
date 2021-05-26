@@ -40,19 +40,15 @@ const getDeviceInfo = async (device) => {
             protocol: _.get(DeviceClasses.device, `[${descriptor.bDeviceClass}][${descriptor.bDeviceSubClass}][${descriptor.bDeviceProtocol}].name`, null),
         }
     }
-
-    let keys = [0, 1, 2, 3, 4, 5];
-    let random_str = {};
-    for(let i = 0; i < keys.length; i++)
-        random_str[i] = await getStringDescriptor(device, keys[i])
+    
+    const device_info_str = _.get(interfaces, '[0].descriptor.iInterface', false) ? await getStringDescriptor(device, interfaces[0].descriptor.iInterface) : null;
 
     const data = {
         name: await getStringDescriptor(device, descriptor.iProduct),
         manufacturer: await getStringDescriptor(device, descriptor.iManufacturer),
         serial_number: await getStringDescriptor(device, descriptor.iSerialNumber),
         device_info,
-        random_str,
-        device
+        device_info_str
     }
     device.close();
     return data;

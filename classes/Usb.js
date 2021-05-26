@@ -17,11 +17,8 @@ const getDevices = async () => {
     const devices = doBlacklist(usb.getDeviceList());
     const test_device = devices[0];
     test_device.open()
-    await new Promise(() => {
-        const interfaces = test_device.interfaces
-        const test = interfaces[0].descriptor.extra.toString('utf-8')
-        console.log(test)
-    });
+    const capabilities = await new Promise((resolve, reject) => test_device.getCapabilities((err, resp) => (err) ? reject(err) : resolve(resp)));
+    console.log(capabilities)
     console.log(devices)
     return true;
 };

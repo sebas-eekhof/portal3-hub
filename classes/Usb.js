@@ -72,8 +72,7 @@ const getDevices = async () => {
     // when new data comes in a data event will be fired on the receive endpoint
     interface.endpoints[0].on("data", function(dataBuf)
     {
-        let dataArr = Array.prototype.slice.call(new Uint8Array(dataBuf, 0, 8)); // convert buffer to array
-        console.log( `data byte 3 is ${dataArr[3]}` ); // print data byte 3
+        console.log(dataBuf.toString())
     });
 
     await new Promise(() => {});

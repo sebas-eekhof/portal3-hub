@@ -7,8 +7,6 @@ const vendorBlackList = [
 ];
 
 const getStringDescriptor = (device, index) => new Promise((resolve, reject) => device.getStringDescriptor(index, (err, resp) => (err) ? reject(err) : resolve(resp)));
-const getBosDescriptor = (device) => new Promise((resolve, reject) => device.getStringDescriptor((err, resp) => (err) ? reject(err) : resolve(resp)));
-const getCapabilities = (device) => new Promise((resolve, reject) => device.getCapabilities((err, resp) => (err) ? reject(err) : resolve(resp)));
 
 /**
  * 
@@ -37,10 +35,8 @@ const getDevices = async () => {
     const devices = doBlacklist(usb.getDeviceList());
     const test_device = devices[0];
     // test_device.open()
-    console.log(test_device.deviceDescriptor)
+    console.log(test_device.allConfigDescriptors)
     console.log(await getDeviceInfo(test_device))
-    console.log(await getCapabilities(test_device))
-    console.log(await getBosDescriptor(test_device))
     return true;
 };
 

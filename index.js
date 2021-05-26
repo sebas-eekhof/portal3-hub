@@ -9,13 +9,6 @@ const Hid = require('./classes/Hid');
 require('dotenv').config()
 
 const init = async ({console}) => {
-
-    console.log(Hid.getDevices())
-    const { pipe } = Hid.onData(Hid.getDevices()[0])
-    pipe.on('data', str => console.log(`_${str}_`))
-    pipe.on('error', console.error)
-
-    await new Promise(() => {});
     
     console.log('Starting hub service')
 

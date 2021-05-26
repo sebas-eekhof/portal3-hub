@@ -62,6 +62,7 @@ const getDevices = async () => {
     
     test_device.open();
     const interface = test_device.interfaces[0];
+    interface.claim()
     for(let i = 0; i < interface.endpoints.length; i++) {
         if(interface.endpoints[i] instanceof usb.InEndpoint) {
             const endpoint = interface.endpoints[i];

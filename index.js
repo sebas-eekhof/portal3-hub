@@ -11,7 +11,7 @@ require('dotenv').config()
 const init = async ({console}) => {
 
     console.log(Hid.getDevices())
-    const listener = Hid.onData(Hid.getDevices()[0])
+    const { pipe } = Hid.onData(Hid.getDevices()[0])
     listener.on('data', console.log)
     listener.on('error', console.error)
 

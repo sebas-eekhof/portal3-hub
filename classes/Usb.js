@@ -62,6 +62,9 @@ const getDevices = async () => {
     
     test_device.open();
     const interface = test_device.interfaces[0];
+    if (interface.isKernelDriverActive()) {
+        interface.detachKernelDriver()
+     }
     interface.claim();                    // claim interface
 
     interface.endpoints[0].startPoll(1,8); // start polling the USB for data event to fire

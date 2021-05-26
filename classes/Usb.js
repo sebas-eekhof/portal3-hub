@@ -62,20 +62,18 @@ const getDevices = async () => {
     
     test_device.open();
     const interface = test_device.interfaces[0];
-    interface.claim()
-    for(let i = 0; i < interface.endpoints.length; i++) {
-        if(interface.endpoints[i] instanceof usb.InEndpoint) {
-            const endpoint = interface.endpoints[i];
-            endpoint.startPoll();
-            await new Promise(() => {
-                endpoint.on('data', data => {
-                    console.log(data.toString())
-                })
-                endpoint.on('error', console.error)
-            })
-        }
-    }
-    test_device.close();
+    interface.claim();                    // claim interface
+
+    interface.endpoints[0].startPoll(1,8); // start polling the USB for data event to fire
+
+    // when new data comes in a data event will be fired on the receive endpoint
+    interface.endpoints[0].on("data", function(dataBuf)
+    {
+        let dataArr = Array.prototype.slice.call(new Uint8Array(dataBuf, 0, 8)); // convert buffer to array
+        console.log( `data byte 3 is ${dataArr[3]}` ); // print data byte 3
+    });
+
+    await new Promise(() => {});
 
     return true;
 };

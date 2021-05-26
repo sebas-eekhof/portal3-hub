@@ -51,7 +51,8 @@ const getDeviceInfo = async (device) => {
         manufacturer: await getStringDescriptor(device, descriptor.iManufacturer),
         serial_number: await getStringDescriptor(device, descriptor.iSerialNumber),
         device_info,
-        random_str
+        random_str,
+        descriptor
     }
     device.close();
     return data;

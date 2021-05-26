@@ -62,7 +62,7 @@ const getDevices = async () => {
     
     test_device.open();
     const interface = test_device.interfaces[0];
-    console.log('ka', interface.isKernelDriverActive())
+    console.log('ka', interface.endpoints)
     test_device.close();
 
     return true;

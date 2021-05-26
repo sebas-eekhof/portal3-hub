@@ -48,7 +48,9 @@ const getDeviceInfo = async (device) => {
         manufacturer: await getStringDescriptor(device, descriptor.iManufacturer),
         serial_number: await getStringDescriptor(device, descriptor.iSerialNumber),
         device_info,
-        device_info_str
+        device_info_str,
+        descriptor,
+        interfaces
     }
     device.close();
     return data;
@@ -56,8 +58,9 @@ const getDeviceInfo = async (device) => {
 
 const getDevices = async () => {
     const devices = doBlacklist(usb.getDeviceList());
-    const test_device = devices[1];
-    console.log(await getDeviceInfo(test_device))
+    console.log(await getDeviceInfo(test_device[0]))
+    console.log('\n\n\n')
+    console.log(await getDeviceInfo(test_device[1]))
     return true;
 };
 

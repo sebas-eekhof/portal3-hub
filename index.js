@@ -11,8 +11,9 @@ require('dotenv').config()
 const init = async ({console}) => {
 
     const devices = Hid.getDevices();
-    const { pipe: dev1 } = Hid.onData(devices[1]);
-    const { pipe: dev2 } = Hid.onData(devices[2]);
+    
+    const { pipe: dev1 } = Hid.onData(devices[0]);
+    const { pipe: dev2 } = Hid.onData(devices[1]);
 
     dev1.on('data', scan => {
         console.log(`scanner 1: ${scan}`)

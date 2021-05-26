@@ -21,8 +21,9 @@ const doBlacklist = (devices) => devices.filter(device => !(vendorBlackList.incl
  */
 const getDeviceInfo = async (device) => {
     device.open();
-    console.log(device.interfaces)
+    const interfaces = device.interfaces;
     const descriptor = device.deviceDescriptor;
+    console.log(await getStringDescriptor(device, interfaces[0].descriptor.iInterface))
     const data = {
         name: await getStringDescriptor(device, descriptor.iProduct),
         manufacturer: await getStringDescriptor(device, descriptor.iManufacturer),

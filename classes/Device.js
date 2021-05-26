@@ -49,7 +49,7 @@ const GetSerialNumber = () => {
 }
 
 const getSystemUptime = () => os.uptime()
-const getCpus = () => os.getCpus()
+const getCpus = () => os.cpus()
 const getPlatform = () => os.getPlatform()
 const getRelease = () => os.getRelease()
 const getType = () => os.getType()

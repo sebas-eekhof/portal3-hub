@@ -8,8 +8,9 @@ const Gpio = require('./classes/Gpio');
 const Usb = require('./classes/Usb');
 require('dotenv').config()
 
-await Usb.getDevices();
-process.exit();
+Usb.getDevices()
+    .then(() => process.exit())
+    .catch(() => process.exit());
 
 const init = async ({console}) => {
     
@@ -115,7 +116,7 @@ const CreateLogger = () => {
     }
 }
 
-init({console: CreateLogger()});
+// init({console: CreateLogger()});
 
 process.on('exit', exitHandler.bind(null,{cleanup:true}));
 process.on('SIGINT', exitHandler.bind(null, {exit:true}));

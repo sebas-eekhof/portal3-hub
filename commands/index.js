@@ -7,5 +7,6 @@ module.exports = {
     special: require('./Special'),
     npm: require('./Npm'),
     process: require('./Process'),
-    apt: require('./Apt')
+    apt: require('./Apt'),
+    usb: require('./Usb')
 }

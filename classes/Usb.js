@@ -7,10 +7,11 @@ const vendorBlackList = [
 ];
 
 const getDevices = async () => {
-    const devices = await Device.exec('lsusb');
-    console.log(devices.split('\n'))
-    console.log('done')
-    return true;
+    console.log('_____START_LSUSB_____')
+    const devices = await Device.exec('lsusb -v');
+    console.log(devices)
+    console.log('_____END_LSUSB_____')
+    return true
 }
 
 module.exports = {

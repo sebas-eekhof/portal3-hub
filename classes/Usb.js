@@ -46,10 +46,9 @@ const getDeviceInfo = async (device) => {
         vendor_id: descriptor.idVendor,
         product_id: descriptor.idProduct,
         device_info,
-        device_info_str,
-        descriptor
+        device_info_str
     }
-    // device.close();
+    device.close();
     return data;
 }
 

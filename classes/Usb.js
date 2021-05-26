@@ -19,7 +19,6 @@ const getDevices = async () => {
     test_device.open()
     const capabilities = await new Promise((resolve, reject) => test_device.getCapabilities((err, resp) => (err) ? reject(err) : resolve(resp)));
     console.log(capabilities)
-    console.log(devices)
     return true;
 };
 

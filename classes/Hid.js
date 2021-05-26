@@ -6,7 +6,7 @@ const getDevices = () => HID.devices();
 const onData = function(device) {
     const emitter = new EventEmitter();
     const dev = new HID.HID(device.path);
-    dev.on('data', data => emitter.emit('data', data.toString('utf-8').trim()))
+    dev.on('data', data => emitter.emit('data', data.toString('utf-8').trim().replace(/\r?\n|\r/g, '')))
     dev.on('error', error => emitter.emit('error', error))
 
     return {

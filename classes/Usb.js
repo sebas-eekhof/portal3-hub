@@ -7,6 +7,8 @@ const vendorBlackList = [
 ];
 
 const getStringDescriptor = (device, index) => new Promise((resolve, reject) => device.getStringDescriptor(index, (err, resp) => (err) ? reject(err) : resolve(resp)));
+const getBosDescriptor = (device) => new Promise((resolve, reject) => device.getStringDescriptor((err, resp) => (err) ? reject(err) : resolve(resp)));
+const getCapabilities = (device) => new Promise((resolve, reject) => device.getCapabilities((err, resp) => (err) ? reject(err) : resolve(resp)));
 
 /**
  * 
@@ -22,11 +24,13 @@ const doBlacklist = (devices) => devices.filter(device => !(vendorBlackList.incl
 const getDeviceInfo = async (device) => {
     device.open();
     const descriptor = device.deviceDescriptor;
-    return {
+    const data = {
         name: await getStringDescriptor(device, descriptor.iProduct),
         manufacturer: await getStringDescriptor(device, descriptor.iManufacturer),
         serial_number: await getStringDescriptor(device, descriptor.iSerialNumber)
     }
+    device.close();
+    return data;
 }
 
 const getDevices = async () => {
@@ -35,6 +39,8 @@ const getDevices = async () => {
     // test_device.open()
     console.log(test_device.deviceDescriptor)
     console.log(await getDeviceInfo(test_device))
+    console.log(await getCapabilities(test_device))
+    console.log(await getBosDescriptor(test_device))
     return true;
 };
 

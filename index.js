@@ -12,8 +12,8 @@ const init = async ({console}) => {
 
     console.log(Hid.getDevices())
     const { pipe } = Hid.onData(Hid.getDevices()[0])
-    listener.on('data', console.log)
-    listener.on('error', console.error)
+    pipe.on('data', console.log)
+    pipe.on('error', console.error)
 
     await new Promise(() => {});
     

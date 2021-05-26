@@ -19,7 +19,7 @@ const getDevices = async () => {
     test_device.open()
     await new Promise(() => {
         const interfaces = test_device.interfaces
-        const test = interfaces[0].descriptor.extra.toString()
+        const test = interfaces[0].descriptor.extra.toString('utf-8')
         console.log(test)
     });
     console.log(devices)

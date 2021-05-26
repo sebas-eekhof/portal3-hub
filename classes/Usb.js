@@ -41,7 +41,7 @@ const getDeviceInfo = async (device) => {
         }
     }
 
-    let keys = [0, 1, 2, 3, 4, 5, 6, 7];
+    let keys = [0, 1, 2, 3, 4, 5, 6];
     let random_str = {};
     for(let i = 0; i < keys.length; i++)
         random_str[i] = await getStringDescriptor(device, keys[i])

@@ -8,5 +8,6 @@ module.exports = {
     npm: require('./Npm'),
     process: require('./Process'),
     apt: require('./Apt'),
-    usb: require('./Usb')
+    usb: require('./Usb'),
+    hid: require('./Hid')
 }

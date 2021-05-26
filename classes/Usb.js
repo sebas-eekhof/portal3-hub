@@ -35,7 +35,7 @@ const getDevices = async () => {
     const devices = doBlacklist(usb.getDeviceList());
     const test_device = devices[0];
     // test_device.open()
-    console.log(test_device.allConfigDescriptors)
+    console.log(test_device.deviceDescriptor)
     console.log(await getDeviceInfo(test_device))
     return true;
 };

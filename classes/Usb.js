@@ -23,7 +23,9 @@ const getDeviceInfo = async (device) => {
     device.open();
     const descriptor = device.deviceDescriptor;
     return {
-        name: await getStringDescriptor(device, descriptor.iProduct)
+        name: await getStringDescriptor(device, descriptor.iProduct),
+        manufacturer: await getStringDescriptor(device, descriptor.iManufacturer),
+        serial_number: await getStringDescriptor(device, descriptor.iSerialNumber)
     }
 }
 

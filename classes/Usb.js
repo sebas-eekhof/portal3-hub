@@ -10,6 +10,7 @@ const getDevices = async () => {
     const devices = await Device.exec('lsusb');
     console.log(devices)
     console.log('done')
+    return true;
 }
 
 module.exports = {

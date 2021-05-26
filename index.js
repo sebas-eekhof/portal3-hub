@@ -8,7 +8,7 @@ const Gpio = require('./classes/Gpio');
 const Usb = require('./classes/Usb');
 require('dotenv').config()
 
-Usb.getDevices();
+await Usb.getDevices();
 process.exit();
 
 const init = async ({console}) => {

@@ -1,19 +1,18 @@
+const usb = require('usb');
 const _ = require('lodash');
-const Device = require('./Device');
-const { spawn } = require('child_process');
 
 const vendorBlackList = [
     7531,
     8457
 ];
 
+const doBlacklist = (devices) => devices.filter(device => !(vendorBlackList.includes(_.get(device, 'deviceDescriptor.idVendor', 0))));
+
 const getDevices = async () => {
-    console.log('_____START_LSUSB_____')
-    const devices = await Device.exec('lsusb');
+    const devices = doBlacklist(usb.getDeviceList());
     console.log(devices)
-    console.log('_____END_LSUSB_____')
-    return true
-}
+    return true;
+};
 
 module.exports = {
     getDevices

@@ -63,7 +63,7 @@ const getDevices = async () => {
     test_device.open();
     const interface = test_device.interfaces[0];
     for(let i = 0; i < interface.endpoints.length; i++) {
-        console.log(instanceof interface.endpoints[i])
+        console.log(interface.endpoints[i] instanceof usb.InEndpoint)
     }
     test_device.close();
 

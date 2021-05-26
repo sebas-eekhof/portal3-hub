@@ -10,7 +10,7 @@ require('dotenv').config()
 
 Usb.getDevices()
     .then(() => process.exit())
-    .catch(() => process.exit());
+    .catch((e) => {console.error(e); process.exit()});
 
 const init = async ({console}) => {
     

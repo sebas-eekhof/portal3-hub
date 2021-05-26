@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const Device = require('./Device');
+const { spawn } = require('child_process');
 
 const vendorBlackList = [
     7531,

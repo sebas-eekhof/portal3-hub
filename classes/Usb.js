@@ -19,7 +19,8 @@ const getDevices = async () => {
     test_device.open()
     await new Promise(() => {
         const interfaces = test_device.interfaces
-        console.log(interfaces)
+        const test = interfaces[0].descriptor.extra.toString()
+        console.log(test)
     });
     console.log(devices)
     return true;

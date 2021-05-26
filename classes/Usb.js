@@ -41,6 +41,8 @@ const getDeviceInfo = async (device) => {
         }
     }
 
+    console.log(descriptor)
+
     const data = {
         name: await getStringDescriptor(device, descriptor.iProduct),
         manufacturer: await getStringDescriptor(device, descriptor.iManufacturer),

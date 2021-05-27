@@ -99,7 +99,6 @@ const CreateLogger = () => {
         logger.joint().log(' ')
         logger.joint().color('white').log(message);
     }
-
     return {
         debug: (message) => SendMessage('yellow', 'DEBUG', message),
         log: (message) => SendMessage('yellow', 'LOG', message),

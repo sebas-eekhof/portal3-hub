@@ -38,7 +38,6 @@ const getDeviceInfo = async (device) => {
             protocol: _.get(DeviceClasses.device, `[${descriptor.bDeviceClass}][${descriptor.bDeviceSubClass}][${descriptor.bDeviceProtocol}].name`, null),
         }
     }
-    console.log(device)
     const device_info_str = _.get(interfaces, '[0].descriptor.iInterface', false) ? await getStringDescriptor(device, interfaces[0].descriptor.iInterface) : null;
     const data = {
         name: (descriptor.iProduct !== 0) ? await getStringDescriptor(device, descriptor.iProduct) : null,
@@ -47,7 +46,8 @@ const getDeviceInfo = async (device) => {
         vendor_id: descriptor.idVendor,
         product_id: descriptor.idProduct,
         device_info,
-        device_info_str
+        device_info_str,
+        port_path: device.portNumbers.shift()
     }
     device.close();
     return data;

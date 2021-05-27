@@ -6,6 +6,8 @@ let last_is_online = false;
 const start = ({socket}) => {
     network.getActiveInterface()
         .then(() => {
+            if(!last_is_online && !socket.connected)
+                socket.connect();
             if(socket.connected && !last_is_online)
                 Gpio.stopEffect('status_led');
             last_is_online = true;
@@ -15,7 +17,7 @@ const start = ({socket}) => {
             if(!last_is_online)
                 Gpio.playEffect('status_led', 'wave', 1)
             last_is_online = false;
-            setTimeout(() => start({socket}), 1000)
+            setTimeout(() => start({socket}), 500)
         });
 }
 

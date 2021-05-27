@@ -23,11 +23,13 @@ const doBlacklist = (devices) => devices.filter(device => !(vendorBlackList.incl
  * @returns 
  */
 const specialDeviceFilters = ({device_info, device_name, vendor_id, product_id}) => {
-    if(device_info.class !== 255)
-        return device_info;
     if(device_name.toLowerCase().includes('wlan'))
-        device_info.class = DeviceClasses.interface[14];
-    return device_info;
+        device_info.class_id = 14;
+    return {
+        class: _.get(DeviceClasses[device_info.type], `[${device_info.class_id}].name`, DeviceClasses[device_info.type][0]),
+        subclass: _.get(DeviceClasses[device_info.type], `[${device_info.class_id}].subclasses[${device_info.subclass_id}].name`, null),
+        protocol: _.get(DeviceClasses[device_info.type], `[${device_info.class_id}].subclasses[${device_info.product_id}].protocols[${device_info.protocol_id}].name`, null),
+    };
 }
 
 /**
@@ -45,16 +47,18 @@ const getDeviceInfo = async (device) => {
     let device_info = {}
     if(descriptor.bDeviceClass === 0 && _.get(interfaces, '[0]', false)) {
         device_info = {
-            class: _.get(DeviceClasses.interface, `[${interfaces[0].descriptor.bInterfaceClass}].name`, null),
-            subclass: _.get(DeviceClasses.interface, `[${interfaces[0].descriptor.bInterfaceClass}][${interfaces[0].descriptor.bInterfaceSubClass}].name`, null),
-            protocol: _.get(DeviceClasses.interface, `[${interfaces[0].descriptor.bInterfaceClass}][${interfaces[0].descriptor.bInterfaceSubClass}][${interfaces[0].descriptor.bInterfaceProtocol}].name`, null),
+            class_id: interfaces[0].descriptor.bInterfaceClass,
+            subclass_id: interfaces[0].descriptor.bInterfaceClass,
+            protocol_id: _.get(interfaces, `[0].descriptor.bInterfaceProtocol`),
+            type: 'interface'
         }
 
     } else {
         device_info = {
-            class: _.get(DeviceClasses.device, `[${descriptor.bDeviceClass}].name`, null),
-            subclass: _.get(DeviceClasses.device, `[${descriptor.bDeviceClass}][${descriptor.bDeviceSubClass}].name`, null),
-            protocol: _.get(DeviceClasses.device, `[${descriptor.bDeviceClass}][${descriptor.bDeviceSubClass}][${descriptor.bDeviceProtocol}].name`, null),
+            class_id: descriptor.bDeviceClass,
+            subclass_id: descriptor.bDeviceSubClass,
+            protocol_id: descriptor.bDeviceProtocol,
+            type: 'device'
         }
     }
 

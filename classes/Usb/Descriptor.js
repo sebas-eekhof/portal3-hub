@@ -38,6 +38,9 @@ const DeviceClasses = Object.freeze({
         }
     },
     interface: {
+        0: {
+            name: 'unknown'
+        },
         1: {
             name: 'audio'
         },

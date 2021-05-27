@@ -47,7 +47,7 @@ const getDeviceInfo = async (device) => {
         product_id: descriptor.idProduct,
         device_info,
         device_info_str,
-        port_path: device.portNumbers.shift()
+        port: device.portNumbers[1]
     }
     device.close();
     return data;

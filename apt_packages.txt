@@ -1,1 +1,1 @@
-pigpio
+pigpio cups libcups2-dev libcupsimage2-dev g++ cups-client

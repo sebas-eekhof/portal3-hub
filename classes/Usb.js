@@ -47,7 +47,8 @@ const getDeviceInfo = async (device) => {
         product_id: descriptor.idProduct,
         device_info,
         device_info_str,
-        port: device.portNumbers[1]
+        port: device.portNumbers[1],
+        using_hub: (device.portNumbers.length > 2)
     }
     device.close();
     return data;

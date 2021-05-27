@@ -5,6 +5,7 @@ const Commands = require('./commands');
 const logger = require('node-color-log');
 const _ = require('lodash');
 const Gpio = require('./classes/Gpio');
+const ConnectionChecker = require('./classes/ConnectionChecker');
 require('dotenv').config()
 
 const init = async ({console}) => {
@@ -16,6 +17,8 @@ const init = async ({console}) => {
     Gpio.playEffect('status_led', 'wave', 1)
 
     const socket = io(_.get(process.env, 'SOCKET_SERVER', 'wss://portal3.nl:7474'), { secure: (typeof process.env.SOCKET_SERVER === "undefined"), reconnection: true, rejectUnauthorized: false, query: { hub_serial: await Device.GetSerialNumber(), model: await Device.getModel() }, maxReconnectionAttempts: Infinity })
+
+    ConnectionChecker.start({socket});
 
     console.log('Starting to connect to socket')
 

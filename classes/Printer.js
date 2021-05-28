@@ -5,7 +5,7 @@ const _ = require('lodash');
 const allDevices = [];
 
 const start_discovery = () => {
-    const run = () => {
+    const run = async () => {
         let list = await Device.spawn('lpinfo', ['-l', '-v'])
         list = list.split('Device: ').filter(i => i.length !== 0)
         let devices = [];
@@ -28,9 +28,9 @@ const start_discovery = () => {
                 devices.push(info)
         }
         allDevices = devices;
+        setTimeout(run, 5000)
     }
     run();
-    setInterval(run, 30000)
 }
 
 const getPrinterDevice = (uri) => {

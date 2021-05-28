@@ -6,24 +6,16 @@ const logger = require('node-color-log');
 const _ = require('lodash');
 const Gpio = require('./classes/Gpio');
 const ConnectionChecker = require('./classes/ConnectionChecker');
+const Printer = require('./classes/Printer');
 require('dotenv').config()
 
-const Printer = require('./classes/Printer');
-const Usb = require('./classes/Usb');
-
-const c = console;
-
 const init = async ({console}) => {
-
-    const a = await Usb.getDevices();
-
-    c.log(a)
-
-    await new Promise(() => {});
     
     console.log('Starting hub service')
 
     Gpio.init();
+
+    Printer.start_discovery();
     
     Gpio.playEffect('status_led', 'wave', 1)
 

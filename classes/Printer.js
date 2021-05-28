@@ -6,8 +6,7 @@ const getPrinters = () => Printer.getPrinters()
 const getCommands = () => Printer.getSupportedJobCommands()
 const getDevices = async () => {
     let already_setup = getPrinters().map(i => i.options['device-uri'])
-    // let list = await Device.spawn('lpinfo', ['-l', '-v'])
-    let list = '';
+    let list = await Device.spawn('lpinfo', ['-l', '-v'])
     list = list.split('Device: ').filter(i => i.length !== 0)
     let devices = [];
     for(let i = 0; i < list.length; i++) {
@@ -25,12 +24,10 @@ const getDevices = async () => {
                 if(typeof info[rule[0]] !== "undefined")
                     info[rule[0]] = rule[1];
         }
-        if(info.id && info.class !== 'file')
+        if(info.id && info.class !== 'file' && !already_setup.includes(info.uri))
             devices.push(info)
     }
-    console.log(devices)
-    console.log(Printer.getPrinters(), already_setup)
-    // return devices;
+    return devices;
 }
 const getDrivers = async () => {
     try {

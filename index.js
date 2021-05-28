@@ -13,9 +13,9 @@ const c = console;
 
 const init = async ({console}) => {
 
-    const a = Printer.getDevices();
+    const a = await Printer.getDevices();
 
-    // c.log(a)
+    c.log(a)
 
     await new Promise(() => {});
     

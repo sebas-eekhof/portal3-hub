@@ -1,5 +1,6 @@
 const JSONdb = require('simple-json-db');
-const db = new JSONdb('/portal3/db.bin');
+const Device = require('./Device');
+const db = new JSONdb(Device.IsDevelopment() ? '../portal3/db.bin' : '/portal3/db.bin');
 const { Encrypt, Decrypt } = require('./Crypto');
 
 const get = (key) => (fallback = null) => {

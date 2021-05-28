@@ -17,6 +17,8 @@ const exec = (command) => new Promise((resolve, reject) => {
 })
 
 const getModel = async () => {
+    if(IsDevelopment())
+        return os.hostname();
     const identifiers = [
         {
             check: 'Raspberry Pi 4',

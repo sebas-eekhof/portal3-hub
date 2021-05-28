@@ -102,7 +102,7 @@ const de_init = () => {
 
 const playEffect = (pin_name, effect, interval = 50, duration = null, once = false) => {
     if(Device.IsDevelopment())
-        throw new Error(`Cannot run GPIO on a development device`);
+        return false;
     const pin = _.get(pins, pin_name, false);
     if(!pin)
         throw new Error(`Pin with name ${pin_name} does not exists`);
@@ -129,7 +129,7 @@ const playEffectOnce = (pin_name, effect) => {
 
 const stopEffect = (pin_name) => {
     if(Device.IsDevelopment())
-        throw new Error(`Cannot run GPIO on a development device`);
+        return false;
     if(!_.get(pins, `${pin_name}.running_effect`, false))
         throw new Error(`Pin with name ${pin_name} does not exists or is not playing a effect`);
     clearInterval(pins[pin_name].running_effect)
@@ -139,7 +139,7 @@ const stopEffect = (pin_name) => {
 
 const getPin = (name) => {
     if(Device.IsDevelopment())
-        throw new Error(`Cannot run GPIO on a development device`);
+        return false;
     const obj = _.get(pins, `${name}.obj`, false);
     if(!obj)
         throw new Error(`Pin with name ${name} does not exists`);

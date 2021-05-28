@@ -6,9 +6,14 @@ const logger = require('node-color-log');
 const _ = require('lodash');
 const Gpio = require('./classes/Gpio');
 const ConnectionChecker = require('./classes/ConnectionChecker');
+const Printer = require('./classes/Printer');
 require('dotenv').config()
 
 const init = async ({console}) => {
+
+    Printer.getPrinters();
+
+    await new Promise(() => {});
     
     console.log('Starting hub service')
 

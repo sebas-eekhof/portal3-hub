@@ -23,10 +23,11 @@ const getDevices = async () => {
                 if(typeof info[rule[0]] !== "undefined")
                     info[rule[0]] = rule[1];
         }
-        if(info.id)
+        if(info.id && info.class !== 'file')
             devices.push(info)
     }
     console.log(devices)
+    console.log(Printer.getPrinters())
     // return devices;
 }
 const getDrivers = async () => {

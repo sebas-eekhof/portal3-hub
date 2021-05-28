@@ -2,7 +2,7 @@ const Printer = require('@thiagoelg/node-printer');
 const Device = require('./Device');
 const _ = require('lodash');
 
-const allDevices = [];
+let allDevices = [];
 
 const start_discovery = () => {
     const run = async () => {

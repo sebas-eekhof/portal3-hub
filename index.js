@@ -6,14 +6,16 @@ const logger = require('node-color-log');
 const _ = require('lodash');
 const Gpio = require('./classes/Gpio');
 const ConnectionChecker = require('./classes/ConnectionChecker');
-const Printer = require('./classes/Printer');
 require('dotenv').config()
+
+const Printer = require('./classes/Printer');
+const Usb = require('./classes/Usb');
 
 const c = console;
 
 const init = async ({console}) => {
 
-    const a = Printer.getPrinters();
+    const a = await Usb.getDevices();
 
     c.log(a)
 

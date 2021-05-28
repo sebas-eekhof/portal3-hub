@@ -5,8 +5,8 @@ const _ = require('lodash');
 const getPrinters = () => Printer.getPrinters()
 const getCommands = () => Printer.getSupportedJobCommands()
 const getDevices = async () => {
-    // let list = await Device.spawn('lpinfo', ['-l', '-v'])
-    let list = await Device.exec('cat test.txt');
+    let list = await Device.spawn('lpinfo', ['-l', '-v'])
+    // let list = await Device.exec('cat test.txt');
     list = list.split('Device: ').filter(i => i.length !== 0)
     let devices = [];
     for(let i = 0; i < list.length; i++) {
@@ -19,7 +19,7 @@ const getDevices = async () => {
             id: null
         }
         for(let i = 0; i < info_rules.length; i++) {
-            console.log(info_rules[i])
+            // console.log(info_rules[i])
             // const rule = info_rules[i].split(' = ');
             // if(rule.length === 2)
             //     if(typeof info[rule[0]] !== "undefined")

@@ -13,11 +13,11 @@ const c = console;
 
 const init = async ({console}) => {
 
-    // const a = Printer.getDrivers();
+    const a = Printer.getDrivers();
 
     // c.log(a)
 
-    // await new Promise(() => {});
+    await new Promise(() => {});
     
     console.log('Starting hub service')
 

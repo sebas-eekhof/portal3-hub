@@ -4,8 +4,12 @@ const Device = require('./Device');
 const getPrinters = () => Printer.getPrinters()
 const getCommands = () => Printer.getSupportedJobCommands()
 const getDrivers = async () => {
-    let list = await Device.exec(`lpinfo --make-and-model "Brother_MFC-L2750DW" -m`)
-    console.log(list)
+    try {
+        let list = await Device.exec(`lpinfo --make-and-model "Brother_MFC-L2750DW" -m`)
+        console.log(list)
+    } catch(e) {
+        console.log('drivers not found')
+    }
 }
 
 module.exports = {

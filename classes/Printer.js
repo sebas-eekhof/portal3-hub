@@ -4,8 +4,10 @@ const _ = require('lodash');
 
 const getPrinters = () => Printer.getPrinters()
 const getCommands = () => Printer.getSupportedJobCommands()
-const getDevices = async () => {
-    let list = await Device.spawn('lpinfo', ['-l', '-v'])
+const getDiscover = async () => {
+    let already_setup = getPrinters().map(i => i.options['device-uri'])
+    // let list = await Device.spawn('lpinfo', ['-l', '-v'])
+    let list = '';
     list = list.split('Device: ').filter(i => i.length !== 0)
     let devices = [];
     for(let i = 0; i < list.length; i++) {
@@ -27,7 +29,7 @@ const getDevices = async () => {
             devices.push(info)
     }
     console.log(devices)
-    console.log(Printer.getPrinters())
+    console.log(Printer.getPrinters(), already_setup)
     // return devices;
 }
 const getDrivers = async () => {

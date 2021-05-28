@@ -18,7 +18,6 @@ const getDevices = async () => {
             id: null
         }
         for(let i = 0; i < info_rules.length; i++) {
-            console.log(info_rules[i])
             const rule = info_rules[i].split(' = ');
             if(rule.length === 2)
                 if(typeof info[rule[0]] !== "undefined")

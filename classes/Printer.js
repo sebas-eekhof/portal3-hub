@@ -4,7 +4,7 @@ const _ = require('lodash');
 
 const getPrinters = () => Printer.getPrinters()
 const getCommands = () => Printer.getSupportedJobCommands()
-const getDiscover = async () => {
+const getDevices = async () => {
     let already_setup = getPrinters().map(i => i.options['device-uri'])
     // let list = await Device.spawn('lpinfo', ['-l', '-v'])
     let list = '';

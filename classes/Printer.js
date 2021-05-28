@@ -39,7 +39,7 @@ const getPrinterDevice = (uri) => {
     let ret = {
         ...connected_device,
         setup: setup_device ? true : false,
-        setup_device: (setup_device ?? null)
+        setup_device: setup_device ? setup_device : null
     }
     return ret;
 }

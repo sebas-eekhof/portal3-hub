@@ -13,7 +13,7 @@ const c = console;
 
 const init = async ({console}) => {
 
-    const a = Printer.getDrivers();
+    const a = Printer.getDevices();
 
     // c.log(a)
 

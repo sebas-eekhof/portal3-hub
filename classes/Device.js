@@ -1,9 +1,9 @@
 const os = require('os');
-const { exec: processExec } = require('child_process');
+const child_process = require('child_process');
 const raspi_serial = require('raspi-serial-number');
 
 const exec = (command) => new Promise((resolve, reject) => {
-    processExec(command, (err, stdout, stderr) => {
+    child_process.exec(command, (err, stdout, stderr) => {
         if(err) {
             reject(err)
             return
@@ -13,6 +13,20 @@ const exec = (command) => new Promise((resolve, reject) => {
             return
         }
         resolve(stdout)
+    })
+})
+
+const spawn = (process, args = []) => new Promise((resolve, reject) => {
+    const child = child_process.spawn(process, args);
+    let outputs = [];
+    child.stdout.on('data', data => {
+        outputs.push(data.toString())
+    })
+    child.stderr.on('data', data => {
+        reject(data.toString())
+    })
+    child.on('exit', (code, signal) => {
+        resolve(outputs.join('\n'))
     })
 })
 
@@ -69,5 +83,6 @@ module.exports = {
     getType,
     getLoad,
     getMem,
-    exec
+    exec,
+    spawn
 }

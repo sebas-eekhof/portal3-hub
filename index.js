@@ -13,7 +13,7 @@ const c = console;
 
 const init = async ({console}) => {
 
-    const a = await Printer.getDevices();
+    const a = Printer.getPrinters();
 
     c.log(a)
 

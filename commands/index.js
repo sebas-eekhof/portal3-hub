@@ -9,5 +9,6 @@ module.exports = {
     process: require('./Process'),
     apt: require('./Apt'),
     usb: require('./Usb'),
-    hid: require('./Hid')
+    hid: require('./Hid'),
+    printer: require('./Printer')
 }

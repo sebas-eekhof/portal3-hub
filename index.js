@@ -9,11 +9,15 @@ const ConnectionChecker = require('./classes/ConnectionChecker');
 const Printer = require('./classes/Printer');
 require('dotenv').config()
 
+const c = console;
+
 const init = async ({console}) => {
 
-    // Printer.getPrinters();
+    const a = Printer.getPrinters();
 
-    // await new Promise(() => {});
+    c.log(a)
+
+    await new Promise(() => {});
     
     console.log('Starting hub service')
 

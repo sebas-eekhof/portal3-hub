@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@thiagoelg/node-printer": "^0.5.3",
     "crypto": "^1.0.1",
     "dotenv": "^10.0.0",
     "install": "^0.13.0",

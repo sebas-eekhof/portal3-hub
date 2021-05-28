@@ -147,6 +147,14 @@
     "node-gyp" "^7.1.0"
     "read-package-json-fast" "^2.0.1"
 
+"@thiagoelg/node-printer@^0.5.3":
+  "integrity" "sha512-31OGQTOL1JKkkkFhZ27PiNFr85a2RMvbt9u3/gQl7sL61RqLhXMsdQ/QJ9koKrkadAHBixruL5PY2kX4C7k8Cg=="
+  "resolved" "https://registry.npmjs.org/@thiagoelg/node-printer/-/node-printer-0.5.3.tgz"
+  "version" "0.5.3"
+  dependencies:
+    "nan" "^2.14.1"
+    "prebuild-install" "^5.3.4"
+
 "@tootallnate/once@1":
   "integrity" "sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw=="
   "resolved" "https://registry.npmjs.org/@tootallnate/once/-/once-1.1.2.tgz"
@@ -1364,7 +1372,7 @@
   "resolved" "https://registry.npmjs.org/mute-stream/-/mute-stream-0.0.8.tgz"
   "version" "0.0.8"
 
-"nan@^2.14.2":
+"nan@^2.14.1", "nan@^2.14.2":
   "integrity" "sha512-M2ufzIiINKCuDfBSAUr1vWQ+vuVcA9kqx8JJUsbQi6yf1uGRyb7HfpdfUr5qLXf3B/t8dPvcjhKMmlfnP47EzQ=="
   "resolved" "https://registry.npmjs.org/nan/-/nan-2.14.2.tgz"
   "version" "2.14.2"
@@ -1735,7 +1743,7 @@
     "bindings" "^1.5.0"
     "nan" "^2.14.2"
 
-"prebuild-install@^5.3.3":
+"prebuild-install@^5.3.3", "prebuild-install@^5.3.4":
   "integrity" "sha512-s8Aai8++QQGi4sSbs/M1Qku62PFK49Jm1CbgXklGz4nmHveDq0wzJkg7Na5QbnO1uNH8K7iqx2EQ/mV0MZEmOg=="
   "resolved" "https://registry.npmjs.org/prebuild-install/-/prebuild-install-5.3.6.tgz"
   "version" "5.3.6"

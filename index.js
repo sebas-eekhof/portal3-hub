@@ -11,9 +11,9 @@ require('dotenv').config()
 
 const init = async ({console}) => {
 
-    Printer.getPrinters();
+    // Printer.getPrinters();
 
-    await new Promise(() => {});
+    // await new Promise(() => {});
     
     console.log('Starting hub service')
 

@@ -34,6 +34,7 @@ const start_discovery = () => {
 }
 
 const getPrinterDevice = (uri) => {
+    console.log('exec')
     const setup_device = getSetupPrinters().find(i => i.options['device-uri'] === uri);
     const connected_device = allDevices.find(i => i.uri === uri);
     let ret = {

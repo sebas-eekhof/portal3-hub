@@ -5,7 +5,7 @@ const getPrinters = () => Printer.getPrinters()
 const getCommands = () => Printer.getSupportedJobCommands()
 const getDrivers = async () => {
     try {
-        let list = await Device.exec(`lpinfo --make-and-model "Brother MFC-L2750DW" -m`)
+        let list = await Device.exec(`lpinfo --make-and-model "Brother MFC" -m`)
         console.log(list)
     } catch(e) {
         console.log('drivers not found')

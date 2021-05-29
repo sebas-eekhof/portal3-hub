@@ -74,9 +74,9 @@ const printFromFile = (printer, filename, path) => Device.exec(`cd ${path} && lp
 const printText = (text, printer) => new Promise((resolve, reject) => Printer.printDirect({data: text, type: 'RAW', printer, success: resolve, error: reject}))
 const addPrinter = (name, uri, driver) => Device.exec(`lpadmin -p "${name}" -E -v ${uri} -m ${driver}`)
 const getSetupPrinters = () => Printer.getPrinters()
-const getPrinters = async () => getSetupPrinters().map(i => await getPrinterDevice(i.options['device-uri'])).filter(i => (typeof i.uri !== 'undefined'))
+const getPrinters = async () => getSetupPrinters().map(async (i) => await getPrinterDevice(i.options['device-uri'])).filter(i => (typeof i.uri !== 'undefined'))
 const getCommands = () => Printer.getSupportedJobCommands()
-const getDevices = async () => allDevices.filter(i => !getSetupPrinters().map(i => i.options['device-uri']).includes(i.uri)).map(i => await getPrinterDevice(i.uri))
+const getDevices = async () => allDevices.filter(i => !getSetupPrinters().map(i => i.options['device-uri']).includes(i.uri)).map(async (i) => await getPrinterDevice(i.uri))
 const getByUsb = async (usb_device) => {
     if(usb_device.device_info.class !== 'printer')
         return null;

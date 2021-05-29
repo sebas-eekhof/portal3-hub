@@ -86,7 +86,13 @@ const getPrinters = async () => {
     return list.filter(i => (typeof i.uri !== "undefined"))
 }
 const getCommands = () => Printer.getSupportedJobCommands()
-const getDevices = async () => allDevices.filter(i => !getSetupPrinters().map(i => i.options['device-uri']).includes(i.uri)).map(async (i) => await getPrinterDevice(i.uri))
+const getDevices = async () => {
+    let devices = allDevices.filter(i => !getSetupPrinters().map(i => i.options['device-uri']).includes(i.uri))
+    let list = [];
+    for(let i = 0; i < devices.length; i++)
+        list.push(await getPrinterDevice(devices[i].uri))
+    return list;
+}
 const getByUsb = async (usb_device) => {
     if(usb_device.device_info.class !== 'printer')
         return null;

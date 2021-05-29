@@ -75,8 +75,10 @@ const init = async ({console}) => {
             let ret = response;
             try {
                 ret = Buffer.from(JSON.stringify(ret)).toString('base64');
+                console.log('it was json')
             } catch(e) {
                 ret = Buffer.from(ret).toString('base64')
+                console.log('it was other')
             }
 
             socket.emit(`${uuid}.response`, Crypto.Encrypt(response))

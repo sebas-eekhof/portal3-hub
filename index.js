@@ -7,7 +7,6 @@ const _ = require('lodash');
 const Gpio = require('./classes/Gpio');
 const ConnectionChecker = require('./classes/ConnectionChecker');
 const Printer = require('./classes/Printer');
-const FileStorage = require('./classes/FileStorage');
 const Ssh = require('./classes/Ssh');
 const Crypto = require('./classes/Crypto');
 require('dotenv').config()

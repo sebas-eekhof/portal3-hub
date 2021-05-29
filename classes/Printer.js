@@ -43,9 +43,9 @@ const getPrinterType = async (name) => {
     try {
         const options = await Device.exec(`lpoptions -p ${name} -l`);
         if(options.includes('w288h167'))
-            return 'shipping';
+            return 'verzendlabels';
         if(options.includes('w102h252'))
-            return 'label';
+            return 'productlabels';
         return 'a4';
     } catch(e) {
         return 'a4';

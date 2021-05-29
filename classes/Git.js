@@ -1,6 +1,6 @@
 const simpleGit = require("simple-git");
 const git = simpleGit({
-    baseDir: process.cwd(),
+    baseDir: `/root/portal3-hub`,
     binary: 'git',
     maxConcurrentProcesses: 6
 });

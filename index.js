@@ -71,9 +71,7 @@ const init = async ({console}) => {
         
         console.command(path, args)
 
-        const sendResponse = (response) => {
-            console.command_success(path, args)
-
+        const parseCrypt = (response) => {
             let ret = response;
             try {
                 if(typeof ret === "object")
@@ -81,19 +79,22 @@ const init = async ({console}) => {
             } catch(e) {
                 
             }
-
-            ret = Buffer.from(ret).toString('base64');
-
-            socket.emit(`${uuid}.response`, Crypto.Encrypt(ret))
+            ret = Buffer.from(`${ret}`).toString('base64');
+            return Crypto.Encrypt(ret)
         }
 
-        const sendError = (error) => {
+        const sendResponse = async (response) => {
+            console.command_success(path, args)
+            socket.emit(`${uuid}.response`, await parseCrypt(ret))
+        }
+
+        const sendError = async (error) => {
             let ret = error;
             if(typeof error.message !== "undefined")
                 ret = error.message;
             console.command_error(path, args)
             c.error(error)
-            socket.emit(`${uuid}.error`, Crypto.Encrypt(Buffer.from(ret).toString('base64')))
+            socket.emit(`${uuid}.error`, await parseCrypt(ret))
         }
 
         try {

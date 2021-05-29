@@ -2,10 +2,6 @@ const Printer = require('@thiagoelg/node-printer');
 const Device = require('./Device');
 const _ = require('lodash');
 
-console.log(Printer.getPrinters().map(i => Printer.getPrinter(i.name)))
-
-process.exit();
-
 let allDevices = [];
 
 const start_discovery = () => {

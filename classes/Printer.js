@@ -78,7 +78,7 @@ const getDrivers = async (id) => {
                 const split_for_path = item.split(' ');
                 return {
                     maker: split_for_maker[0],
-                    path: split_for_path[0],
+                    uri: split_for_path[0],
                     name: item.replace(`${split_for_path[0]} `, '')
                 }
             })

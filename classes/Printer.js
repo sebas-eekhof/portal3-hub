@@ -54,8 +54,8 @@ const removePrinter = (printer) => Device.exec(`lpadmin -x ${printer}`)
 const printFromUrl = async (printer, url) => {
     const fileName = uuidv4();
     await downloadFile(url, fileName)
-    await printFromFile(printer, fileName, '/portal3/tmp')
-    removeFile(path)
+    // await printFromFile(printer, fileName, '/portal3/tmp')
+    removeFile(`/portal3/tmp/${fileName}`)
     return true;
 }
 const printFromFile = (printer, filename, path) => Device.exec(`cd ${path} && lp -d ${printer} ${filename}`)

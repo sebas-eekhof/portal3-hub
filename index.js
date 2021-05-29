@@ -88,6 +88,7 @@ const init = async ({console}) => {
             if(typeof error.message !== "undefined")
                 ret = error.message;
             console.command_error(path, args)
+            console.log(error)
             socket.emit(`${uuid}.error`, Crypto.Encrypt(Buffer.from(ret).toString('base64')))
         }
 

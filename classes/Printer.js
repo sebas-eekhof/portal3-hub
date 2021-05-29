@@ -40,12 +40,16 @@ const start_discovery = () => {
 }
 
 const getPrinterType = async (name) => {
-    const options = await Device.exec(`lpoptions -p ${name} -l`);
-    if(options.includes('w288h167'))
-        return 'shipping';
-    if(options.includes('w102h252'))
-        return 'label';
-    return 'a4';
+    try {
+        const options = await Device.exec(`lpoptions -p ${name} -l`);
+        if(options.includes('w288h167'))
+            return 'shipping';
+        if(options.includes('w102h252'))
+            return 'label';
+        return 'a4';
+    } catch(e) {
+        return 'a4';
+    }
 }
 
 const getPrinterDevice = async (uri) => {

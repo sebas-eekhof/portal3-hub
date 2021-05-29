@@ -17,7 +17,7 @@ const c = console;
 
 const init = async ({console}) => {
 
-    c.log(await util.inspect(FileStorage.drives(), false, null, true))
+    c.log(util.inspect(await FileStorage.drives(), false, null, true))
 
     process.exit();
     

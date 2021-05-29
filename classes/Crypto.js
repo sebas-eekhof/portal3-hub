@@ -1,11 +1,9 @@
 const crypto = require('crypto');
-const Storage = require('./Storage');
 const Device = require('./Device');
 const algorithm = 'aes-256-ctr';
 
 const MakeSecret = async () => {
-    console.log(require('./Storage'))
-    const secret = await Storage.secret.get();
+    const secret = await require('./Storage').secret.get();
     const serial = await Device.GetSerialNumber();
     return crypto.createHash('sha512').update(`${secret}-${serial}`).digest('base64').substr(0, 32)
 }
@@ -21,7 +19,6 @@ const Encrypt = async (text) => {
 }
 
 const Decrypt = async (data) => {
-    console.log('Hi', Storage)
     const secret = await MakeSecret();
     const hash = JSON.parse(Buffer.from(data, 'base64').toString('ascii'));
     const decipher = crypto.createDecipheriv(algorithm, secret, Buffer.from(hash.iv, 'hex'));

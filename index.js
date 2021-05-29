@@ -7,7 +7,7 @@ const _ = require('lodash');
 const Gpio = require('./classes/Gpio');
 const ConnectionChecker = require('./classes/ConnectionChecker');
 const Printer = require('./classes/Printer');
-const Ssh = require('./classes/Ssh');
+const { v4: uuidv4 } = require('uuid');
 const Crypto = require('./classes/Crypto');
 require('dotenv').config()
 
@@ -63,26 +63,85 @@ const init = async ({console}) => {
 
     socket.on('auth::secret', (secret) => { Storage.secret.set(secret) })
 
+    let active_streams = [];
+
+    socket.on('stream', async (data) => {
+        const { path, uuid, args = {} } = Crypto.FlowDecrypt(data)
+        const executable = _.get(Commands, `${path}`, false);
+
+        const stream_id = uuidv4();
+
+        let props = null;
+        
+        console.stream(path, args)
+        
+        const acceptStream = async () => {
+            console.stream_accept(path)
+
+            const receiveData = async (data) => {
+                props.in(await Crypto.FlowDecrypt(data))
+            }
+
+            socket.on(`stream.${stream_id}`, receiveData)
+
+            socket.once(`stream.${stream_id}.kill`, async () => {
+                props.kill();
+                socket.removeListener(`stream.${stream_id}`, receiveData)
+                socket.emit(`stream.${stream_id}.kill`, await Crypto.FlowEncrypt(true))
+            })
+
+            socket.emit(`${uuid}.response`, await Crypto.FlowEncrypt({
+                stream_id
+            }))
+        }
+
+        const rejectStream = async (error) => {
+            let ret = error;
+            if(typeof error.message !== "undefined")
+                ret = error.message;
+            console.stream_reject(path)
+            socket.emit(`${uuid}.error`, await Crypto.FlowEncrypt(ret))
+        }
+
+        const out = async (data) => {
+            console.stream_out(path)
+            socket.emit(`stream.${stream_id}`, await Crypto.FlowEncrypt(data))
+        }
+
+        try {
+            if(!executable || typeof executable !== "function")
+                throw new Error(`Can't find //${path}(${JSON.stringify(args)})`);
+            
+            const output = executable(out, args);
+            if(typeof output.then === "function")
+                output.then(result => {
+                    if(typeof result.kill === "undefined")
+                        rejectStream('Kill is not a function')
+                    if(typeof result.in !== "function")
+                        rejectStream('In is not a function')
+                    else {
+                        props = result;
+                        acceptStream()
+                    }
+                }).catch(rejectStream);
+            else
+                acceptStream(output)
+            
+        } catch(e) {
+            rejectStream(e)
+        }
+
+    })
+
     socket.on('cmd', async (data) => {
-        const { path, uuid, args = {} } = JSON.parse(Buffer.from(await Crypto.Decrypt(data), 'base64').toString())
+        const { path, uuid, args = {} } = await Crypto.FlowDecrypt(data)
         const executable = _.get(Commands, `${path}`, false);
         
         console.command(path, args)
 
-        const parseCrypt = (response) => {
-            let ret = response;
-            try {
-                ret = JSON.stringify(ret)
-            } catch(e) {
-                
-            }
-            ret = Buffer.from(`${ret}`).toString('base64');
-            return Crypto.Encrypt(ret)
-        }
-
         const sendResponse = async (response) => {
             console.command_success(path, args)
-            socket.emit(`${uuid}.response`, await parseCrypt(response))
+            socket.emit(`${uuid}.response`, await Crypto.FlowEncrypt(response))
         }
 
         const sendError = async (error) => {
@@ -90,7 +149,7 @@ const init = async ({console}) => {
             if(typeof error.message !== "undefined")
                 ret = error.message;
             console.command_error(path, args)
-            socket.emit(`${uuid}.error`, await parseCrypt(ret))
+            socket.emit(`${uuid}.error`, await Crypto.FlowEncrypt(ret))
         }
 
         try {
@@ -127,6 +186,12 @@ const CreateLogger = () => {
         command: (path, args) => SendMessage('yellow', 'CMD', `${path}(${JSON.stringify(args)})`),
         command_success: (path, args) => SendMessage('green', 'CMD', `${path}(${JSON.stringify(args)})\n`),
         command_error: (path, args) => SendMessage('red', 'CMD', `${path}(${JSON.stringify(args)})\n`),
+        stream: (path, args) => SendMessage('yellow', 'STREAM', `${path}(${JSON.stringify(args)})`),
+        stream_in: (path) => SendMessage('green', `STREAM [${path}]`, `DATA_RECEIVE`),
+        stream_out: (path) => SendMessage('green', `STREAM [${path}]`, `DATA_SENT`),
+        stream_accept: (path) => SendMessage('green', `STREAM [${path}]`, `ACCEPTED`),
+        stream_reject: (path) => SendMessage('red', `STREAM [${path}]`, `REJECTED`),
+        stream_kill: (path) => SendMessage('red', `STREAM [${path}]`, `KILL`),
     }
 }
 

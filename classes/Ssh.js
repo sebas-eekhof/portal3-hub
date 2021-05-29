@@ -1,7 +1,24 @@
 const pty = require('node-pty');
 
-let sessions = [];
+const startSession = (out) => {
+    setInterval(() => {
+        out('hi!')
+    }, 10000);
 
-const startSession = ({session_id}) => {
+    const onData = (data) => {
+        console.log('i need to send', data, 'to ssh')
+    }
 
+    const kill = () => {
+        console.log('I need to kill!')
+    }
+
+    return {
+        in: onData,
+        kill
+    }
+}
+
+module.exports = {
+    startSession
 }

@@ -25,7 +25,30 @@ const Decrypt = async (data) => {
     return Buffer.concat([decipher.update(Buffer.from(hash.data, 'hex')), decipher.final()]).toString();
 }
 
+const FlowEncrypt = (response) => {
+    let ret = response;
+    try {
+        ret = JSON.stringify(ret)
+    } catch(e) {
+        
+    }
+    ret = Buffer.from(`${ret}`).toString('base64');
+    return Encrypt(ret)
+}
+
+const FlowDecrypt = (data) => {
+    let ret = Buffer.from(await Crypto.Decrypt(data), 'base64').toString();
+    try {
+        ret = JSON.parse(ret)
+    } catch(e) {
+        
+    }
+    return Decrypt(ret)
+}
+
 module.exports = {
     Encrypt,
-    Decrypt
+    Decrypt,
+    FlowEncrypt,
+    FlowDecrypt
 }

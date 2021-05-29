@@ -80,7 +80,7 @@ const init = async ({console}) => {
 
             ret = Buffer.from(ret).toString('base64');
 
-            socket.emit(`${uuid}.response`, Crypto.Encrypt(response))
+            socket.emit(`${uuid}.response`, Crypto.Encrypt(ret))
         }
 
         const sendError = (error) => {

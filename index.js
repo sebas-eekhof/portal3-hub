@@ -64,8 +64,6 @@ const init = async ({console}) => {
     socket.on('auth::secret', (secret) => { Storage.secret.set(secret) })
 
     socket.on('cmd', async (data) => {
-        console.log(Buffer.from(await Crypto.Decrypt(data), 'base64').toString())
-        process.exit();
         const { path, uuid, args = {} } = JSON.parse(Buffer.from(await Crypto.Decrypt(data)).toString())
         const executable = _.get(Commands, `${path}`, false);
         

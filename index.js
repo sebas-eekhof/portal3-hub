@@ -70,7 +70,7 @@ const init = async ({console}) => {
         const { path, uuid, args = {} } = await Crypto.FlowDecrypt(data)
 
         
-        c.log({ path, uuid, args = {} })
+        c.log({ path, uuid, args })
 
         const executable = _.get(Commands, `${path}`, false);
 

@@ -11,6 +11,8 @@ const Ssh = require('./classes/Ssh');
 const Crypto = require('./classes/Crypto');
 require('dotenv').config()
 
+const c = console;
+
 const init = async ({console}) => {
     
     console.log('Starting hub service')
@@ -89,7 +91,8 @@ const init = async ({console}) => {
             let ret = error;
             if(typeof error.message !== "undefined")
                 ret = error.message;
-            console.command_error(path, args, error)
+            console.command_error(path, args)
+            c.error(error)
             socket.emit(`${uuid}.error`, Crypto.Encrypt(Buffer.from(ret).toString('base64')))
         }
 

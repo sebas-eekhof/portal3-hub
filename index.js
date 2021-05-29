@@ -10,13 +10,14 @@ const Printer = require('./classes/Printer');
 const FileStorage = require('./classes/FileStorage');
 const Ssh = require('./classes/Ssh');
 const Crypto = require('./classes/Crypto');
+const util = require('util');
 require('dotenv').config()
 
 const c = console;
 
 const init = async ({console}) => {
 
-    c.log(await FileStorage.drives())
+    c.log(await util.inspect(FileStorage.drives(), false, null, true))
 
     process.exit();
     

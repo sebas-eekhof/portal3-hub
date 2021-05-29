@@ -1,7 +1,7 @@
 const Downloader = require('nodejs-file-downloader');
 const fs = require('fs');
 
-const downloadFile = (url, fileName) => {
+const downloadFile = async (url, fileName) => {
     const downloader = new Downloader({
         url,
         directory: '/portal3/tmp',

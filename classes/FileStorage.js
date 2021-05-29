@@ -12,7 +12,7 @@ const downloadFile = async (url, fileName) => {
 }
 
 const removeFile = (path) => {
-    fs.unlinkSync(`file://${path}`)
+    fs.unlinkSync(path)
     return true;
 }
 

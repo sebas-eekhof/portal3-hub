@@ -37,14 +37,13 @@ const FlowEncrypt = async (response) => {
 }
 
 const FlowDecrypt = async (data) => {
-    console.log(data)
     let ret = Buffer.from(await Decrypt(data), 'base64').toString();
     try {
         ret = JSON.parse(ret)
     } catch(e) {
         
     }
-    return await Decrypt(ret)
+    return ret;
 }
 
 module.exports = {

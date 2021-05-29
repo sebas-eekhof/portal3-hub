@@ -11,8 +11,6 @@ const Ssh = require('./classes/Ssh');
 const Crypto = require('./classes/Crypto');
 require('dotenv').config()
 
-const c = console;
-
 const init = async ({console}) => {
     
     console.log('Starting hub service')

@@ -7,6 +7,7 @@ const _ = require('lodash');
 const Gpio = require('./classes/Gpio');
 const ConnectionChecker = require('./classes/ConnectionChecker');
 const Printer = require('./classes/Printer');
+const FileStorage = require('./classes/FileStorage');
 const Ssh = require('./classes/Ssh');
 const Crypto = require('./classes/Crypto');
 require('dotenv').config()
@@ -14,6 +15,10 @@ require('dotenv').config()
 const c = console;
 
 const init = async ({console}) => {
+
+    c.log(await FileStorage.drives())
+
+    process.exit();
     
     console.log('Starting hub service')
 
@@ -92,7 +97,6 @@ const init = async ({console}) => {
             if(typeof error.message !== "undefined")
                 ret = error.message;
             console.command_error(path, args)
-            c.error(error)
             socket.emit(`${uuid}.error`, await parseCrypt(ret))
         }
 

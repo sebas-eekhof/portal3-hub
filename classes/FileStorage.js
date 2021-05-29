@@ -1,5 +1,6 @@
 const Downloader = require('nodejs-file-downloader');
 const fs = require('fs');
+const drivelist = require('drivelist');
 
 const downloadFile = async (url, fileName) => {
     const downloader = new Downloader({
@@ -11,6 +12,8 @@ const downloadFile = async (url, fileName) => {
     return `/portal3/tmp/${fileName}`
 }
 
+const drives = () => drivelist.list();
+
 const removeFile = (path) => {
     fs.unlinkSync(path)
     return true;
@@ -18,5 +21,6 @@ const removeFile = (path) => {
 
 module.exports = {
     downloadFile,
-    removeFile
+    removeFile,
+    drives
 }

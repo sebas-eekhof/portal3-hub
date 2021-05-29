@@ -5,5 +5,6 @@ module.exports = {
     getCommands: Printer.getCommands,
     getDrivers: ({id}) => Printer.getDrivers(id),
     getDevices: Printer.getDevices,
-    getByUsb: ({device}) => Printer.getByUsb(device)
+    getByUsb: ({device}) => Printer.getByUsb(device),
+    addPrinter: ({name, uri, driver}) => Printer.addPrinter(name, uri, driver)
 }

@@ -48,6 +48,7 @@ const getPrinterDevice = (uri) => {
     return ret;
 }
 
+const addPrinter = (name, uri, driver) => Device.exec(`lpadmin -p "${name}" -E -v ${uri} -m ${driver}`)
 const getSetupPrinters = () => Printer.getPrinters()
 const getPrinters = () => getSetupPrinters().map(i => getPrinterDevice(i.options['device-uri']))
 const getCommands = () => Printer.getSupportedJobCommands()
@@ -67,7 +68,7 @@ const getByUsb = (usb_device) => {
     return null;
 }
 const getDrivers = async (id) => {
-    // try {
+    try {
         let list = await Device.exec(`lpinfo --device-id "${id}" -m`);
         list = list
             .split('\n')
@@ -82,9 +83,9 @@ const getDrivers = async (id) => {
                 }
             })
         return list;
-    // } catch(e) {
-    //     return [];
-    // }
+    } catch(e) {
+        return [];
+    }
 }
 
 module.exports = {
@@ -93,5 +94,6 @@ module.exports = {
     getCommands,
     getDrivers,
     getDevices,
-    getByUsb
+    getByUsb,
+    addPrinter
 }

@@ -20,7 +20,7 @@ const Encrypt = async (text) => {
 
 const Decrypt = async (data) => {
     const hash = JSON.parse(Buffer.from(data, 'base64').toString('ascii'));
-    console.log(hash, algorithm, Buffer.from(hash.iv, 'hex'))
+    MakeSecret().then(console.log).catch(e => {console.error(e); process.exit()})
     const decipher = crypto.createDecipheriv(algorithm, await MakeSecret(), Buffer.from(hash.iv, 'hex'));
     return Buffer.concat([decipher.update(Buffer.from(hash.data, 'hex')), decipher.final()]).toString();
 }

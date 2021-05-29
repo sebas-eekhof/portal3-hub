@@ -6,8 +6,7 @@ let allDevices = [];
 
 const start_discovery = () => {
     const run = async () => {
-        // let list = await Device.spawn('lpinfo', ['-l', '-v'])
-        let list = await Device.exec('cat test.txt')
+        let list = await Device.spawn('lpinfo', ['-l', '-v'])
         list = list.split('Device: ').filter(i => i.length !== 0)
         let devices = [];
         for(let i = 0; i < list.length; i++) {
@@ -69,10 +68,22 @@ const getByUsb = (usb_device) => {
 }
 const getDrivers = async (id) => {
     try {
-        let list = await Device.exec(`lpinfo --device-id "${id}" -m`)
-        console.log(list)
+        let list = await Device.spawn(`lpinfo`, [`--device-id "${id}"`, `-m`]);
+        list = list
+            .split('\n')
+            .filter(i => (i.length !== 0 && i.includes(':')))
+            .map(item => {
+                const split_for_maker = item.split(':')[0].split('-');
+                const split_for_path = item.split(' ');
+                return {
+                    maker: split_for_maker[0],
+                    path: split_for_path[0],
+                    name: item.replace(`${split_for_path[0]} `, '')
+                }
+            })
+        return list;
     } catch(e) {
-        console.log('drivers not found')
+        return [];
     }
 }
 

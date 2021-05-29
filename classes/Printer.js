@@ -67,7 +67,7 @@ const getByUsb = (usb_device) => {
     return null;
 }
 const getDrivers = async (id) => {
-    try {
+    // try {
         let list = await Device.spawn(`lpinfo`, [`--device-id "${id}"`, `-m`]);
         list = list
             .split('\n')
@@ -82,9 +82,9 @@ const getDrivers = async (id) => {
                 }
             })
         return list;
-    } catch(e) {
-        return [];
-    }
+    // } catch(e) {
+    //     return [];
+    // }
 }
 
 module.exports = {

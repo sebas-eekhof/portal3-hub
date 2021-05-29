@@ -71,7 +71,12 @@ const getRelease = () => os.getRelease()
 const getType = () => os.getType()
 const getLoad = () => os.loadavg()
 const getMem = () => ({total: os.totalmem(), free: os.freemem()})
-const version = () => exec('git rev-parse --short HEAD')
+const version = async () => {
+    return {
+        name: await exec('git rev-parse --short HEAD'),
+        time: await exec('stat -c %Y .git/FETCH_HEAD')
+    }
+}
 
 module.exports = {
     IsDevelopment,

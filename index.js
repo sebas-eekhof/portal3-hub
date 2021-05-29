@@ -74,7 +74,7 @@ const init = async ({console}) => {
         const parseCrypt = (response) => {
             let ret = response;
             try {
-                ret = eval(`(${JSON.stringify(ret)})`)
+                ret = JSON.stringify(ret)
             } catch(e) {
                 
             }

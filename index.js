@@ -74,8 +74,7 @@ const init = async ({console}) => {
         const parseCrypt = (response) => {
             let ret = response;
             try {
-                if(typeof ret === "object")
-                    ret = eval(`(${JSON.stringify(ret)})`)
+                ret = eval(`(${JSON.stringify(ret)})`)
             } catch(e) {
                 
             }

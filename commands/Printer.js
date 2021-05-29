@@ -10,5 +10,5 @@ module.exports = {
     printText: ({text, printer}) => Printer.printText(text, printer),
     removePrinter: ({printer}) => Printer.removePrinter(printer),
     printFromUrl: ({url, printer}) => Printer.printFromUrl(printer, url),
-    printFromFile: ({path, printer}) => Printer.printFromFile(printer, path)
+    printFromFile: ({path, filename, printer}) => Printer.printFromFile(printer, filename, path)
 }

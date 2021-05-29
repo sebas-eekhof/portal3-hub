@@ -53,13 +53,12 @@ const getPrinterDevice = (uri) => {
 const removePrinter = (printer) => Device.exec(`lpadmin -x ${printer}`)
 const printFromUrl = async (printer, url) => {
     const fileName = uuidv4();
-    const path = await downloadFile(url, fileName)
-    process.exit();
-    await printFromFile(printer, path)
+    await downloadFile(url, fileName)
+    await printFromFile(printer, filename, '/portal3/tmp')
     removeFile(path)
     return true;
 }
-const printFromFile = (printer, path) => Device.exec(`lp -d ${printer} ${path}`)
+const printFromFile = (printer, filename, path) => Device.exec(`cd ${path} && lp -d ${printer} ${filename}`)
 const printText = (text, printer) => new Promise((resolve, reject) => Printer.printDirect({data: text, type: 'RAW', printer, success: resolve, error: reject}))
 const addPrinter = (name, uri, driver) => Device.exec(`lpadmin -p "${name}" -E -v ${uri} -m ${driver}`)
 const getSetupPrinters = () => Printer.getPrinters()

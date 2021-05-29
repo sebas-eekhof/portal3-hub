@@ -1,16 +1,22 @@
 const pty = require('node-pty');
 
 const startSession = (out) => {
-    setInterval(() => {
-        out('hi!')
-    }, 10000);
+    const process = pty.spawn('bash', [], {
+        name: 'xterm-color',
+        cols: 80,
+        rows: 30,
+        cwd: process.env.HOME,
+        env: process.env
+    })
+    
+    process.onData(data  => out(data))
 
     const onData = (data) => {
-        console.log('i need to send', data, 'to ssh')
+        process.write(data)
     }
 
     const kill = () => {
-        console.log('I need to kill!')
+        process.kill();
     }
 
     return {

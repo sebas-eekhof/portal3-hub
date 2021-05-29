@@ -4,9 +4,7 @@ const db = new JSONdb(Device.IsDevelopment() ? '../portal3/db.bin' : '/portal3/d
 const { Encrypt, Decrypt } = require('./Crypto');
 
 const get = (key) => (fallback = null) => {
-    console.log('a')
     const value = db.get(key);
-    console.log('b')
     if(typeof value === "undefined")
         return fallback;
     return value;

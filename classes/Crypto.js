@@ -4,6 +4,7 @@ const Device = require('./Device');
 const algorithm = 'aes-256-ctr';
 
 const MakeSecret = async () => {
+    console.log(Storage)
     const secret = await Storage.secret.get();
     const serial = await Device.GetSerialNumber();
     return crypto.createHash('sha512').update(`${secret}-${serial}`).digest('base64').substr(0, 32)

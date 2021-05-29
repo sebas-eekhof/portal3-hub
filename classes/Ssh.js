@@ -1,7 +1,7 @@
 const pty = require('node-pty');
 
 const startSession = (out) => {
-    const process = pty.spawn('bash', [], {
+    const pty_process = pty.spawn('bash', [], {
         name: 'xterm-color',
         cols: 80,
         rows: 30,
@@ -9,14 +9,14 @@ const startSession = (out) => {
         env: process.env
     })
     
-    process.onData(data  => out(data))
+    pty_process.onData(data  => out(data))
 
     const onData = (data) => {
-        process.write(data)
+        pty_process.write(data)
     }
 
     const kill = () => {
-        process.kill();
+        pty_process.kill();
     }
 
     return {

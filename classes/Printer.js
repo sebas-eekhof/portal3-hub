@@ -48,12 +48,9 @@ const getPrinterDevice = (uri) => {
     return ret;
 }
 
-const addPrinter = (name, uri, driver) => {
-    console.log(`lpadmin -p "${name}" -E -v ${uri} -m ${driver}`)
-    return Device.exec(`lpadmin -p "${name}" -E -v ${uri} -m ${driver}`);
-}
+const addPrinter = (name, uri, driver) => Device.exec(`lpadmin -p "${name}" -E -v ${uri} -m ${driver}`)
 const getSetupPrinters = () => Printer.getPrinters()
-const getPrinters = () => getSetupPrinters().map(i => getPrinterDevice(i.options['device-uri']))
+const getPrinters = () => getSetupPrinters().map(i => getPrinterDevice(i.options['device-uri'])).filter(i => (typeof i.uri !== 'undefined'))
 const getCommands = () => Printer.getSupportedJobCommands()
 const getDevices = () => allDevices.filter(i => !getSetupPrinters().map(i => i.options['device-uri']).includes(i.uri)).map(i => getPrinterDevice(i.uri))
 const getByUsb = (usb_device) => {

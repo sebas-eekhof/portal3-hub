@@ -27,16 +27,29 @@ const drives = async () => {
         let mountpoints = [];
         for(let i2 = 0; i2 < list[i].mountpoints.length; i2++) {
             const check_storage = await checkDiskSpace(list[i].mountpoints[i2].path)
-            if(list[i].mountpoints[i2].path === '/')
+            if(list[i].mountpoints[i2].path === '/') {
                 data.is_system = true;
-            mountpoints.push({
-                name: list[i].mountpoints[i2].label,
-                path: list[i].mountpoints[i2].path,
-                storage: {
-                    total: check_storage.size,
-                    free: check_storage.free
-                }
-            })
+                mountpoints = [
+                    {
+                        name: 'Hub',
+                        path: '/portal3/storage',
+                        storage: {
+                            total: check_storage.size,
+                            free: check_storage.free
+                        }
+                    }
+                ];
+            }
+            if(!data.is_system) {
+                mountpoints.push({
+                    name: list[i].mountpoints[i2].label,
+                    path: list[i].mountpoints[i2].path,
+                    storage: {
+                        total: check_storage.size,
+                        free: check_storage.free
+                    }
+                })
+            }
         }
         data.mountpoints = mountpoints;
         drives.push(data)

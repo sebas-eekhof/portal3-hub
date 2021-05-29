@@ -71,7 +71,10 @@ const doUpdate = async () => {
     await exec(`apt-get install -y $(cat /root/portal3-hub/apt_packages.txt)`)
     await exec('sh /root/portal3-hub/post_install.sh')
     await Npm.install()
-    exec(`service portal3-hub restart`)
+    setTimeout(() => {
+        exec(`service portal3-hub restart`)
+    }, 1000)
+    return true;
 }
 
 const getSystemUptime = () => os.uptime()

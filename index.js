@@ -71,7 +71,15 @@ const init = async ({console}) => {
 
         const sendResponse = (response) => {
             console.command_success(path, args)
-            socket.emit(`${uuid}.response`, response)
+
+            let ret = response;
+            try {
+                ret = Buffer.from(JSON.stringify(ret)).toString('base64');
+            } catch(e) {
+                ret = Buffer.from(ret).toString('base64')
+            }
+
+            socket.emit(`${uuid}.response`, Crypto.Encrypt(response))
         }
 
         const sendError = (error) => {
@@ -79,7 +87,7 @@ const init = async ({console}) => {
             if(typeof error.message !== "undefined")
                 ret = error.message;
             console.command_error(path, args)
-            socket.emit(`${uuid}.error`, ret)
+            socket.emit(`${uuid}.error`, Crypto.Encrypt(Buffer.from(ret).toString('base64')))
         }
 
         try {

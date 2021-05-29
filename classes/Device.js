@@ -83,8 +83,8 @@ const getLoad = () => os.loadavg()
 const getMem = () => ({total: os.totalmem(), free: os.freemem()})
 const version = async () => {
     return {
-        name: await exec('git rev-parse --short HEAD'),
-        time: await exec('stat -c %Y .git/FETCH_HEAD')
+        name: await exec('cd /root/portal3-hub && git rev-parse --short HEAD'),
+        time: await exec('cd /root/portal3-hub && stat -c %Y .git/FETCH_HEAD')
     }
 }
 

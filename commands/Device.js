@@ -11,5 +11,6 @@ module.exports = {
     getLoad: Device.getLoad,
     getMem: Device.getMem,
     exec: ({command}) => Device.exec(command),
-    version: Device.version
+    version: Device.version,
+    doUpdate: Device.doUpdate
 }

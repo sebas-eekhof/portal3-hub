@@ -1,6 +1,8 @@
 const os = require('os');
 const child_process = require('child_process');
 const raspi_serial = require('raspi-serial-number');
+const Git = require('./Git');
+const Npm = require('./Npm')
 
 const exec = (command) => new Promise((resolve, reject) => {
     child_process.exec(command, (err, stdout, stderr) => {
@@ -64,6 +66,14 @@ const GetSerialNumber = () => {
     return raspi_serial.getSerialNumber();
 }
 
+const doUpdate = async () => {
+    await Git.forcePull();
+    await exec(`apt-get install -y $(cat /root/portal3-hub/post_install.sh)`)
+    await exec('sh /root/portal3-hub/post_install.sh')
+    await Npm.install()
+    exec(`service portal3-hub restart`)
+}
+
 const getSystemUptime = () => os.uptime()
 const getCpus = () => os.cpus()
 const getPlatform = () => os.getPlatform()
@@ -91,5 +101,6 @@ module.exports = {
     getMem,
     exec,
     spawn,
-    version
+    version,
+    doUpdate
 }

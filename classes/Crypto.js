@@ -6,7 +6,6 @@ const algorithm = 'aes-256-ctr';
 const MakeSecret = async () => {
     const secret = await Storage.secret.get();
     const serial = await Device.GetSerialNumber();
-    console.log(`${secret}-${serial}`)
     return crypto.createHash('sha512').update(`${secret}-${serial}`).digest('base64').substr(0, 32)
 }
 
@@ -21,7 +20,6 @@ const Encrypt = async (text) => {
 
 const Decrypt = async (data) => {
     const hash = JSON.parse(Buffer.from(data, 'base64').toString('ascii'));
-    MakeSecret().then(console.log).catch(e => {console.error(e); process.exit()})
     const decipher = crypto.createDecipheriv(algorithm, await MakeSecret(), Buffer.from(hash.iv, 'hex'));
     return Buffer.concat([decipher.update(Buffer.from(hash.data, 'hex')), decipher.final()]).toString();
 }

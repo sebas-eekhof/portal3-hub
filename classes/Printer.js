@@ -1,6 +1,8 @@
 const Printer = require('@thiagoelg/node-printer');
 const Device = require('./Device');
 const _ = require('lodash');
+const { v4: uuidv4 } = require('uuid');
+const { downloadFile, removeFile } = require('./FileStorage');
 
 let allDevices = [];
 
@@ -48,6 +50,15 @@ const getPrinterDevice = (uri) => {
     return ret;
 }
 
+const removePrinter = (printer) => Device.exec(`lpadmin -x ${printer}`)
+const printFromUrl = async (printer, url) => {
+    const fileName = uuidv4();
+    const path = await downloadFile(url, fileName)
+    await printFromFile(printer, path)
+    removeFile(path)
+    return true;
+}
+const printFromFile = (printer, path) => Device.exec(`lp -d ${printer} ${path}`)
 const printText = (text, printer) => new Promise((resolve, reject) => Printer.printDirect({data: text, type: 'RAW', printer, success: resolve, error: reject}))
 const addPrinter = (name, uri, driver) => Device.exec(`lpadmin -p "${name}" -E -v ${uri} -m ${driver}`)
 const getSetupPrinters = () => Printer.getPrinters()
@@ -97,5 +108,8 @@ module.exports = {
     getDevices,
     getByUsb,
     addPrinter,
-    printText
+    printText,
+    removePrinter,
+    printFromFile,
+    printFromUrl
 }

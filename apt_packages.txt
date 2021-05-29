@@ -1,1 +1,1 @@
-pigpio cups libcups2-dev libcupsimage2-dev g++ cups-client printer-driver-dymo printer-driver-all openprinting-ppds hp-ppd foomatic-db-engine
+pigpio

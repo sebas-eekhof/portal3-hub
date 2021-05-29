@@ -1,4 +1,5 @@
 const Storage = require('../classes/Storage');
+const FileStorage = require('../classes/FileStorage');
 
 module.exports = {
     get: ({key, fallback = null}) => Storage.get(key, fallback),
@@ -6,5 +7,6 @@ module.exports = {
     has: ({key}) => Storage.has(key),
     delete: ({key}) => Storage.delete(key),
     clear: Storage.clear,
-    wifi: Storage.wifi
+    wifi: Storage.wifi,
+    drives: FileStorage.drives
 }

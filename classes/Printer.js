@@ -48,7 +48,7 @@ const getPrinterDevice = (uri) => {
     return ret;
 }
 
-const printText = (text, printer) => new Promise((resolve, reject) => printDirect({data: text, type: 'RAW', printer, success: resolve, error: reject}))
+const printText = (text, printer) => new Promise((resolve, reject) => Printer.printDirect({data: text, type: 'RAW', printer, success: resolve, error: reject}))
 const addPrinter = (name, uri, driver) => Device.exec(`lpadmin -p "${name}" -E -v ${uri} -m ${driver}`)
 const getSetupPrinters = () => Printer.getPrinters()
 const getPrinters = () => getSetupPrinters().map(i => getPrinterDevice(i.options['device-uri'])).filter(i => (typeof i.uri !== 'undefined'))

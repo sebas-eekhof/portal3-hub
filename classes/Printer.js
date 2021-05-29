@@ -39,13 +39,25 @@ const start_discovery = () => {
     run();
 }
 
-const getPrinterDevice = (uri) => {
+const getPrinterType = async (name) => {
+    const options = await Device.exec(`lpoptions -p ${name} -l`);
+    if(options.includes('w288h167'))
+        return 'shipping';
+    if(options.includes('w102h252'))
+        return 'label';
+    return 'a4';
+}
+
+const getPrinterDevice = async (uri) => {
     const setup_device = getSetupPrinters().find(i => i.options['device-uri'] === uri);
     const connected_device = allDevices.find(i => i.uri === uri);
     let ret = {
         ...connected_device,
         setup: setup_device ? true : false,
-        setup_device: setup_device ? setup_device : null
+        setup_device: setup_device ? {
+            ...setup_device,
+            printer_type: await getPrinterType(setup_device.name)
+        } : null
     }
     return ret;
 }
@@ -54,7 +66,7 @@ const removePrinter = (printer) => Device.exec(`lpadmin -x ${printer}`)
 const printFromUrl = async (printer, url) => {
     const fileName = uuidv4();
     await downloadFile(url, fileName)
-    // await printFromFile(printer, fileName, '/portal3/tmp')
+    await printFromFile(printer, fileName, '/portal3/tmp')
     removeFile(`/portal3/tmp/${fileName}`)
     return true;
 }
@@ -62,21 +74,21 @@ const printFromFile = (printer, filename, path) => Device.exec(`cd ${path} && lp
 const printText = (text, printer) => new Promise((resolve, reject) => Printer.printDirect({data: text, type: 'RAW', printer, success: resolve, error: reject}))
 const addPrinter = (name, uri, driver) => Device.exec(`lpadmin -p "${name}" -E -v ${uri} -m ${driver}`)
 const getSetupPrinters = () => Printer.getPrinters()
-const getPrinters = () => getSetupPrinters().map(i => getPrinterDevice(i.options['device-uri'])).filter(i => (typeof i.uri !== 'undefined'))
+const getPrinters = async () => getSetupPrinters().map(i => await getPrinterDevice(i.options['device-uri'])).filter(i => (typeof i.uri !== 'undefined'))
 const getCommands = () => Printer.getSupportedJobCommands()
-const getDevices = () => allDevices.filter(i => !getSetupPrinters().map(i => i.options['device-uri']).includes(i.uri)).map(i => getPrinterDevice(i.uri))
-const getByUsb = (usb_device) => {
+const getDevices = async () => allDevices.filter(i => !getSetupPrinters().map(i => i.options['device-uri']).includes(i.uri)).map(i => await getPrinterDevice(i.uri))
+const getByUsb = async (usb_device) => {
     if(usb_device.device_info.class !== 'printer')
         return null;
     const usb_printers = allDevices.filter(i => i.class === 'direct');
     if(usb_device.serial_number && usb_device.serial_number.length !== 0)
         for(let i = 0; i < usb_printers.length; i++)
             if(usb_printers[i].id.includes(usb_device.serial_number))
-                return getPrinterDevice(usb_printers[i].uri);
+                return await getPrinterDevice(usb_printers[i].uri);
     
     for(let i = 0; i < usb_printers.length; i++)
         if(usb_printers[i].id.includes(usb_device.name))
-            return getPrinterDevice(usb_printers[i].uri);
+            return await getPrinterDevice(usb_printers[i].uri);
     return null;
 }
 const getDrivers = async (id) => {

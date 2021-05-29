@@ -15,9 +15,9 @@ const forcePull = async () => {
 }
 const needUpdate = async () => {
     const Device = require('./Device');
-    await Device.exec('git fetch')
-    const mine = await Device.exec('git rev-parse HEAD')
-    const incomming = await Device.exec('git rev-parse @{u}')
+    await Device.exec('cd /root/portal3-hub && git fetch')
+    const mine = await Device.exec('cd /root/portal3-hub && git rev-parse HEAD')
+    const incomming = await Device.exec('cd /root/portal3-hub && git rev-parse @{u}')
     return mine !== incomming
 }
 

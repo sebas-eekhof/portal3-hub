@@ -10,6 +10,7 @@ const Printer = require('./classes/Printer');
 const Ssh = require('./classes/Ssh');
 const Crypto = require('./classes/Crypto');
 require('dotenv').config()
+require('./classes/Storage');
 
 const init = async ({console}) => {
     

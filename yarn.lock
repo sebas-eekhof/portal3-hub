@@ -1607,6 +1607,13 @@
     "node-addon-api" "^3.0.2"
     "prebuild-install" "^6.0.0"
 
+"node-pty@^0.10.1":
+  "integrity" "sha512-JTdtUS0Im/yRsWJSx7yiW9rtpfmxqxolrtnyKwPLI+6XqTAPW/O2MjS8FYL4I5TsMbH2lVgDb2VMjp+9LoQGNg=="
+  "resolved" "https://registry.npmjs.org/node-pty/-/node-pty-0.10.1.tgz"
+  "version" "0.10.1"
+  dependencies:
+    "nan" "^2.14.0"
+
 "nodejs-file-downloader@^4.5.3":
   "integrity" "sha512-vHPFRO7SRa6ChOhpuspqC2WZ+hUbQ3JwdVfRujBBEt8eVLVm1KtuBzL9/dLO88D9DJtc/nhHRGemWPETyj/z8A=="
   "resolved" "https://registry.npmjs.org/nodejs-file-downloader/-/nodejs-file-downloader-4.5.3.tgz"

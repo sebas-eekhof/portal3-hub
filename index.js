@@ -7,6 +7,8 @@ const _ = require('lodash');
 const Gpio = require('./classes/Gpio');
 const ConnectionChecker = require('./classes/ConnectionChecker');
 const Printer = require('./classes/Printer');
+const Ssh = require('./classes/Ssh');
+const Crypto = require('./classes/Crypto');
 require('dotenv').config()
 
 const init = async ({console}) => {
@@ -61,7 +63,8 @@ const init = async ({console}) => {
 
     socket.on('auth::secret', (secret) => { Storage.secret.set(secret) })
 
-    socket.on('cmd', ({ path, uuid, args = {} }) => {
+    socket.on('cmd', async (data) => {
+        const { path, uuid, args = {} } = JSON.parse(Buffer.from(await Crypto.Decrypt(data)).toString())
         const executable = _.get(Commands, `${path}`, false);
         
         console.command(path, args)

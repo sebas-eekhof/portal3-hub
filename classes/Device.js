@@ -68,7 +68,7 @@ const GetSerialNumber = () => {
 
 const doUpdate = async () => {
     await Git.forcePull();
-    await exec(`apt-get install -y $(cat /root/portal3-hub/post_install.sh)`)
+    await exec(`apt-get install -y $(cat /root/portal3-hub/apt_packages.txt)`)
     await exec('sh /root/portal3-hub/post_install.sh')
     await Npm.install()
     exec(`service portal3-hub restart`)

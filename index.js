@@ -11,6 +11,8 @@ const { v4: uuidv4 } = require('uuid');
 const Crypto = require('./classes/Crypto');
 require('dotenv').config()
 
+const c = console;
+
 const init = async ({console}) => {
     
     console.log('Starting hub service')
@@ -63,10 +65,13 @@ const init = async ({console}) => {
 
     socket.on('auth::secret', (secret) => { Storage.secret.set(secret) })
 
-    let active_streams = [];
-
     socket.on('stream', async (data) => {
-        const { path, uuid, args = {} } = Crypto.FlowDecrypt(data)
+        c.log('requested stream')
+        const { path, uuid, args = {} } = await Crypto.FlowDecrypt(data)
+
+        
+        c.log({ path, uuid, args = {} })
+
         const executable = _.get(Commands, `${path}`, false);
 
         const stream_id = uuidv4();

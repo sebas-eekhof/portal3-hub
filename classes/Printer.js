@@ -68,7 +68,7 @@ const getByUsb = (usb_device) => {
 }
 const getDrivers = async (id) => {
     // try {
-        let list = await Device.spawn(`lpinfo --device-id "${id}" -m`);
+        let list = await Device.exec(`lpinfo --device-id "${id}" -m`);
         list = list
             .split('\n')
             .filter(i => (i.length !== 0 && i.includes(':')))

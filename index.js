@@ -85,7 +85,7 @@ const init = async ({console}) => {
 
         const sendResponse = async (response) => {
             console.command_success(path, args)
-            socket.emit(`${uuid}.response`, await parseCrypt(ret))
+            socket.emit(`${uuid}.response`, await parseCrypt(response))
         }
 
         const sendError = async (error) => {

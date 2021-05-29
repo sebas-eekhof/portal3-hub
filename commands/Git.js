@@ -4,5 +4,6 @@ module.exports = {
     pull: Git.pull,
     fetch: Git.fetch,
     reset: Git.reset,
-    forcePull: Git.forcePull
+    forcePull: Git.forcePull,
+    needUpdate: Git.needUpdate
 }

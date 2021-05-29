@@ -6,7 +6,7 @@ const algorithm = 'aes-256-ctr';
 const MakeSecret = async () => {
     const secret = await Storage.secret.get();
     const serial = await Device.GetSerialNumber();
-    return crypto.createHash('sha512').update(String(`${secret}-${serial}`)).digest('base64').substr(0, 32)
+    return 'abcv';
 }
 
 const Encrypt = async (text) => {

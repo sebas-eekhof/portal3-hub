@@ -11,8 +11,9 @@ const MakeSecret = async () => {
 }
 
 const Encrypt = async (text) => {
+    const secret = await MakeSecret();
     const iv = crypto.randomBytes(16);
-    const cipher = crypto.createCipheriv(algorithm, await MakeSecret(), iv);
+    const cipher = crypto.createCipheriv(algorithm, secret, iv);
     return Buffer.from(JSON.stringify({
         iv: iv.toString('hex'),
         data: Buffer.concat([cipher.update(text), cipher.final()]).toString('hex')
@@ -20,8 +21,10 @@ const Encrypt = async (text) => {
 }
 
 const Decrypt = async (data) => {
+    console.log('Hi', Storage)
+    const secret = await MakeSecret();
     const hash = JSON.parse(Buffer.from(data, 'base64').toString('ascii'));
-    const decipher = crypto.createDecipheriv(algorithm, await MakeSecret(), Buffer.from(hash.iv, 'hex'));
+    const decipher = crypto.createDecipheriv(algorithm, secret, Buffer.from(hash.iv, 'hex'));
     return Buffer.concat([decipher.update(Buffer.from(hash.data, 'hex')), decipher.final()]).toString();
 }
 

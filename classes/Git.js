@@ -1,5 +1,4 @@
 const simpleGit = require("simple-git");
-const Device = require('./Device');
 const git = simpleGit({
     baseDir: process.cwd(),
     binary: 'git',
@@ -15,6 +14,7 @@ const forcePull = async () => {
     return true;
 }
 const needUpdate = async () => {
+    const Device = require('./Device');
     await Device.exec('git fetch')
     const mine = await Device.exec('git rev-parse HEAD')
     const incomming = await Device.exec('git rev-parse @{u}')

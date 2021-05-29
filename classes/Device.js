@@ -71,6 +71,7 @@ const getRelease = () => os.getRelease()
 const getType = () => os.getType()
 const getLoad = () => os.loadavg()
 const getMem = () => ({total: os.totalmem(), free: os.freemem()})
+const version = () => Device.exec('git rev-parse --short HEAD')
 
 module.exports = {
     IsDevelopment,
@@ -84,5 +85,6 @@ module.exports = {
     getLoad,
     getMem,
     exec,
-    spawn
+    spawn,
+    version
 }

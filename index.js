@@ -75,12 +75,10 @@ const init = async ({console}) => {
         const executable = _.get(Commands, `${path}`, false);
 
         const stream_id = uuidv4();
-
-        let props = null;
         
         console.stream(path, args)
         
-        const acceptStream = async () => {
+        const acceptStream = async (props) => {
             console.stream_accept(path)
 
             const receiveData = async (data) => {
@@ -124,10 +122,8 @@ const init = async ({console}) => {
                         rejectStream('Kill is not a function')
                     if(typeof result.in !== "function")
                         rejectStream('In is not a function')
-                    else {
-                        props = result;
-                        acceptStream()
-                    }
+                    else
+                        acceptStream(props)
                 }).catch(rejectStream);
             else
                 acceptStream(output)

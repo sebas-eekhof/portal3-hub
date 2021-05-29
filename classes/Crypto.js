@@ -37,7 +37,7 @@ const FlowEncrypt = async (response) => {
 }
 
 const FlowDecrypt = async (data) => {
-    let ret = Buffer.from(await Crypto.Decrypt(data), 'base64').toString();
+    let ret = Buffer.from(await Decrypt(data), 'base64').toString();
     try {
         ret = JSON.parse(ret)
     } catch(e) {

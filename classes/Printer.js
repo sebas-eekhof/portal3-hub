@@ -48,7 +48,10 @@ const getPrinterDevice = (uri) => {
     return ret;
 }
 
-const addPrinter = (name, uri, driver) => Device.exec(`lpadmin -p "${name}" -E -v ${uri} -m ${driver}`)
+const addPrinter = (name, uri, driver) => {
+    console.log(`lpadmin -p "${name}" -E -v ${uri} -m ${driver}`)
+    return Device.exec(`lpadmin -p "${name}" -E -v ${uri} -m ${driver}`);
+}
 const getSetupPrinters = () => Printer.getPrinters()
 const getPrinters = () => getSetupPrinters().map(i => getPrinterDevice(i.options['device-uri']))
 const getCommands = () => Printer.getSupportedJobCommands()

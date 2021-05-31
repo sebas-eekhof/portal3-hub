@@ -12,6 +12,10 @@ const Crypto = require('./classes/Crypto');
 require('dotenv').config()
 
 const init = async ({console}) => {
+
+    require('./classes/Usb').getHwInfo();
+
+    await new Promise(() => {});
     
     console.log('Starting hub service')
 

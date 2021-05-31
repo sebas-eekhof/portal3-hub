@@ -126,6 +126,7 @@ const getDrivers = async (printer) => {
                     name: item.replace(`${split_for_path[0]} `, '')
                 }
             })
+        console.log('count', list.length)
         if(list.length === 0) {
             list = await Device.exec(`lpinfo --make-and-model "${printer.model}" -m`);
             list = list
@@ -141,6 +142,7 @@ const getDrivers = async (printer) => {
                     }
                 })
         }
+        console.log('count', list.length)
         return list;
     } catch(e) {
         return [];

@@ -60,6 +60,11 @@ const drives = async () => {
 
 const getByUsb = async (usb_device) => {
     let hwinfo = await Device.exec('hwinfo --disk');
+
+    console.log(`Vendor: usb 0x${usb_device.vendor_id.toString(16)}`)
+    console.log(`Device: usb 0x${usb_device.product_id.toString(16)}`)
+    console.log(`Serial ID: "${usb_device.serial_number}"`)
+
     hwinfo = hwinfo.split('\n\n');
     console.log(usb_device.vendor_id.toString(16))
     for(let i = 0; i < hwinfo.length; i++) {

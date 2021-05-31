@@ -62,7 +62,7 @@ const getByUsb = async () => {
     let hwinfo = await Device.exec('hwinfo --disk');
     hwinfo = hwinfo.split('\n\n');
     for(let i = 0; i < hwinfo.length; i++) {
-        const device = hwinfo.split('\n')
+        const device = hwinfo[i].split('\n')
         console.log(device)
         process.exit();
     }

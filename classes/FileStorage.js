@@ -66,6 +66,8 @@ const readDir = async (path) => {
             type = 'dir';
         else
             type = mime.lookup(`${path}/${name}`);
+        if(!type)
+            type = 'file';
         return {
             name,
             type

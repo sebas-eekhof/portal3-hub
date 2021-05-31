@@ -3,6 +3,7 @@ const fs = require('fs');
 const drivelist = require('drivelist');
 const checkDiskSpace = require('check-disk-space');
 const Device = require('./Device');
+const mime = require('mime-types');
 
 const downloadFile = async (url, fileName) => {
     const downloader = new Downloader({
@@ -59,7 +60,17 @@ const drives = async () => {
 };
 
 const readDir = async (path) => {
-    return fs.readdirSync(path)
+    return fs.readdirSync(path).map(name => {
+        let type;
+        if(fs.lstatSync(`${path}/${name}`).isDirectory())
+            type = 'dir';
+        else
+            type = mime.lookup(`${path}/${name}`);
+        return {
+            name,
+            type
+        }
+    })
 }
 
 const getByUsb = async (usb_device) => {
@@ -81,7 +92,6 @@ const getByUsb = async (usb_device) => {
 
                 }
             }
-            console.log(device)
         }
     }
 }

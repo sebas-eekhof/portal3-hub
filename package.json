@@ -17,6 +17,7 @@
     "install": "^0.13.0",
     "ipp-printer": "^1.0.0",
     "lodash": "^4.17.21",
+    "mime-types": "^2.1.30",
     "network": "^0.5.0",
     "node-color-log": "^5.3.0",
     "node-hid": "^2.1.1",

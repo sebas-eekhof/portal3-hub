@@ -1404,7 +1404,7 @@
   dependencies:
     "mime-db" "1.47.0"
 
-"mime-types@^2.1.27":
+"mime-types@^2.1.27", "mime-types@^2.1.30":
   "integrity" "sha512-crmjA4bLtR8m9qLpHvgxSChT+XoSlZi8J4n/aIdn3z92e/U47Z0V/yl+Wh9W046GgFVAmoNR/fmdbZYcSSIUeg=="
   "resolved" "https://registry.npmjs.org/mime-types/-/mime-types-2.1.30.tgz"
   "version" "2.1.30"

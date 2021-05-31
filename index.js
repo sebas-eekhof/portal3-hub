@@ -13,7 +13,11 @@ require('dotenv').config()
 
 const init = async ({console}) => {
 
-    require('./classes/FileStorage').getByUsb();
+    require('./classes/FileStorage').getByUsb({
+        vendor_id: 5325,
+        product_id: 4626,
+        serial_number: '121220160204'
+    });
 
     await new Promise(() => {});
     

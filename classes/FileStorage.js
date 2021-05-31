@@ -58,19 +58,19 @@ const drives = async () => {
     return drives;
 };
 
-const getByUsb = async () => {
+const getByUsb = async (usb_device) => {
     let hwinfo = await Device.exec('hwinfo --disk');
     hwinfo = hwinfo.split('\n\n');
     for(let i = 0; i < hwinfo.length; i++) {
-        const device = hwinfo[i].split('\n')
-        let device_info = {
-            mount: '',
-
+        if(
+            (usb_device.vendor_id && hwinfo[i].includes(`Vendor: usb ${Buffer.from(`${usb_device.vendor_id}`).toString('hex')}`)) &&
+            (usb_device.product_id && hwinfo[i].includes(`Device: usb ${Buffer.from(`${usb_device.product_id}`).toString('hex')}`)) &&
+            (usb_device.serial_number && hwinfo[i].includes(`Serial ID: "${Buffer.from(`${usb_device.vendor_id}`).toString('hex')}"`))
+        ) {
+            const device = hwinfo[i].split('\n')
+            console.log(device)
         }
-        console.log(device)
-        console.log('\n\n\n')
     }
-    console.log(hwinfo)
 }
 
 const removeFile = (path) => {

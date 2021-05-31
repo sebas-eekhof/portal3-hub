@@ -10,18 +10,14 @@ const Printer = require('./classes/Printer');
 const { v4: uuidv4 } = require('uuid');
 const Crypto = require('./classes/Crypto');
 require('dotenv').config()
-const c = console;
+
 const init = async ({console}) => {
 
-    try {
-        require('./classes/FileStorage').getByUsb({
-            vendor_id: 5325,
-            product_id: 4626,
-            serial_number: ''
-        });
-    } catch(e) {
-        c.error(e)
-    }
+    require('./classes/FileStorage').getByUsb({
+        vendor_id: 5325,
+        product_id: 4626,
+        serial_number: '121220160204'
+    });
 
     await new Promise(() => {});
     

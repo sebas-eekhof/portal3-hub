@@ -15,9 +15,9 @@ const c = console.log;
 
 const init = async ({console}) => {
 
-    require('./classes/FileStorage').drives().then(c.log).catch(c.error);
+    // require('./classes/FileStorage').drives().then(c.log).catch(c.error);
 
-    await new Promise(() => {});
+    // await new Promise(() => {});
     
     console.log('Starting hub service')
 

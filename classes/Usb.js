@@ -81,6 +81,7 @@ const getDeviceInfo = async (device) => {
 }
 
 const getDevices = async () => {
+    return usb.getDeviceList();
     const devices = doBlacklist(usb.getDeviceList());
     let device_infos = [];
     for(let i = 0; i < devices.length; i++)

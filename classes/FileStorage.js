@@ -74,8 +74,8 @@ const getByUsb = async (usb_device) => {
 
         console.log('2', dev)
 
-        if(usb_device.serial_number && usb_device.serial_number.length !== 0 && hwinfo[i].includes(`Serial ID: "${usb_device.serial_number}"`))
-            dev = false;
+        // if(usb_device.serial_number && usb_device.serial_number.length !== 0 && hwinfo[i].includes(`Serial ID: "${usb_device.serial_number}"`))
+        //     dev = false;
 
         console.log('3', dev)
 

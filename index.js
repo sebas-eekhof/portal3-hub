@@ -9,15 +9,13 @@ const ConnectionChecker = require('./classes/ConnectionChecker');
 const Printer = require('./classes/Printer');
 const { v4: uuidv4 } = require('uuid');
 const Crypto = require('./classes/Crypto');
-require('dotenv').config()
+require('dotenv').config();
+
+const c = console.log;
 
 const init = async ({console}) => {
 
-    require('./classes/FileStorage').drives({
-        vendor_id: 5325,
-        product_id: 4626,
-        serial_number: '121220160204'
-    });
+    require('./classes/FileStorage').then(c.log).catch(c.error);
 
     await new Promise(() => {});
     

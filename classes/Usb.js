@@ -81,12 +81,6 @@ const getDeviceInfo = async (device) => {
     return data;
 }
 
-const getHwInfo = async () => {
-    let hwinfo = await Device.exec('hwinfo --disk');
-    hwinfo = hwinfo.split('\n\n');
-    console.log(hwinfo)
-}
-
 const getDevices = async () => {
     const devices = doBlacklist(usb.getDeviceList());
     let device_infos = [];
@@ -96,6 +90,5 @@ const getDevices = async () => {
 };
 
 module.exports = {
-    getDevices,
-    getHwInfo
+    getDevices
 }

@@ -57,6 +57,17 @@ const drives = async () => {
     return drives;
 };
 
+const getByUsb = async () => {
+    let hwinfo = await Device.exec('hwinfo --disk');
+    hwinfo = hwinfo.split('\n\n');
+    for(let i = 0; i < hwinfo.length; i++) {
+        const device = hwinfo.split('\n')
+        console.log(device)
+        process.exit();
+    }
+    console.log(hwinfo)
+}
+
 const removeFile = (path) => {
     fs.unlinkSync(path)
     return true;
@@ -66,5 +77,6 @@ module.exports = {
     downloadFile,
     removeFile,
     drives,
+    getByUsb,
     rawDrives
 }

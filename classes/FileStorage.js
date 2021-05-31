@@ -63,8 +63,12 @@ const getByUsb = async () => {
     hwinfo = hwinfo.split('\n\n');
     for(let i = 0; i < hwinfo.length; i++) {
         const device = hwinfo[i].split('\n')
+        let device_info = {
+            mount: '',
+
+        }
         console.log(device)
-        process.exit();
+        console.log('\n\n\n')
     }
     console.log(hwinfo)
 }

@@ -66,11 +66,19 @@ const getByUsb = async (usb_device) => {
         let dev = true;
         if(usb_device.vendor_id && !hwinfo[i].includes(`Vendor: usb 0x${usb_device.vendor_id.toString(16)}`))
             dev = false;
+
+        console.log('1', dev)
+
         if(usb_device.product_id && hwinfo[i].includes(`Device: usb 0x${usb_device.product_id.toString(16)}`))
             dev = false;
+
+        console.log('2', dev)
+        
         if(usb_device.serial_number && usb_device.serial_number.length !== 0 && hwinfo[i].includes(`Serial ID: "${usb_device.serial_number}"`))
             dev = false;
-            
+
+        console.log('3', dev)
+
         if(dev) {
             const device = hwinfo[i].split('\n')
             console.log(device)

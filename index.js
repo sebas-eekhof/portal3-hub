@@ -13,7 +13,7 @@ require('dotenv').config()
 
 const init = async ({console}) => {
 
-    require('./classes/FileStorage').getHwInfo();
+    require('./classes/FileStorage').getByUsb();
 
     await new Promise(() => {});
     

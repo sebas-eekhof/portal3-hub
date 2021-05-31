@@ -14,10 +14,6 @@ require('dotenv').config();
 const c = console.log;
 
 const init = async ({console}) => {
-
-    // require('./classes/FileStorage').drives().then(c.log).catch(c.error);
-
-    // await new Promise(() => {});
     
     console.log('Starting hub service')
 

@@ -8,5 +8,6 @@ module.exports = {
     delete: ({key}) => Storage.delete(key),
     clear: Storage.clear,
     wifi: Storage.wifi,
-    getDrives: FileStorage.drives
+    getDrives: FileStorage.drives,
+    readDir: ({dir}) => FileStorage.readDir(dir)
 }

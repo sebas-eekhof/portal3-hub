@@ -58,6 +58,10 @@ const drives = async () => {
     return drives;
 };
 
+const readDir = async (path) => {
+    return fs.readdirSync(path)
+}
+
 const getByUsb = async (usb_device) => {
     let hwinfo = await Device.exec('hwinfo --disk');
     hwinfo = hwinfo.split('\n\n');
@@ -74,7 +78,7 @@ const getByUsb = async (usb_device) => {
             const device = hwinfo[i].split('\n')
             for(let i = 0; i < device.length; i++) {
                 if(device[i].includes('Device Files')) {
-                    
+
                 }
             }
             console.log(device)
@@ -92,5 +96,6 @@ module.exports = {
     removeFile,
     drives,
     getByUsb,
-    rawDrives
+    rawDrives,
+    readDir
 }

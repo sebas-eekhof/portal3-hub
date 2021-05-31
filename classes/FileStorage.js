@@ -1,7 +1,8 @@
 const Downloader = require('nodejs-file-downloader');
 const fs = require('fs');
 const drivelist = require('drivelist');
-const checkDiskSpace = require('check-disk-space')
+const checkDiskSpace = require('check-disk-space');
+const Device = require('./Device');
 
 const downloadFile = async (url, fileName) => {
     const downloader = new Downloader({

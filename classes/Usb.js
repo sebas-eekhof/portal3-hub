@@ -1,7 +1,6 @@
 const usb = require('usb');
 const _ = require('lodash');
 const { DeviceClasses } = require('./Usb/Descriptor');
-const Device = require('./Device');
 
 const vendorBlackList = [
     7531,

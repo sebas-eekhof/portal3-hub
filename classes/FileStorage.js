@@ -61,10 +61,6 @@ const drives = async () => {
 const getByUsb = async (usb_device) => {
     let hwinfo = await Device.exec('hwinfo --disk');
 
-    console.log(`Vendor: usb 0x${usb_device.vendor_id.toString(16)}`)
-    console.log(`Device: usb 0x${usb_device.product_id.toString(16)}`)
-    console.log(`Serial ID: "${usb_device.serial_number}"`)
-
     hwinfo = hwinfo.split('\n\n');
     console.log(usb_device.vendor_id.toString(16))
     for(let i = 0; i < hwinfo.length; i++) {
@@ -74,13 +70,13 @@ const getByUsb = async (usb_device) => {
 
         console.log('1', dev)
 
-        // if(usb_device.product_id && hwinfo[i].includes(`Device: usb 0x${usb_device.product_id.toString(16)}`))
-        //     dev = false;
+        if(usb_device.product_id && !hwinfo[i].includes(`Device: usb 0x${usb_device.product_id.toString(16)}`))
+            dev = false;
 
         console.log('2', dev)
 
-        // if(usb_device.serial_number && usb_device.serial_number.length !== 0 && hwinfo[i].includes(`Serial ID: "${usb_device.serial_number}"`))
-        //     dev = false;
+        if(usb_device.serial_number && usb_device.serial_number.length !== 0 && !hwinfo[i].includes(`Serial ID: "${usb_device.serial_number}"`))
+            dev = false;
 
         console.log('3', dev)
 

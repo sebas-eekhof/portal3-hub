@@ -17,6 +17,11 @@ const downloadFile = async (url, fileName) => {
 
 const rawDrives = () => drivelist.list();
 
+const formatDrive = async (drive) => {
+    await Device.exec(`mkfs -t ntfs ${drive}`)
+    await Device.exec(`ntfslabel ${drive} "USB"`)
+}
+
 const drives = async () => {
     const list = await drivelist.list();
     let drives = [];
@@ -109,5 +114,6 @@ module.exports = {
     drives,
     getByUsb,
     rawDrives,
-    readDir
+    readDir,
+    formatDrive
 }

@@ -85,8 +85,11 @@ const getSetupPrinters = () => Printer.getPrinters()
 const getPrinters = async () => {
     let printers = getSetupPrinters()
     let list = [];
-    for(let i = 0; i < printers.length; i++)
-        list.push(await getPrinterDevice(printers[i].options['device-uri']))
+    for(let i = 0; i < printers.length; i++) {
+        const device_info = await getPrinterDevice(printers[i].options['device-uri']);
+        if(device_info.setup)
+            list.push(device_info)
+    }
     return list.filter(i => (typeof i.uri !== "undefined"))
 }
 const getCommands = () => Printer.getSupportedJobCommands()
@@ -126,7 +129,6 @@ const getDrivers = async (printer) => {
                     name: item.replace(`${split_for_path[0]} `, '')
                 }
             })
-        console.log('count', list.length)
         if(list.length === 0) {
             list = await Device.exec(`lpinfo --make-and-model "${printer.model}" -m`);
             list = list
@@ -142,7 +144,6 @@ const getDrivers = async (printer) => {
                     }
                 })
         }
-        console.log('count', list.length)
         return list;
     } catch(e) {
         return [];

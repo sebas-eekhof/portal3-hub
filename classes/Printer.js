@@ -111,9 +111,9 @@ const getByUsb = async (usb_device) => {
             return await getPrinterDevice(usb_printers[i].uri);
     return null;
 }
-const getDrivers = async (id) => {
+const getDrivers = async (printer) => {
     try {
-        let list = await Device.exec(`lpinfo --device-id "${id}" -m`);
+        let list = await Device.exec(`lpinfo --device-id "${printer.id}" -m`);
         list = list
             .split('\n')
             .filter(i => (i.length !== 0 && i.includes(':')))
@@ -126,6 +126,21 @@ const getDrivers = async (id) => {
                     name: item.replace(`${split_for_path[0]} `, '')
                 }
             })
+        if(list.length === 0) {
+            list = await Device.exec(`lpinfo --make-and-model "${printer.model}" -m`);
+            list = list
+                .split('\n')
+                .filter(i => (i.length !== 0 && i.includes(':')))
+                .map(item => {
+                    const split_for_maker = item.split(':')[0].split('-');
+                    const split_for_path = item.split(' ');
+                    return {
+                        maker: split_for_maker[0],
+                        uri: split_for_path[0],
+                        name: item.replace(`${split_for_path[0]} `, '')
+                    }
+                })
+        }
         return list;
     } catch(e) {
         return [];

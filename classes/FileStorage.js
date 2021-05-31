@@ -61,6 +61,7 @@ const drives = async () => {
 const getByUsb = async (usb_device) => {
     let hwinfo = await Device.exec('hwinfo --disk');
     hwinfo = hwinfo.split('\n\n');
+    console.log(Buffer.from(`${usb_device.vendor_id}`).toString('hex'))
     for(let i = 0; i < hwinfo.length; i++) {
         if(
             (usb_device.vendor_id && hwinfo[i].includes(`Vendor: usb ${Buffer.from(`${usb_device.vendor_id}`).toString('hex')}`))

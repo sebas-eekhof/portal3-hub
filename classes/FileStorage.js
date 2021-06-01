@@ -131,7 +131,7 @@ const getByUsb = async (usb_device) => {
             const device = hwinfo[i].split('\n')
             for(let i = 0; i < device.length; i++) {
                 if(device[i].includes('Device Files')) {
-
+                    
                 }
             }
         }

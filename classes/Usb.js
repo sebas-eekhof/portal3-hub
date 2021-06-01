@@ -25,6 +25,8 @@ const doBlacklist = (devices) => devices.filter(device => !(vendorBlackList.incl
 const specialDeviceFilters = ({device_info, device_name, vendor_id, product_id}) => {
     if(device_name.toLowerCase().includes('wlan'))
         device_info.class_id = 14;
+    if(vendor_id === 1008 && device_name.toLowerCase().includes('jet'))
+        device_info.class_id = 7;
     return {
         class: _.get(DeviceClasses[device_info.type], `[${device_info.class_id}].name`, DeviceClasses[device_info.type][0]),
         subclass: _.get(DeviceClasses[device_info.type], `[${device_info.class_id}].subclasses[${device_info.subclass_id}].name`, null),

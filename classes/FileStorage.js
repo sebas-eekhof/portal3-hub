@@ -64,6 +64,20 @@ const drives = async () => {
     return drives;
 };
 
+const mountpoints = async () => {
+    const drives = await this.drives();
+    let mountpoints = [];
+    drives.map(drive => {
+        mountpoints.push(...drive.mountpoints.map(mountpoint => {
+            return {
+                ...mountpoint,
+                drive
+            }
+        }))
+    })
+    return mountpoints;
+}
+
 const readDir = async (path) => {
     return fs.readdirSync(path).map(name => {
         let type;
@@ -112,6 +126,7 @@ module.exports = {
     downloadFile,
     removeFile,
     drives,
+    mountpoints,
     getByUsb,
     rawDrives,
     readDir,

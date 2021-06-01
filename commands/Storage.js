@@ -9,6 +9,7 @@ module.exports = {
     clear: Storage.clear,
     wifi: Storage.wifi,
     getDrives: FileStorage.drives,
+    getMountpoints: FileStorage.mountpoints,
     rawDrives: FileStorage.rawDrives,
     readDir: ({path}) => FileStorage.readDir(path),
     formatDrive: ({drive}) => FileStorage.formatDrive(drive)

@@ -65,7 +65,7 @@ const drives = async () => {
 };
 
 const mountpoints = async () => {
-    const drives = await this.drives();
+    const drives = await drives();
     let mountpoints = [];
     drives.map(drive => {
         mountpoints.push(...drive.mountpoints.map(mountpoint => {

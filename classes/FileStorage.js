@@ -18,6 +18,7 @@ const downloadFile = async (url, fileName) => {
 const rawDrives = () => drivelist.list();
 
 const mount = async (drive) => {
+    await Device.exec(`mkdir -p /portal3/mnt${drive}`)
     await Device.exec(`mount ${drive} /portal3/mnt${drive}`)
     return true;
 }

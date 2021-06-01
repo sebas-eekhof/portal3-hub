@@ -6,10 +6,10 @@ const Npm = require('./Npm')
 
 const exec = (command) => new Promise((resolve, reject) => {
     child_process.exec(command, (err, stdout, stderr) => {
-        if(err) {
-            reject(err)
-            return
-        }
+        // if(err) {
+        //     reject(err)
+        //     return
+        // }
         if(stderr) {
             reject(stderr)
             return

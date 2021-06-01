@@ -17,9 +17,29 @@ const downloadFile = async (url, fileName) => {
 
 const rawDrives = () => drivelist.list();
 
+const mount = async (drive) => {
+    await Device.exec(`mount ${drive} /portal3/mnt${drive}`)
+    return true;
+}
+
+const unmount = async (drive) => {
+    await Device.exec(`umount ${drive}`)
+    return true;
+}
+
+const rename = async (drive, name) => {
+    await Device.exec(`e2label ${drive} "${name}"`)
+    return true;
+}
+
 const formatDrive = async (drive) => {
-    await Device.exec(`mkfs -t ntfs ${drive}`)
-    await Device.exec(`ntfslabel ${drive} "USB"`)
+    if(!drive.includes('/dev/s'))
+        throw new Error('Can\'t format this drive')
+    await unmount(drive)
+    await Device.exec(`mkfs.ext4 -F ${drive}`)
+    await rename(drive, 'USB')
+    await mount(drive);
+    return true;
 }
 
 const drives = async () => {

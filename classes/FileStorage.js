@@ -1,9 +1,8 @@
 const Downloader = require('nodejs-file-downloader');
 const fs = require('fs');
-const drivelist = require('drivelist');
-const checkDiskSpace = require('check-disk-space');
 const Device = require('./Device');
 const mime = require('mime-types');
+const usb = require('usb');
 
 const downloadFile = async (url, fileName) => {
     const downloader = new Downloader({
@@ -13,6 +12,24 @@ const downloadFile = async (url, fileName) => {
     })
     await downloader.download();
     return `/portal3/tmp/${fileName}`
+}
+
+const streamDrives = (out) => {
+    usb.on('attach', onDevice)
+    const onDevice = (device) => out(device)
+
+    const onData = () => {
+
+    }
+
+    const kill = () => {
+        usb.removeListener('attach', onDevice)
+    }
+
+    return {
+        in: onData,
+        kill
+    }
 }
 
 const drives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,serial,path,fsused --json -b | base64`)
@@ -35,8 +52,7 @@ const drives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,ser
         }
         return {
             is_system,
-            ...item,
-            space: checkDiskSpace('/dev/sdb1')
+            ...item
         }
     }))
 
@@ -91,5 +107,6 @@ module.exports = {
     downloadFile,
     removeFile,
     drives,
-    readDir
+    readDir,
+    streamDrives
 }

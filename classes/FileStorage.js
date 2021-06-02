@@ -36,7 +36,7 @@ const drives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,ser
         return {
             is_system,
             ...item,
-            space: checkDiskSpace(item.path)
+            space: checkDiskSpace('/dev/sdb1')
         }
     }))
 

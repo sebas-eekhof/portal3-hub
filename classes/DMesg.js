@@ -8,8 +8,8 @@ const DMESG_TYPE = Object.freeze({
 })
 
 const startFollow = () => {
+    let pi = 0;
     const process = spawn(`dmesg`, [`-wH`]);
-    let i = 0;
     process.stdout.on(`data`, data => {
         const lines = data.toString().split('\n')
         for(let i = 0; i < lines.length; i++) {
@@ -22,8 +22,8 @@ const startFollow = () => {
                 identifier: id_message[0].replace(`] `, ``),
                 message: message.replace(`${id_message[0]}: `, ``)
             }
-            console.log(i, dat)
-            i++;
+            console.log(pi, dat)
+            pi++;
         }
     })
 }

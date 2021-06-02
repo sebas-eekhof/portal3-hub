@@ -20,7 +20,7 @@ const drives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,ser
     .then(JSON.parse)
     .then(result => result.blockdevices)
     .then(result => result.map(item => {
-        const is_system = item.path.includes('/dev/sd');
+        const is_system = !item.path.includes('/dev/sd');
         if(is_system) {
             item.name = 'Intern';
             let points = [];

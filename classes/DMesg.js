@@ -17,7 +17,7 @@ const startFollow = () => {
         const id_message = message.split(': ');
         
         const dat = {
-            identifier: id_message[0],
+            identifier: id_message[0].replace(`] `),
             message: message.replace(`${id_message[0]}: `, ``)
         }
         console.log(i, dat)

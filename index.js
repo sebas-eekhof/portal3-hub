@@ -1,3 +1,4 @@
+require('./classes/Helpers');
 const io = require('socket.io-client');
 const Storage = require('./classes/Storage');
 const Device = require('./classes/Device');

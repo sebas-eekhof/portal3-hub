@@ -14,8 +14,6 @@ require('dotenv').config();
 const c = console.log;
 
 const init = async ({console}) => {
-
-    await new Promise(() => {})
     
     console.log('Starting hub service')
 

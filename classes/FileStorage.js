@@ -15,7 +15,7 @@ const downloadFile = async (url, fileName) => {
     return `/portal3/tmp/${fileName}`
 }
 
-const drives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,serial,path --json -b | base64`)
+const drives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,serial,path,fsused --json -b | base64`)
     .then(base64 => Buffer.from(base64, 'base64').toString())
     .then(JSON.parse)
     .then(result => result.blockdevices)

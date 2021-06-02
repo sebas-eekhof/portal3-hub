@@ -15,7 +15,7 @@ const downloadFile = async (url, fileName) => {
 }
 
 const streamDrives = (out) => {
-    const onDevice = (interval) => (
+    const onDevice = (interval) => {
 
         out({
             command: 'show_loader'
@@ -38,7 +38,7 @@ const streamDrives = (out) => {
 
         }, interval)
 
-    )
+    }
 
     usb.on('attach', () => onDevice(4000))
     usb.on('detach', () => onDevice(0))

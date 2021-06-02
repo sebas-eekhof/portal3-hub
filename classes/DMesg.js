@@ -17,9 +17,10 @@ const startFollow = () => {
             const time_rest = line.split('] ')
             const message = line.replace(time_rest[0], '');
             const id_message = message.split(': ');
+            const identifier = id_message[0].replace(`] `, ``);
             
             const dat = {
-                identifier: id_message[0].replace(`] `, ``),
+                identifier: identifier[0] === ' ' ? identifier.substr(1) : identifier,
                 message: message.replace(`${id_message[0]}: `, ``)
             }
             console.log(pi, dat)

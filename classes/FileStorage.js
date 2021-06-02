@@ -2,6 +2,29 @@ const Downloader = require('nodejs-file-downloader');
 const fs = require('fs');
 const Device = require('./Device');
 const mime = require('mime-types');
+const { EventEmitter } = require('events');
+
+const StorageEmitter = new EventEmitter();
+
+const startAutoMount = () => {
+    let last_hash = null;
+    const checkHash = async () => {
+        const hash = await Device.exec(`lsblk -o uuid | base64`)
+        if(last_hash !== hash) {
+            last_hash = hash;
+            const drives = await drives();
+            for(let i = 0; i < drives.length; i++) {
+                for(let j = 0; j < drives[i].children.length; j++) {
+                    const child = drives[i].children[j];
+                }
+            }
+            StorageEmitter.emit('drives', drives)
+            setTimeout(checkHash, 200);
+        } else {
+            setTimeout(checkHash, 200);
+        }
+    }
+}
 
 const downloadFile = async (url, fileName) => {
     const downloader = new Downloader({
@@ -14,23 +37,11 @@ const downloadFile = async (url, fileName) => {
 }
 
 const streamDrives = (out) => {
-    let killed = false;
-    let last_hash = null;
-    const checkHash = async () => {
-        const hash = await Device.exec(`lsblk -o uuid | base64`)
-        if(last_hash !== hash) {
-            last_hash = hash;
-            out(await drives())
-            setTimeout(checkHash, 200);
-        } else {
-            setTimeout(checkHash, 200);
-        }
-    }
+    const onData = (drives) => {out(drives)}
+    StorageEmitter.on('drives', onData)
     return {
-        kill: () => killed = true,
-        init: () => {
-            checkHash()
-        }
+        kill: () => StorageEmitter.removeListener('drives', onData),
+        init: () => out(await drives())
     }
 }
 

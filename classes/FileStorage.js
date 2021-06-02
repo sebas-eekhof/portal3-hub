@@ -51,6 +51,7 @@ const getDrive = (drive) => Device.exec(`lsblk ${drive} -o name,mountpoint,label
             ...item
         }
     }))
+    .then(result => _.get(result, '[0]', null))
 
 const getDrives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,serial,path,fsused,fsavail,fssize,fsuse% --json -b | base64`)
     .then(base64 => Buffer.from(base64, 'base64').toString())

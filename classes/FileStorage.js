@@ -77,7 +77,7 @@ const startAutoMount = () => {
 
             const drive_list = await drives();
 
-            old_drives.map(old_drive => {
+            old_drives.map(async (old_drive) => {
                 if(!old_drive.is_system) {
                     let found = false;
                     for(let i = 0; i < drive_list.length; i++)
@@ -92,7 +92,7 @@ const startAutoMount = () => {
 
             old_drives = drive_list;
 
-            drive_list.map(drive => {
+            drive_list.map(async (drive) => {
                 if(!drive.is_system) {
                     for(let i = 0; i < drive.children.length; i++)
                         if(drive.children[i].mountpoint === null)

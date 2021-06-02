@@ -11,17 +11,20 @@ const startFollow = () => {
     const process = spawn(`dmesg`, [`-wH`]);
     let i = 0;
     process.stdout.on(`data`, data => {
-        const line = data.toString()
-        const time_rest = line.split('] ')
-        const message = line.replace(time_rest[0], '');
-        const id_message = message.split(': ');
-        
-        const dat = {
-            identifier: id_message[0].replace(`] `, ``),
-            message: message.replace(`${id_message[0]}: `, ``)
+        const lines = data.toString().split('\n')
+        for(let i = 0; i < lines.length; i++) {
+            const line = lines[i]
+            const time_rest = line.split('] ')
+            const message = line.replace(time_rest[0], '');
+            const id_message = message.split(': ');
+            
+            const dat = {
+                identifier: id_message[0].replace(`] `, ``),
+                message: message.replace(`${id_message[0]}: `, ``)
+            }
+            console.log(i, dat)
+            i++;
         }
-        console.log(i, dat)
-        i++;
     })
 }
 

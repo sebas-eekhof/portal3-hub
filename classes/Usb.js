@@ -76,7 +76,8 @@ const getDeviceInfo = async (device) => {
         device_info,
         device_info_str,
         port: device.portNumbers[1],
-        using_hub: (device.portNumbers.length > 2)
+        using_hub: (device.portNumbers.length > 2),
+        device
     }
     device.close();
     return data;

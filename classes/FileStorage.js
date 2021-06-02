@@ -24,7 +24,7 @@ const streamDrives = (out) => {
     StorageEmitter.on('drives', onData)
     return {
         kill: () => StorageEmitter.removeListener('drives', onData),
-        init: async () => out(await drives())
+        init: async () => out(await getDrives())
     }
 }
 

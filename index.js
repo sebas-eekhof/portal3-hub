@@ -10,6 +10,7 @@ const ConnectionChecker = require('./classes/ConnectionChecker');
 const Printer = require('./classes/Printer');
 const { v4: uuidv4 } = require('uuid');
 const Crypto = require('./classes/Crypto');
+const FileStorage = require('./classes/FileStorage');
 require('dotenv').config();
 
 const c = console.log;
@@ -19,6 +20,8 @@ const init = async ({console}) => {
     console.log('Starting hub service')
 
     Gpio.init();
+
+    FileStorage.startAutoMount();
 
     Printer.start_discovery();
     

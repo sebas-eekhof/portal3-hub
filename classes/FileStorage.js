@@ -71,13 +71,13 @@ const startAutoMount = () => {
         const hash = await Device.exec(`lsblk -o uuid | base64`)
         if(last_hash !== hash) {
             last_hash = hash;
-            const drives = await drives();
-            for(let i = 0; i < drives.length; i++) {
-                for(let j = 0; j < drives[i].children.length; j++) {
-                    const child = drives[i].children[j];
+            const drive_list = await drives();
+            for(let i = 0; i < drive_list.length; i++) {
+                for(let j = 0; j < drive_list[i].children.length; j++) {
+                    const child = drive_list[i].children[j];
                 }
             }
-            StorageEmitter.emit('drives', drives)
+            StorageEmitter.emit('drives', drive_list)
             setTimeout(checkHash, 200);
         } else {
             setTimeout(checkHash, 200);
@@ -85,8 +85,6 @@ const startAutoMount = () => {
     }
     checkHash()
 }
-
-startAutoMount()
 
 // const formatDrive = async (drive) => {
 //     if(!drive.includes('/dev/s'))

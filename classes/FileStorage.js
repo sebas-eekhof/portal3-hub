@@ -50,8 +50,8 @@ const drives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,ser
     }))
 
 const mount = async (drive) => {
-    await Device.exec(`mkdir -p /portal3/mnt/${drive.replace('/', '_').substr(1)}`)
-    await Device.exec(`mount ${drive} /portal3/mnt/${drive.replace('/', '_').substr(1)}`)
+    await Device.exec(`mkdir -p /portal3/mnt/${drive.substr(1).replace('/', '_')}`)
+    await Device.exec(`mount ${drive} /portal3/mnt/${drive.substr(1).replace('/', '_')}`)
     return true;
 }
 

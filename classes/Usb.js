@@ -37,7 +37,14 @@ const specialDeviceFilters = ({device_info, device_name, vendor_id, product_id})
 
 const getHardware = async () => {
     const devices = await Device.exec(`lshw -json`);
-    return `${devices}`.replace(`\"`, '')
+    return `${devices}`.replace(/\\n/g, "\\n")
+    .replace(/\\'/g, "\\'")
+    .replace(/\\"/g, '\\"')
+    .replace(/\\&/g, "\\&")
+    .replace(/\\r/g, "\\r")
+    .replace(/\\t/g, "\\t")
+    .replace(/\\b/g, "\\b")
+    .replace(/\\f/g, "\\f");
 }
 
 /**

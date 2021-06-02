@@ -20,7 +20,7 @@ const streamDrives = (out) => {
         const hash = Device.exec(`lsblk -o uuid | base64`)
         if(last_hash !== hash) {
             last_hash = hash;
-            out(await devices())
+            out(await drives())
             setTimeout(checkHash, 200);
         } else {
             setTimeout(checkHash, 200);

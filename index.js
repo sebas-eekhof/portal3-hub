@@ -80,14 +80,21 @@ const init = async ({console}) => {
             console.stream_accept(path)
 
             const receiveData = async (data) => {
-                props.in(await Crypto.FlowDecrypt(data))
+                console.stream_in(path)
+                if(typeof props.in === 'function')
+                    props.in(await Crypto.FlowDecrypt(data))
+                else
+                    logger.stream_debug(path, 'In function not defined')
             }
 
             socket.on(`stream.${stream_id}`, receiveData)
 
             socket.once(`stream.${stream_id}.kill`, async () => {
                 console.stream_kill(path)
-                props.kill();
+                if(typeof props.kill === 'function')
+                    props.kill();
+                else
+                    logger.stream_debug(path, 'Kill function not defined')
                 socket.removeListener(`stream.${stream_id}`, receiveData)
                 socket.emit(`stream.${stream_id}.kill`, await Crypto.FlowEncrypt(true))
             })
@@ -95,6 +102,9 @@ const init = async ({console}) => {
             socket.emit(`${uuid}.response`, await Crypto.FlowEncrypt({
                 stream_id
             }))
+
+            if(typeof props.init === 'function')
+                props.init();
         }
 
         const rejectStream = async (error) => {
@@ -116,14 +126,7 @@ const init = async ({console}) => {
             
             const output = executable(out, args);
             if(typeof output.then === "function")
-                output.then(result => {
-                    if(typeof result.kill === "undefined")
-                        rejectStream('Kill is not a function')
-                    if(typeof result.in !== "function")
-                        rejectStream('In is not a function')
-                    else
-                        acceptStream(props)
-                }).catch(rejectStream);
+                output.then(() => acceptStream(props)).catch(rejectStream);
             else
                 acceptStream(output)
             
@@ -192,6 +195,7 @@ const CreateLogger = () => {
         stream_accept: (path) => SendMessage('green', `STREAM [${path}]`, `ACCEPTED`),
         stream_reject: (path) => SendMessage('red', `STREAM [${path}]`, `REJECTED`),
         stream_kill: (path) => SendMessage('red', `STREAM [${path}]`, `KILL`),
+        stream_debug: (path, message) => SendMessage('magenta', `STREAM [${path}]`, message),
     }
 }
 

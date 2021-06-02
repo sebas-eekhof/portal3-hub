@@ -1,6 +1,7 @@
 const usb = require('usb');
 const _ = require('lodash');
 const { DeviceClasses } = require('./Usb/Descriptor');
+const Device = require('./Device');
 
 const vendorBlackList = [
     7531,
@@ -33,6 +34,8 @@ const specialDeviceFilters = ({device_info, device_name, vendor_id, product_id})
         protocol: _.get(DeviceClasses[device_info.type], `[${device_info.class_id}].subclasses[${device_info.product_id}].protocols[${device_info.protocol_id}].name`, null),
     };
 }
+
+const getHardware = () => Device.spawn(`lshw -json`)
 
 /**
  * 
@@ -92,5 +95,6 @@ const getDevices = async () => {
 };
 
 module.exports = {
-    getDevices
+    getDevices,
+    getHardware
 }

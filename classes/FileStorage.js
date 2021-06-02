@@ -17,6 +17,7 @@ const downloadFile = async (url, fileName) => {
 const streamDrives = (out) => {
     const onDevice = (interval) => (
         drives().then(drives => {
+            console.log(`Got ${drives.length} drives`)
             out(drives)
         }).catch(e => {
             console.error(e)

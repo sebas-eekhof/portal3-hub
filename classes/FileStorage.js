@@ -25,7 +25,7 @@ const streamDrives = (out) => {
             }).catch(e => {
                 console.error(e)
             })
-            
+
         }, interval)
 
     )
@@ -46,7 +46,7 @@ const drives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,ser
     .then(base64 => Buffer.from(base64, 'base64').toString())
     .then(JSON.parse)
     .then(result => result.blockdevices)
-    .then(result => result.map(item => {
+    .then(result => result.reverse().map(item => {
         const is_system = !item.path.includes('/dev/sd');
         if(is_system) {
             item.name = 'Intern';

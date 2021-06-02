@@ -6,29 +6,6 @@ const { EventEmitter } = require('events');
 
 const StorageEmitter = new EventEmitter();
 
-const startAutoMount = () => {
-    let last_hash = null;
-    const checkHash = async () => {
-        const hash = await Device.exec(`lsblk -o uuid | base64`)
-        if(last_hash !== hash) {
-            last_hash = hash;
-            const drives = await drives();
-            for(let i = 0; i < drives.length; i++) {
-                for(let j = 0; j < drives[i].children.length; j++) {
-                    const child = drives[i].children[j];
-                }
-            }
-            StorageEmitter.emit('drives', drives)
-            setTimeout(checkHash, 200);
-        } else {
-            setTimeout(checkHash, 200);
-        }
-    }
-    checkHash()
-}
-
-startAutoMount()
-
 const downloadFile = async (url, fileName) => {
     const downloader = new Downloader({
         url,
@@ -87,6 +64,29 @@ const rename = async (drive, name) => {
     await Device.exec(`e2label ${drive} "${name}"`)
     return true;
 }
+
+const startAutoMount = () => {
+    let last_hash = null;
+    const checkHash = async () => {
+        const hash = await Device.exec(`lsblk -o uuid | base64`)
+        if(last_hash !== hash) {
+            last_hash = hash;
+            const drives = await drives();
+            for(let i = 0; i < drives.length; i++) {
+                for(let j = 0; j < drives[i].children.length; j++) {
+                    const child = drives[i].children[j];
+                }
+            }
+            StorageEmitter.emit('drives', drives)
+            setTimeout(checkHash, 200);
+        } else {
+            setTimeout(checkHash, 200);
+        }
+    }
+    checkHash()
+}
+
+startAutoMount()
 
 // const formatDrive = async (drive) => {
 //     if(!drive.includes('/dev/s'))

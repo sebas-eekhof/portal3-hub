@@ -18,6 +18,7 @@ const startAutoMount = () => {
                     const child = drives[i].children[j];
                 }
             }
+            console.log('emitted')
             StorageEmitter.emit('drives', drives)
             setTimeout(checkHash, 200);
         } else {

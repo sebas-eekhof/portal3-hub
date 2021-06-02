@@ -16,7 +16,7 @@ let USB_DEVICES = {
 
 }
 
-const process = (data) => {
+const processDmesg = (data) => {
     console.log(data)
 }
 
@@ -39,7 +39,7 @@ const startFollow = () => {
                 if(!current_identifier || typeof stack[current_identifier] === "undefined") {
                     console.error(`Cant process ${current_identifier}.`)
                 } else {
-                    process(stack[current_identifier]);
+                    processDmesg(stack[current_identifier]);
                     delete stack[current_identifier];
                     current_identifier = null;
                 }

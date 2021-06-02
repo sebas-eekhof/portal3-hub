@@ -36,8 +36,8 @@ const specialDeviceFilters = ({device_info, device_name, vendor_id, product_id})
 }
 
 const getHardware = async () => {
-    const devices = await Device.exec(`lshw -json`);
-    return String.raw(devices);
+    const devices = await Device.exec(`lshw -C storage,printer -json | base64`);
+    return JSON.parse(Buffer.from(devices, 'base64').toString());
 }
 
 /**

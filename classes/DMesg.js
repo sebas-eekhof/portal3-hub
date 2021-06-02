@@ -29,10 +29,10 @@ const startFollow = () => {
     process.stdout.on(`data`, data => {
         const lines = data.toString().split('\n')
         for(let i = 0; i < lines.length; i++) {
-            const message = lines[i].replace(lines[i].split('] ')[0], '');
-            const id_message = message.split(': ');
+            const line = lines[i].replace(lines[i].split('] ')[0], '');
+            const id_message = line.split(': ');
             const identifier = id_message[0].replace(`] `, ``).trim();
-            const message = message.replace(`${id_message[0]}: `, ``).trim();
+            const message = line.replace(`${id_message[0]}: `, ``).trim();
             
             
             if(identifier.length === 0 && message.length === 0) {

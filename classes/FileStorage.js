@@ -15,9 +15,10 @@ const downloadFile = async (url, fileName) => {
     return `/portal3/tmp/${fileName}`
 }
 
-const rawDrives = () => drivelist.list();
-
-const lsblk = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,type,serial,fsused,path,model,vendor --json -b`)
+const drives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,type,serial,fsused,path,model,vendor --json -b | base64`)
+    .then(base64 => Buffer.from(base64, 'base64').toString())
+    .then(JSON.parse)
+    .then(result => result.blockdevices)
 
 const mount = async (drive) => {
     await Device.exec(`mkdir -p /portal3/mnt${drive}`)
@@ -45,62 +46,6 @@ const rename = async (drive, name) => {
 //     return true;
 // }
 
-const drives = async () => {
-    const list = await drivelist.list();
-    let drives = [];
-    for(let i = 0; i < list.length; i++) {
-        data = {
-            device: list[i].device,
-            fs: list[i].partitionTableType,
-            is_system: false
-        }
-        let mountpoints = [];
-        for(let i2 = 0; i2 < list[i].mountpoints.length; i2++) {
-            const check_storage = await checkDiskSpace(list[i].mountpoints[i2].path)
-            if(list[i].mountpoints[i2].path === '/') {
-                data.is_system = true;
-                mountpoints = [
-                    {
-                        name: 'Hub',
-                        path: '/portal3/storage',
-                        storage: {
-                            total: check_storage.size,
-                            free: check_storage.free
-                        }
-                    }
-                ];
-            }
-            if(!data.is_system) {
-                mountpoints.push({
-                    name: list[i].mountpoints[i2].label,
-                    path: list[i].mountpoints[i2].path,
-                    storage: {
-                        total: check_storage.size,
-                        free: check_storage.free
-                    }
-                })
-            }
-        }
-        data.mountpoints = mountpoints;
-        drives.push(data)
-    }
-    return drives;
-};
-
-const mountpoints = async () => {
-    const drv = await drives();
-    let mountpoints = [];
-    drv.map(drive => {
-        mountpoints.push(...drive.mountpoints.map(mountpoint => {
-            return {
-                ...mountpoint,
-                drive
-            }
-        }))
-    })
-    return mountpoints;
-}
-
 const readDir = async (path) => {
     return fs.readdirSync(path).map(name => {
         let type;
@@ -117,30 +62,6 @@ const readDir = async (path) => {
     })
 }
 
-const getByUsb = async (usb_device) => {
-    let hwinfo = await Device.exec('hwinfo --disk');
-    hwinfo = hwinfo.split('\n\n');
-    console.log(usb_device.vendor_id.toString(16))
-    for(let i = 0; i < hwinfo.length; i++) {
-        let dev = true;
-        if(usb_device.vendor_id && !hwinfo[i].includes(`Vendor: usb 0x${usb_device.vendor_id.toString(16)}`))
-            dev = false;
-        if(usb_device.product_id && !hwinfo[i].includes(`Device: usb 0x${usb_device.product_id.toString(16)}`))
-            dev = false;
-        if(usb_device.serial_number && usb_device.serial_number.length !== 0 && !hwinfo[i].includes(`Serial ID: "${usb_device.serial_number}"`))
-            dev = false;
-        if(dev) {
-            const device = hwinfo[i].split('\n')
-            for(let i = 0; i < device.length; i++) {
-                if(device[i].includes('Device Files')) {
-                    let dat = device[i].replace('Device Files: ', '').split(', ')[0];
-                    console.log(dat)
-                }
-            }
-        }
-    }
-}
-
 const removeFile = (path) => {
     fs.unlinkSync(path)
     return true;
@@ -150,8 +71,5 @@ module.exports = {
     downloadFile,
     removeFile,
     drives,
-    mountpoints,
-    getByUsb,
-    rawDrives,
     readDir
 }

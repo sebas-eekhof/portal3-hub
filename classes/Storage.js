@@ -35,17 +35,8 @@ const secret = {
     delete: () => db.delete('SECRET')
 }
 
-const wifi = {
-    set: async ({ssid, psk}) => { set('WIFI_SSID', ssid); set('WIFI_PSK', await Encrypt(psk)) },
-    get: async () => { return {
-        ssid: get('WIFI_SSID', null),
-        psk: (db.has('WIFI_PSK') ? await Decrypt(get('WIFI_PSK')) : null)
-    }}
-}
-
 module.exports = {
     secret,
-    wifi,
     get: (key, fallback = null) => get(key)(fallback),
     set: (key, value) => set(key)(value),
     has: (key) => db.has(key),

@@ -73,11 +73,12 @@ const startAutoMount = () => {
             last_hash = hash;
             const drive_list = await drives();
             for(let i = 0; i < drive_list.length; i++) {
-                for(let j = 0; j < drive_list[i].children.length; j++) {
-                    const child = drive_list[i].children[j];
-                    if(child.mountpoint === null && !drive.is_system)
-                        await mount(child.path)
-                }
+                if(!drive_list[i].is_system)
+                    for(let j = 0; j < drive_list[i].children.length; j++) {
+                        const child = drive_list[i].children[j];
+                        if(child.mountpoint === null)
+                            await mount(child.path)
+                    }
             }
             StorageEmitter.emit('drives', drive_list)
             setTimeout(checkHash, 200);

@@ -17,7 +17,7 @@ const streamDrives = (out) => {
     let killed = false;
     let last_hash = null;
     const checkHash = async () => {
-        const hash = Device.exec(`lsblk -o uuid | base64`)
+        const hash = await Device.exec(`lsblk -o uuid | base64`)
         if(last_hash !== hash) {
             last_hash = hash;
             out(await drives())

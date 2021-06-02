@@ -15,10 +15,28 @@ const downloadFile = async (url, fileName) => {
     return `/portal3/tmp/${fileName}`
 }
 
-const drives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,type,serial,fsused,path,model,vendor --json -b | base64`)
+const drives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,serial,path --json -b | base64`)
     .then(base64 => Buffer.from(base64, 'base64').toString())
     .then(JSON.parse)
     .then(result => result.blockdevices)
+    .then(result => result.map(item => {
+        const is_system = item.path.includes('/dev/sd');
+        if(is_system) {
+            item.name = 'Intern';
+            let points = [];
+            for(let i = 0; i < item.children.length; i++) {
+                if(item.children[i].mountpoint === '/') {
+                    let child = item.children[i];
+                    child.label = 'Opslag';
+                    points.push(child)
+                }
+            }
+        }
+        return {
+            is_system,
+            ...item
+        }
+    }))
 
 const mount = async (drive) => {
     await Device.exec(`mkdir -p /portal3/mnt${drive}`)

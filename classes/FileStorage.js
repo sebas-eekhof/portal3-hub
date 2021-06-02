@@ -15,22 +15,15 @@ const downloadFile = async (url, fileName) => {
 }
 
 const streamDrives = (out) => {
-    const onDevice = (device) => {
-        out(device)
-    }
-    
+    const onDevice = async (device) => out(await drives())
     usb.on('attach', onDevice)
-
-    const onData = () => {
-
-    }
-
+    usb.on('detach', onDevice)
     const kill = () => {
         usb.removeListener('attach', onDevice)
+        usb.removeListener('detach', onDevice)
     }
-
     return {
-        in: onData,
+        in: () => {},
         kill
     }
 }

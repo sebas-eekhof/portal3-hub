@@ -44,6 +44,7 @@ const startFollow = () => {
                     current_identifier = null;
                 }
             } else {
+                current_identifier = identifier;
                 if(typeof stack[identifier] === "undefined")
                     stack[identifier] = [
                         message

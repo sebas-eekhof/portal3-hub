@@ -55,8 +55,9 @@ const mount = async (drive) => {
     return true;
 }
 
-const unmount = async (drive) => {
-    await Device.exec(`umount ${drive}`)
+const unmount = async (mountpoint) => {
+    await Device.exec(`umount ${mountpoint}`)
+    await Device.exec(`rm -rf ${mountpoint}`)
     return true;
 }
 
@@ -65,21 +66,38 @@ const rename = async (drive, name) => {
     return true;
 }
 
+let drives = [];
+
 const startAutoMount = () => {
     let last_hash = null;
     const checkHash = async () => {
         const hash = await Device.exec(`lsblk -o uuid,name,fsavail,fssize,fstype,fsused,label,pttype | base64`)
         if(last_hash !== hash) {
             last_hash = hash;
+
             const drive_list = await drives();
-            for(let i = 0; i < drive_list.length; i++) {
-                if(!drive_list[i].is_system)
-                    for(let j = 0; j < drive_list[i].children.length; j++) {
-                        const child = drive_list[i].children[j];
-                        if(child.mountpoint === null)
-                            await mount(child.path)
-                    }
-            }
+
+            drives.map(old_drive => {
+                if(!old_drive.is_system) {
+                    let found = false;
+                    for(let i = 0; i < drive_list.length; i++)
+                        if(drive_list[i].name === old_drive.name)
+                            found = true;
+                    if(!found)
+                        for(let i = 0; i < old_drive.children.length; i++)
+                            if(old_drive.children[i].mountpoint)
+                                await unmount(old_drive.children[i].mountpoint)
+                }
+            })
+
+            drive_list.map(drive => {
+                if(!drive.is_system) {
+                    for(let i = 0; i < drive.children.length; i++)
+                        if(drive.children[i].mountpoint === null)
+                            await mount(drive.children[i].path)
+                }
+            })
+
             StorageEmitter.emit('drives', drive_list)
             setTimeout(checkHash, 200);
         } else {

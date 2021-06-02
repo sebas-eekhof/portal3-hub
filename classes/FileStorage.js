@@ -15,11 +15,12 @@ const downloadFile = async (url, fileName) => {
 }
 
 const streamDrives = (out) => {
-    const onDevice = (interval) => {
+    const onDevice = (interval, device = null) => {
 
         if(interval !== 0)
             out({
-                command: 'show_loader'
+                command: 'show_loader',
+                test: device
             })
 
         setTimeout(() => {
@@ -42,8 +43,8 @@ const streamDrives = (out) => {
 
     }
 
-    usb.on('attach', () => onDevice(4000))
-    usb.on('detach', () => onDevice(0))
+    usb.on('attach', (device) => onDevice(4000, device))
+    usb.on('detach', (device) => onDevice(0, device))
     const kill = () => {
         usb.removeListener('attach', onDevice)
         usb.removeListener('detach', onDevice)

@@ -68,7 +68,7 @@ const rename = async (drive, name) => {
 const startAutoMount = () => {
     let last_hash = null;
     const checkHash = async () => {
-        const hash = await Device.exec(`lsblk -o uuid,name,fsavail,fssize,fstype,fsused,labe,pttype | base64`)
+        const hash = await Device.exec(`lsblk -o uuid,name,fsavail,fssize,fstype,fsused,label,pttype | base64`)
         if(last_hash !== hash) {
             last_hash = hash;
             const drive_list = await drives();

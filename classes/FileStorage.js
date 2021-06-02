@@ -203,7 +203,8 @@ const removeFile = (path) => {
 module.exports = {
     downloadFile,
     removeFile,
-    drives,
+    getDrives,
+    getDrive,
     readDir,
     streamDrives,
     startAutoMount,

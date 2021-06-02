@@ -31,6 +31,7 @@ const drives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,ser
                     points.push(child)
                 }
             }
+            item.children = points;
         }
         return {
             is_system,

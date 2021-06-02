@@ -214,5 +214,8 @@ process.on('uncaughtException', e => {
 });
 function exitHandler() {
     Gpio.de_init();
-    process.exit()
+    FileStorage.unmountAll()
+        .then(() => process.exit())
+        .catch((e) => {console.log(`Unmount failed`, e); process.exit()})
+    
 }

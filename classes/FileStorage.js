@@ -51,13 +51,19 @@ const drives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,ser
 
 const mount = async (drive) => {
     await Device.exec(`mkdir -p /portal3/mnt${drive}`)
-    await Device.exec(`mount ${drive} /portal3/mnt${drive}`)
+    await Device.spawn(`mount ${drive} /portal3/mnt${drive}`)
     return true;
 }
 
 const unmount = async (mountpoint) => {
     await Device.exec(`umount ${mountpoint}`)
     await Device.exec(`rm -rf ${mountpoint}`)
+    return true;
+}
+
+const unmountAll = async () => {
+    await Device.exec(`unmount /portal3/mnt/dev/*`);
+    await Device.exec(`rm -rf /portal3/mnt/dev/*`);
     return true;
 }
 
@@ -146,5 +152,8 @@ module.exports = {
     drives,
     readDir,
     streamDrives,
-    startAutoMount
+    startAutoMount,
+    unmountAll,
+    unmount,
+    mount
 }

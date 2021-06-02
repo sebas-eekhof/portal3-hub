@@ -16,11 +16,11 @@ const startFollow = () => {
         const message = line.replace(time_rest[0], '');
         const id_message = message.split(': ');
         
-        const data = {
+        const dat = {
             identifier: id_message[0],
             message: message.replace(`${id_message[0]}: `, ``)
         }
-        console.log(i, data)
+        console.log(i, dat)
         i++;
     })
 }

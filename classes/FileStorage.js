@@ -17,17 +17,19 @@ const downloadFile = async (url, fileName) => {
 const streamDrives = (out) => {
     const onDevice = (interval) => {
 
-        out({
-            command: 'show_loader'
-        })
+        if(interval !== 0)
+            out({
+                command: 'show_loader'
+            })
 
         setTimeout(() => {
 
             drives().then(drives => {
                 console.log(`Got ${drives.length} drives`)
-                out({
-                    command: 'hide_loader'
-                })
+                if(interval !== 0)
+                    out({
+                        command: 'hide_loader'
+                    })
                 out({
                     command: 'drives',
                     drives
@@ -48,7 +50,7 @@ const streamDrives = (out) => {
     }
     return {
         kill,
-        init: () => onDevice()
+        init: () => onDevice(0)
     }
 }
 

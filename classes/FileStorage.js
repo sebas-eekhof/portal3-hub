@@ -26,6 +26,8 @@ const startAutoMount = () => {
     }
 }
 
+startAutoMount()
+
 const downloadFile = async (url, fileName) => {
     const downloader = new Downloader({
         url,
@@ -41,7 +43,7 @@ const streamDrives = (out) => {
     StorageEmitter.on('drives', onData)
     return {
         kill: () => StorageEmitter.removeListener('drives', onData),
-        init: () => out(await drives())
+        init: async () => out(await drives())
     }
 }
 
@@ -121,5 +123,6 @@ module.exports = {
     removeFile,
     drives,
     readDir,
-    streamDrives
+    streamDrives,
+    startAutoMount
 }

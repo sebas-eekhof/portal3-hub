@@ -11,13 +11,9 @@ const { v4: uuidv4 } = require('uuid');
 const Crypto = require('./classes/Crypto');
 require('dotenv').config();
 
-const DMesg = require('./classes/DMesg')
-
 const c = console.log;
 
 const init = async ({console}) => {
-
-    DMesg.startFollow()
 
     await new Promise(() => {})
     

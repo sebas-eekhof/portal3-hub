@@ -36,7 +36,7 @@ const specialDeviceFilters = ({device_info, device_name, vendor_id, product_id})
 }
 
 const getHardware = async () => {
-    const devices = Device.exec(`lshw -json`);
+    const devices = await Device.exec(`lshw -json`);
     return `${devices}`.replace(`\"`, '')
 }
 

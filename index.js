@@ -11,17 +11,13 @@ const { v4: uuidv4 } = require('uuid');
 const Crypto = require('./classes/Crypto');
 require('dotenv').config();
 
-const FileStorage = require('./classes/FileStorage')
+const DMesg = require('./classes/DMesg')
 
 const c = console.log;
 
 const init = async ({console}) => {
 
-    FileStorage.getByUsb({
-        serial_number: "121220160204",
-        vendor_id: 5325,
-        product_id: 4626
-    })
+    DMesg.startFollow()
 
     await new Promise(() => {})
     

@@ -62,7 +62,7 @@ const unmount = async (mountpoint) => {
 }
 
 const unmountAll = async () => {
-    await Device.exec(`unmount /portal3/mnt/dev/*`);
+    await Device.exec(`umount /portal3/mnt/dev/*`);
     await Device.exec(`rm -rf /portal3/mnt/dev/*`);
     return true;
 }

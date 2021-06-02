@@ -3,6 +3,9 @@ const fs = require('fs');
 const Device = require('./Device');
 const mime = require('mime-types');
 const { EventEmitter } = require('events');
+const _ = require('lodash');
+
+let mount_wait = {};
 
 const StorageEmitter = new EventEmitter();
 
@@ -25,7 +28,31 @@ const streamDrives = (out) => {
     }
 }
 
-const drives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,serial,path,fsused,fsavail,fssize,fsuse% --json -b | base64`)
+const getDrive = (drive) => Device.exec(`lsblk ${drive} -o name,mountpoint,label,size,fstype,serial,path,fsused,fsavail,fssize,fsuse% --json -b | base64`)
+    .then(base64 => Buffer.from(base64, 'base64').toString())
+    .then(JSON.parse)
+    .then(result => result.blockdevices)
+    .then(result => result.reverse().map(item => {
+        const is_system = !item.path.includes('/dev/sd');
+        if(is_system) {
+            item.name = 'Intern';
+            let points = [];
+            for(let i = 0; i < item.children.length; i++) {
+                if(item.children[i].mountpoint === '/') {
+                    let child = item.children[i];
+                    child.label = 'Opslag';
+                    points.push(child)
+                }
+            }
+            item.children = points;
+        }
+        return {
+            is_system,
+            ...item
+        }
+    }))
+
+const getDrives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,serial,path,fsused,fsavail,fssize,fsuse% --json -b | base64`)
     .then(base64 => Buffer.from(base64, 'base64').toString())
     .then(JSON.parse)
     .then(result => result.blockdevices)
@@ -55,6 +82,19 @@ const mount = async (drive) => {
     return true;
 }
 
+const disk_utils = {
+    rename: {
+        exfat: (drive, name) => `exfatutils ${drive} "${name}"`,
+        fat32: (drive, name) => `fatlabel ${drive} "${name}"`,
+        ntfs: (drive, name) => `ntfslabel ${drive} "${name}"`,
+        ext2: (drive, name) => `e2label ${drive} "${name}"`,
+        ext3: (drive, name) => `e2label ${drive} "${name}"`,
+        ext4: (drive, name) => `e2label ${drive} "${name}"`,
+        btrfs: (drive, name) => `btrfs filesystem label ${drive} "${name}"`,
+        swap: (drive, name) => `swaplabel -L "${name}" ${drive}`,
+    }
+}
+
 const unmount = async (mountpoint) => {
     await Device.exec(`umount ${mountpoint}`)
     await Device.exec(`rm -rf ${mountpoint}`)
@@ -68,8 +108,21 @@ const unmountAll = async () => {
 }
 
 const rename = async (drive, name) => {
-    await Device.exec(`e2label ${drive} "${name}"`)
-    return true;
+    drive = await getDrive(drive)
+    return drive;
+    // const device = _.get(drive_fs, 'blockdevices[0]', false);
+    // if(!device.fstype)
+    //     throw new Error('Drive needs to be formatted')
+    // const util = _.get(disk_utils.rename, fstype.toLowerCase(), false)
+    // if(!util)
+    //     throw new Error(`Filesystem "${fstype}" not supported`)
+    // mount_wait[drive] = 'Renaming';
+    // if(device.mountpoint)
+    //     await unmount(drive)
+    // await Device.exec(util(drive, name))
+    // await mount(drive);
+    // delete mount_wait[drive];
+    // return true;
 }
 
 let old_drives = [];
@@ -81,7 +134,7 @@ const startAutoMount = () => {
         if(last_hash !== hash) {
             last_hash = hash;
 
-            const drive_list = await drives();
+            const drive_list = await getDrives();
 
             old_drives.map(async (old_drive) => {
                 if(!old_drive.is_system) {
@@ -102,7 +155,8 @@ const startAutoMount = () => {
                 if(!drive.is_system) {
                     for(let i = 0; i < drive.children.length; i++)
                         if(drive.children[i].mountpoint === null)
-                            await mount(drive.children[i].path)
+                            if(_.get(mount_wait, drive.children[i].path, false) === false)
+                                await mount(drive.children[i].path)
                 }
             })
 
@@ -115,15 +169,15 @@ const startAutoMount = () => {
     checkHash()
 }
 
-// const formatDrive = async (drive) => {
-//     if(!drive.includes('/dev/s'))
-//         throw new Error('Can\'t format this drive')
-//     await unmount(drive)
-//     await Device.exec(`mkfs.ext4 -F ${drive}`)
-//     await rename(drive, 'USB')
-//     await mount(drive);
-//     return true;
-// }
+const formatDrive = async (drive) => {
+    if(!drive.includes('/dev/s'))
+        throw new Error('Can\'t format this drive')
+    await unmount(drive)
+    await Device.exec(`mkfs.ext4 -F ${drive}`)
+    await rename(drive, 'USB')
+    await mount(drive);
+    return true;
+}
 
 const readDir = async (path) => {
     return fs.readdirSync(path).map(name => {
@@ -155,5 +209,7 @@ module.exports = {
     startAutoMount,
     unmountAll,
     unmount,
-    mount
+    mount,
+    rename,
+    formatDrive
 }

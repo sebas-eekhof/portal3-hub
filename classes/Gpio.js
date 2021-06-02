@@ -1,9 +1,11 @@
 const Device = require('../classes/Device');
 const _ = require('lodash');
 const { Delay } = require('../classes/Helpers');
-let Gpio;
-if(!Device.IsDevelopment())
-    Gpio = require('pigpio').Gpio
+let Gpio, Pigpio;
+if(!Device.IsDevelopment()) {
+    Pigpio = require('pigpio');
+    Gpio = Pigpio.Gpio
+}
 
 let pins = {}
 let effects = {
@@ -80,7 +82,7 @@ let effects = {
 
 const init = () => {
     if(!Device.IsDevelopment()) {
-        Gpio.configureSocketPort(8884);
+        Pigpio.configureSocketPort(8884);
         pins = {
             status_led: {
                 running_effect: null,

@@ -51,7 +51,12 @@ const getDrive = (drive) => Device.exec(`lsblk ${drive} -o name,mountpoint,label
             ...item
         }
     }))
-    .then(result => _.get(result, '[0]', null))
+    .then(result => {
+        if(typeof result[0] === 'undefined')
+            throw new Error(`Drive "${drive}" does not exists`)
+        else
+            return result[0]
+    })
 
 const getDrives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,serial,path,fsused,fsavail,fssize,fsuse% --json -b | base64`)
     .then(base64 => Buffer.from(base64, 'base64').toString())
@@ -110,20 +115,18 @@ const unmountAll = async () => {
 
 const rename = async (drive, name) => {
     drive = await getDrive(drive)
-    return drive;
-    // const device = _.get(drive_fs, 'blockdevices[0]', false);
-    // if(!device.fstype)
-    //     throw new Error('Drive needs to be formatted')
-    // const util = _.get(disk_utils.rename, fstype.toLowerCase(), false)
-    // if(!util)
-    //     throw new Error(`Filesystem "${fstype}" not supported`)
-    // mount_wait[drive] = 'Renaming';
-    // if(device.mountpoint)
-    //     await unmount(drive)
-    // await Device.exec(util(drive, name))
-    // await mount(drive);
-    // delete mount_wait[drive];
-    // return true;
+    if(!drive.fstype)
+        throw new Error('Drive needs to be formatted')
+    const util = _.get(disk_utils.rename, drive.fstype.toLowerCase(), false)
+    if(!util)
+        throw new Error(`Filesystem "${drive.fstype}" not supported`)
+    mount_wait[drive.path] = 'Renaming';
+    if(drive.mountpoint)
+        await unmount(drive.mountpoint)
+    await Device.exec(util(drive.path, name))
+    await mount(drive.path);
+    delete mount_wait[drive.path];
+    return true;
 }
 
 let old_drives = [];

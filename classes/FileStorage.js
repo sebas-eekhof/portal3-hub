@@ -90,7 +90,7 @@ const mount = async (drive) => {
 
 const disk_utils = {
     rename: {
-        exfat: (drive, name) => `exfatutils ${drive} "${name}"`,
+        exfat: (drive, name) => `exfatlabel ${drive} "${name}"`,
         fat32: (drive, name) => `fatlabel ${drive} "${name}"`,
         ntfs: (drive, name) => `ntfslabel ${drive} "${name}"`,
         ext2: (drive, name) => `e2label ${drive} "${name}"`,

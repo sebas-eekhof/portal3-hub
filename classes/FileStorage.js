@@ -66,7 +66,7 @@ const rename = async (drive, name) => {
     return true;
 }
 
-let drives = [];
+let old_drives = [];
 
 const startAutoMount = () => {
     let last_hash = null;
@@ -77,7 +77,7 @@ const startAutoMount = () => {
 
             const drive_list = await drives();
 
-            drives.map(old_drive => {
+            old_drives.map(old_drive => {
                 if(!old_drive.is_system) {
                     let found = false;
                     for(let i = 0; i < drive_list.length; i++)
@@ -89,6 +89,8 @@ const startAutoMount = () => {
                                 await unmount(old_drive.children[i].mountpoint)
                 }
             })
+
+            old_drives = drive_list;
 
             drive_list.map(drive => {
                 if(!drive.is_system) {

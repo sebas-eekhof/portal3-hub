@@ -24,7 +24,7 @@ const streamDrives = (out) => {
     }
     return {
         kill,
-        init: () => onDevice();
+        init: () => onDevice()
     }
 }
 

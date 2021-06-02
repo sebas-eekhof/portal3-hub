@@ -17,6 +17,8 @@ const downloadFile = async (url, fileName) => {
 
 const rawDrives = () => drivelist.list();
 
+const lsblk = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,type,serial,fsused,path,model,vendor --json -b`)
+
 const mount = async (drive) => {
     await Device.exec(`mkdir -p /portal3/mnt${drive}`)
     await Device.exec(`mount ${drive} /portal3/mnt${drive}`)
@@ -33,15 +35,15 @@ const rename = async (drive, name) => {
     return true;
 }
 
-const formatDrive = async (drive) => {
-    if(!drive.includes('/dev/s'))
-        throw new Error('Can\'t format this drive')
-    await unmount(drive)
-    await Device.exec(`mkfs.ext4 -F ${drive}`)
-    await rename(drive, 'USB')
-    await mount(drive);
-    return true;
-}
+// const formatDrive = async (drive) => {
+//     if(!drive.includes('/dev/s'))
+//         throw new Error('Can\'t format this drive')
+//     await unmount(drive)
+//     await Device.exec(`mkfs.ext4 -F ${drive}`)
+//     await rename(drive, 'USB')
+//     await mount(drive);
+//     return true;
+// }
 
 const drives = async () => {
     const list = await drivelist.list();
@@ -131,7 +133,7 @@ const getByUsb = async (usb_device) => {
             const device = hwinfo[i].split('\n')
             for(let i = 0; i < device.length; i++) {
                 if(device[i].includes('Device Files')) {
-                    
+                    console.log(device[i])
                 }
             }
         }

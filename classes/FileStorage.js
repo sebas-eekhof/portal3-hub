@@ -133,7 +133,8 @@ const getByUsb = async (usb_device) => {
             const device = hwinfo[i].split('\n')
             for(let i = 0; i < device.length; i++) {
                 if(device[i].includes('Device Files')) {
-                    console.log(device[i])
+                    let dat = device[i].replace('Device Files: ', '').split(', ')[0];
+                    console.log(dat)
                 }
             }
         }

@@ -15,8 +15,11 @@ const downloadFile = async (url, fileName) => {
 }
 
 const streamDrives = (out) => {
+    const onDevice = (device) => {
+        out(device)
+    }
+    
     usb.on('attach', onDevice)
-    const onDevice = (device) => out(device)
 
     const onData = () => {
 

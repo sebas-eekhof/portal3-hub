@@ -34,7 +34,7 @@ const streamDrives = (out) => {
     }
 }
 
-const drives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,serial,path,fsused,fsavail,fssize --json -b | base64`)
+const drives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,serial,path,fsused,fsavail,fssize,fsuse% --json -b | base64`)
     .then(base64 => Buffer.from(base64, 'base64').toString())
     .then(JSON.parse)
     .then(result => result.blockdevices)

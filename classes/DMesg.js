@@ -4,7 +4,7 @@ const startFollow = () => {
     const process = spawn(`dmesg`, [`-wH`]);
     let i = 0;
     process.stdout.on(`data`, data => {
-        console.log(i, data)
+        console.log(i, data.toString())
         i++;
     })
 }

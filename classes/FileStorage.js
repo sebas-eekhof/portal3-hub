@@ -2,7 +2,6 @@ const Downloader = require('nodejs-file-downloader');
 const fs = require('fs');
 const Device = require('./Device');
 const mime = require('mime-types');
-const usb = require('usb');
 
 const downloadFile = async (url, fileName) => {
     const downloader = new Downloader({
@@ -15,43 +14,23 @@ const downloadFile = async (url, fileName) => {
 }
 
 const streamDrives = (out) => {
-    const onDevice = (interval, device = null) => {
-
-        if(interval !== 0)
-            out({
-                command: 'show_loader',
-                test: device
-            })
-
-        setTimeout(() => {
-
-            drives().then(drives => {
-                console.log(`Got ${drives.length} drives`)
-                if(interval !== 0)
-                    out({
-                        command: 'hide_loader'
-                    })
-                out({
-                    command: 'drives',
-                    drives
-                })
-            }).catch(e => {
-                console.error(e)
-            })
-
-        }, interval)
-
-    }
-
-    usb.on('attach', (device) => onDevice(4000, device))
-    usb.on('detach', (device) => onDevice(0, device))
-    const kill = () => {
-        usb.removeListener('attach', onDevice)
-        usb.removeListener('detach', onDevice)
+    let killed = false;
+    let last_hash = null;
+    const checkHash = async () => {
+        const hash = Device.exec(`lsblk -o uuid | base64`)
+        if(last_hash !== hash) {
+            last_hash = hash;
+            out(await devices())
+            setTimeout(checkHash, 200);
+        } else {
+            setTimeout(checkHash, 200);
+        }
     }
     return {
-        kill,
-        init: () => onDevice(0)
+        kill: () => killed = true,
+        init: () => {
+            checkHash()
+        }
     }
 }
 

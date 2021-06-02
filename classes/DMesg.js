@@ -39,7 +39,10 @@ const startFollow = () => {
                 if(!current_identifier || typeof stack[current_identifier] === "undefined") {
                     console.error(`Cant process ${current_identifier}.`)
                 } else {
-                    processDmesg(stack[current_identifier]);
+                    processDmesg({
+                        identifier: current_identifier,
+                        messages: stack[current_identifier]
+                    });
                     delete stack[current_identifier];
                     current_identifier = null;
                 }

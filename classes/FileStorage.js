@@ -152,6 +152,5 @@ module.exports = {
     mountpoints,
     getByUsb,
     rawDrives,
-    readDir,
-    formatDrive
+    readDir
 }

@@ -16,14 +16,16 @@ const downloadFile = async (url, fileName) => {
 
 const streamDrives = (out) => {
     const onDevice = (interval) => (
-        drives().then(drives => {
-            console.log(`Got ${drives.length} drives`)
-            out(drives)
-        }).catch(e => {
-            console.error(e)
-        })
+        setTimeout(() => {
+            drives().then(drives => {
+                console.log(`Got ${drives.length} drives`)
+                out(drives)
+            }).catch(e => {
+                console.error(e)
+            })
+        }, interval);
     )
-    usb.on('attach', () => onDevice(3000))
+    usb.on('attach', () => onDevice(5000))
     usb.on('detach', () => onDevice(0))
     const kill = () => {
         usb.removeListener('attach', onDevice)

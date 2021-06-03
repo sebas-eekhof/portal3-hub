@@ -147,9 +147,10 @@ const startAutoMount = () => {
                         if(drive_list[i].name === old_drive.name)
                             found = true;
                     if(!found)
-                        for(let i = 0; i < old_drive.children.length; i++)
-                            if(old_drive.children[i].mountpoint)
-                                await unmount(old_drive.children[i].mountpoint)
+                        if(old_drive.children)
+                            for(let i = 0; i < old_drive.children.length; i++)
+                                if(old_drive.children[i].mountpoint)
+                                    await unmount(old_drive.children[i].mountpoint)
                 }
             })
 

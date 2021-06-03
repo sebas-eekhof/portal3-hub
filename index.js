@@ -78,11 +78,13 @@ const init = async ({console}) => {
         const stream_id = uuidv4();
         
         console.stream(path, args)
+
+        let receiveData;
         
         const acceptStream = async (props) => {
             console.stream_accept(path)
 
-            const receiveData = async (data) => {
+            receiveData = async (data) => {
                 console.stream_in(path)
                 if(typeof props.in === 'function')
                     props.in(await Crypto.FlowDecrypt(data))

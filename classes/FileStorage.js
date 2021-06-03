@@ -186,7 +186,7 @@ const formatDrive = async (drive, name = 'usb', fstype = 'exfat', quick = true) 
     mount_wait[drive.path] = 'Formatting';
     if(drive.mountpoint)
         await unmount(drive)
-    for(let i = 0; i < drive.children.length; i++) {
+    for(let i = 0; i < _.get(drive, 'children', []).length; i++) {
         points.push(drive.children[i].path);
         mount_wait[drive.children[i].path] = 'Formatting';
         await unmount(drive.children[i].path)
@@ -195,7 +195,7 @@ const formatDrive = async (drive, name = 'usb', fstype = 'exfat', quick = true) 
 
     await Device.exec(`wipefs -a ${drive.path}`)
 
-    let size = (quick ? 20000000 : drive.size);
+    const size = (quick ? 20000000 : drive.size);
 
     await Device.exec(`dd if=/dev/zero of=${drive.path} bs=1 count=${size} status=progress`)
 

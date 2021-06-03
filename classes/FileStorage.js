@@ -207,19 +207,16 @@ const streamFormatDrive = (out, { drive, name = 'usb', fstype = 'exfat', quick =
         out({done: false, msg: 'Partities inrichten'});
         await Device.exec(`echo 'type=83' | sudo sfdisk ${drive.path} --force`)
 
-        out({done: false, msg: 'Gegevens verzamelen'});
-        drive = await getDrive(drive);
-
         out({done: false, msg: 'Nieuw bestandssysteem schrijven'});
-        await Device.exec(`mkfs -t ${fstype} ${_.get(drive, 'children[0].path', null)}`)
+        await Device.exec(`mkfs -t ${fstype} /dev/${drive.name}1`)
 
         out({done: false, msg: 'Naam wijzigen'});
         const util = _.get(disk_utils.rename, fstype, false)
         if(util)
-            await Device.exec(util(_.get(drive, 'children[0].path', null), name))
+            await Device.exec(util(`.dev/${drive.name}1`, name))
 
         out({done: false, msg: 'Afronden'});
-        await mount(_.get(drive, 'children[0].path', null))
+        await mount(_.get(drive, `/dev/${drive.name}1`, null))
         for(let i = 0; i < points.length; i++)
             delete mount_wait[points[i]];
             

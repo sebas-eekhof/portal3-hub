@@ -6,7 +6,7 @@ const streamDevice = ({out, onError}, {device}) => {
     const dev = new HID.HID(device);
 
     const deviceData = (data) => {
-        data = data.toString('base64');
+        console.log(data)
         out(data)
     }
 

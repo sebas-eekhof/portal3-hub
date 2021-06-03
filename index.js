@@ -128,6 +128,7 @@ const init = async ({console}) => {
         const kill = async () => {
             console.stream_kill(path)
             socket.removeListener(`stream.${stream_id}`, receiveData)
+            console.log(`stream.${stream_id}.kill`)
             socket.emit(`stream.${stream_id}.kill`, await Crypto.FlowEncrypt(true))
         }
 

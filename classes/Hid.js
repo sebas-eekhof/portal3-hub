@@ -1,24 +1,26 @@
 const HID = require('node-hid');
-const { EventEmitter } = require('events');
+const Scanner = require('usb-barcode-scanner');
 
-const getDevices = () => HID.devices();
+const getDevices = () => Scanner.getDevices;
 
 const streamDevice = ({out, onError}, {device}) => {
-    const dev = new HID.HID(device);
+    const scanner = new Scanner.UsbScanner({
+        path: device
+    })
 
     const deviceData = (data) => {
         data = data.toString();
         out(data)
     }
 
-    dev.on('data', deviceData)
-    dev.on('error', onError)
+    scanner.on('data', deviceData)
 
     return {
-        init: () => {},
+        init: () => {
+            scanner.startScanning();
+        },
         kill: () => {
-            dev.removeAllListeners('data');
-            dev.removeAllListeners('error');
+            scanner.stopScanning();
         }
     }
 }

@@ -165,6 +165,23 @@
   "resolved" "https://registry.npmjs.org/@types/component-emitter/-/component-emitter-1.2.10.tgz"
   "version" "1.2.10"
 
+"@types/lodash@^4.14.108":
+  "integrity" "sha512-bpcvu/MKHHeYX+qeEN8GE7DIravODWdACVA1ctevD8CN24RhPZIKMn9ntfAsrvLfSX3cR5RrBKAbYm9bGs0A+Q=="
+  "resolved" "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.170.tgz"
+  "version" "4.14.170"
+
+"@types/node-hid@^0.7.0":
+  "integrity" "sha512-ip+Un3Ps0Qok3W3fMgYxaYxVYcbjDYM7yXNm8Uf1sggvSeXL/Q+vZG0AdSDWDQO9apQSE7Yieb4SjfymF1OqPA=="
+  "resolved" "https://registry.npmjs.org/@types/node-hid/-/node-hid-0.7.3.tgz"
+  "version" "0.7.3"
+  dependencies:
+    "@types/node" "*"
+
+"@types/node@*":
+  "integrity" "sha512-+aHJvoCsVhO2ZCuT4o5JtcPrCPyDE3+1nvbDprYes+pPkEsbjH7AGUCNtjMOXS0fqH14t+B7yLzaqSz92FPWyw=="
+  "resolved" "https://registry.npmjs.org/@types/node/-/node-15.12.0.tgz"
+  "version" "15.12.0"
+
 "abbrev@~1.1.1", "abbrev@1":
   "integrity" "sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q=="
   "resolved" "https://registry.npmjs.org/abbrev/-/abbrev-1.1.1.tgz"
@@ -1337,7 +1354,7 @@
     "semver" "^7.3.5"
     "stringify-package" "^1.0.1"
 
-"lodash@^4.17.21":
+"lodash@^4.17.10", "lodash@^4.17.21":
   "integrity" "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg=="
   "resolved" "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
   "version" "4.17.21"
@@ -1520,7 +1537,7 @@
   "resolved" "https://registry.npmjs.org/mute-stream/-/mute-stream-0.0.8.tgz"
   "version" "0.0.8"
 
-"nan@^2.14.0", "nan@^2.14.1", "nan@^2.14.2":
+"nan@^2.13.2", "nan@^2.14.0", "nan@^2.14.1", "nan@^2.14.2":
   "integrity" "sha512-M2ufzIiINKCuDfBSAUr1vWQ+vuVcA9kqx8JJUsbQi6yf1uGRyb7HfpdfUr5qLXf3B/t8dPvcjhKMmlfnP47EzQ=="
   "resolved" "https://registry.npmjs.org/nan/-/nan-2.14.2.tgz"
   "version" "2.14.2"
@@ -1580,6 +1597,15 @@
     "semver" "^7.3.2"
     "tar" "^6.0.2"
     "which" "^2.0.2"
+
+"node-hid@^0.7.2":
+  "integrity" "sha512-vJnonTqmq3frCyTumJqG4g2IZcny3ynkfmbfDfQ90P3ZhRzcWYS/Um1ux6HFmAxmkaQnrZqIYHcGpL7kdqY8jA=="
+  "resolved" "https://registry.npmjs.org/node-hid/-/node-hid-0.7.9.tgz"
+  "version" "0.7.9"
+  dependencies:
+    "bindings" "^1.5.0"
+    "nan" "^2.13.2"
+    "prebuild-install" "^5.3.0"
 
 "node-hid@^2.1.1":
   "integrity" "sha512-Skzhqow7hyLZU93eIPthM9yjot9lszg9xrKxESleEs05V2NcbUptZc5HFqzjOkSmL0sFlZFr3kmvaYebx06wrw=="
@@ -1928,7 +1954,7 @@
     "bindings" "^1.5.0"
     "nan" "^2.14.2"
 
-"prebuild-install@^5.3.3", "prebuild-install@^5.3.4":
+"prebuild-install@^5.3.0", "prebuild-install@^5.3.3", "prebuild-install@^5.3.4":
   "integrity" "sha512-s8Aai8++QQGi4sSbs/M1Qku62PFK49Jm1CbgXklGz4nmHveDq0wzJkg7Na5QbnO1uNH8K7iqx2EQ/mV0MZEmOg=="
   "resolved" "https://registry.npmjs.org/prebuild-install/-/prebuild-install-5.3.6.tgz"
   "version" "5.3.6"
@@ -2542,6 +2568,16 @@
   "version" "4.4.1"
   dependencies:
     "punycode" "^2.1.0"
+
+"usb-barcode-scanner@^1.0.2":
+  "integrity" "sha512-UrFou4d9p/HsI0AV2jJpGuN9sU3/AOFaQGRpMJb8ybomaLwlfbeUst9xyBqAqkOPC2jVEVaSO2rRwkbMjVL4Ug=="
+  "resolved" "https://registry.npmjs.org/usb-barcode-scanner/-/usb-barcode-scanner-1.0.2.tgz"
+  "version" "1.0.2"
+  dependencies:
+    "@types/lodash" "^4.14.108"
+    "@types/node-hid" "^0.7.0"
+    "lodash" "^4.17.10"
+    "node-hid" "^0.7.2"
 
 "usb@^1.7.1":
   "integrity" "sha512-HTCfx6NnNRhv5y98t04Y8j2+A8dmQnEGxCMY2/zN/0gkiioLYfTZ5w/PEKlWRVUY+3qLe9xwRv9pHLkjQYNw/g=="

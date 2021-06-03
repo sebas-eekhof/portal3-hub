@@ -128,13 +128,13 @@ const init = async ({console}) => {
         const kill = async () => {
             console.stream_kill(path)
             socket.removeListener(`stream.${stream_id}`, receiveData)
-            console.log(`stream.${stream_id}.kill`)
             socket.emit(`stream.${stream_id}.kill`, await Crypto.FlowEncrypt(true))
         }
 
         const onError = async (error) => {
             console.stream_out(path)
             socket.emit(`stream.${stream_id}.error`, await Crypto.FlowEncrypt(error))
+            kill();
         }
 
         try {

@@ -194,7 +194,6 @@ const streamFormatDrive = (out, { drive, name = 'usb', fstype = 'exfat', quick =
             mount_wait[drive.children[i].path] = 'Formatting';
             if(drive.children[i].mountpoint)
                 await unmount(drive.children[i].path)
-            await Device.exec(`wipefs -a ${drive.children[i].path}`)
         }
 
         out({done: false, msg: 'Bestandssysteem verwijderen'});

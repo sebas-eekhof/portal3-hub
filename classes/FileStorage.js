@@ -173,30 +173,31 @@ const startAutoMount = () => {
     checkHash()
 }
 
-const formatDrive = async (drive, name = 'usb', fstype = 'exfat') => {
+const formatDriveStream = async (drive, name = 'usb', fstype = 'exfat', quick = true) => {
     if(!drive.includes('/dev/s'))
         throw new Error('Can\'t format this drive')
 
-    let parent = drive.replace('/dev/', '');
-    let searching_parent = true;
-    while(searching_parent) {
-        const current_parent = await Device.exec(`lsblk -no pkname /dev/${parent}`)
-        if(parent === current_parent)
-            searching_parent = false;
-        else
-            parent = current_parent;
+    drive = await getDrive(drive);
+
+    let points = [];
+    points.push(drive.path)
+    
+    mount_wait[drive.path] = 'Formatting';
+    if(drive.mountpoint)
+        await unmount(drive)
+    for(let i = 0; i < drive.children.length; i++) {
+        points.push(drive.children[i].path);
+        mount_wait[drive.children[i].path] = 'Formatting';
+        await unmount(drive.children[i].path)
+        await Device.exec(`wipefs -a ${drive.children[i].path}`)
     }
 
-    drive = await getDrive(`/dev/${parent}`);
+    await Device.exec(`wipefs -a ${drive.path}`)
 
-    console.log(drive)
+    let size = (quick ? 20000000 : drive.size);
 
-    // if(drive.mountpoint)
-    //     await unmount(drive)
-    
-    // await Device.exec(`mkfs.ext4 -F ${drive}`)
-    // await rename(drive, 'USB')
-    // await mount(drive);
+    await Device.exec(`dd if=/dev/zero of=${drive.path} bs=1 count=${size} status=progress`)
+
     return true;
 }
 

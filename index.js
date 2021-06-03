@@ -125,7 +125,7 @@ const init = async ({console}) => {
 
         const kill = async () => {
             console.stream_kill(path)
-            if(props && typeof props.kill === 'function')
+            if(typeof props !== 'undefined' && typeof props.kill === 'function')
                 props.kill();
             else
                 logger.stream_debug(path, 'Kill function not defined')

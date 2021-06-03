@@ -98,9 +98,7 @@ const init = async ({console}) => {
                 console.stream_kill(path)
                 if(typeof props.kill === 'function')
                     props.kill();
-                else
-                    logger.stream_debug(path, 'Kill function not defined')
-                    
+
                 socket.removeListener(`stream.${stream_id}`, receiveData)
                 socket.emit(`stream.${stream_id}.kill`, await Crypto.FlowEncrypt(true))
             })

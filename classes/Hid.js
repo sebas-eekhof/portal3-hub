@@ -8,7 +8,7 @@ const streamDevice = ({out, onError}, {device}) => {
 
     const deviceData = (data) => {
         console.log(data)
-        out(data)
+        out(data.toString())
     }
 
     dev.on('data', deviceData)

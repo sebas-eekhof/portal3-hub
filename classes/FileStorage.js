@@ -148,7 +148,7 @@ const startAutoMount = () => {
                             found = true;
                     if(!found)
                         if(old_drive.children)
-                            for(let i = 0; i < old_drive.children.length; i++)
+                            for(let i = 0; i < (old_drive.children ? old_drive.children.length : 0); i++)
                                 if(old_drive.children[i].mountpoint)
                                     await unmount(old_drive.children[i].mountpoint)
                 }
@@ -160,11 +160,9 @@ const startAutoMount = () => {
                 if(!drive.is_system) {
                     console.log(drive)
                     for(let i = 0; i < (drive.children ? drive.children.length : 0); i++)
-                        if(drive.children[i].mountpoint === null) {
-                            console.log(`Need to mount ${drive.children[i].name}`)
+                        if(drive.children[i].mountpoint === null)
                             if(_.get(mount_wait, drive.children[i].path, false) === false)
                                 await mount(drive.children[i].path)
-                        }
                 }
             })
 

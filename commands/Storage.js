@@ -11,8 +11,8 @@ module.exports = {
     getDrives: FileStorage.getDrives,
     getDrive: ({drive}) => FileStorage.getDrive(drive),
     readDir: ({path}) => FileStorage.readDir(path),
-    formatDrive: ({drive}) => FileStorage.formatDrive(drive),
     rename: ({drive, name}) => FileStorage.rename(drive, name),
     
+    streamFormatDrive: FileStorage.formatDrive,
     streamDrives: FileStorage.streamDrives
 }

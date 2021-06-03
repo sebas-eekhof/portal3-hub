@@ -174,47 +174,61 @@ const startAutoMount = () => {
     checkHash()
 }
 
-const formatDrive = async (drive, name = 'usb', fstype = 'exfat', quick = true) => {
+const streamFormatDrive = (out, { drive, name = 'usb', fstype = 'exfat', quick = true }) => {
     if(!drive.includes('/dev/s'))
         throw new Error('Can\'t format this drive')
 
-    drive = await getDrive(drive);
+    const start = () => {
+        out({done: false, msg: 'Gegevens verzamelen'});
+        drive = await getDrive(drive);
 
-    let points = [];
-    points.push(drive.path)
-    
-    mount_wait[drive.path] = 'Formatting';
-    if(drive.mountpoint)
-        await unmount(drive)
-    for(let i = 0; i < _.get(drive, 'children', []).length; i++) {
-        points.push(drive.children[i].path);
-        mount_wait[drive.children[i].path] = 'Formatting';
-        await unmount(drive.children[i].path)
-        await Device.exec(`wipefs -a ${drive.children[i].path}`)
+        out({done: false, msg: 'Ontkoppelen'});
+        let points = [];
+        points.push(drive.path)
+        
+        mount_wait[drive.path] = 'Formatting';
+        if(drive.mountpoint)
+            await unmount(drive)
+        for(let i = 0; i < _.get(drive, 'children', []).length; i++) {
+            points.push(drive.children[i].path);
+            mount_wait[drive.children[i].path] = 'Formatting';
+            await unmount(drive.children[i].path)
+            await Device.exec(`wipefs -a ${drive.children[i].path}`)
+        }
+
+        out({done: false, msg: 'Bestandssysteem verwijderen'});
+        await Device.exec(`wipefs -a ${drive.path}`)
+
+        out({done: false, msg: 'Data verwijderen'});
+        const size = (quick ? 20000000 : drive.size);
+        await Device.exec(`dd if=/dev/zero of=${drive.path} count=1 bs=${size} status=progress`)
+
+
+        out({done: false, msg: 'Partities inrichten'});
+        await Device.exec(`echo 'type=83' | sudo sfdisk ${drive.path}`)
+
+        out({done: false, msg: 'Gegevens verzamelen'});
+        drive = await getDrive(drive);
+
+        out({done: false, msg: 'Nieuw bestandssysteem schrijven'});
+        await Device.exec(`mkfs -t ${fstype} ${_.get(drive, 'children[0].path', null)}`)
+
+        out({done: false, msg: 'Naam wijzigen'});
+        const util = _.get(disk_utils.rename, fstype, false)
+        if(util)
+            await Device.exec(util(_.get(drive, 'children[0].path', null), name))
+
+        out({done: false, msg: 'Afronden'});
+        await mount(_.get(drive, 'children[0].path', null))
+        for(let i = 0; i < points.length; i++)
+            delete mount_wait[points[i]];
+            
+        out({done: true, msg: 'Klaar'});
     }
 
-    await Device.exec(`wipefs -a ${drive.path}`)
-
-    const size = (quick ? 20000000 : drive.size);
-
-    await Device.exec(`dd if=/dev/zero of=${drive.path} count=1 bs=${size} status=progress`)
-
-    await Device.exec(`echo 'type=83' | sudo sfdisk ${drive.path}`)
-
-    drive = await getDrive(drive);
-
-    await Device.exec(`mkfs -t ${fstype} ${_.get(drive, 'children[0].path', null)}`)
-
-    const util = _.get(disk_utils.rename, fstype, false)
-    if(util)
-        await Device.exec(util(_.get(drive, 'children[0].path', null), name))
-
-    await mount(_.get(drive, 'children[0].path', null))
-
-    for(let i = 0; i < points.length; i++)
-        delete mount_wait[points[i]];
-
-    return true;
+    return {
+        init: start
+    }
 }
 
 const readDir = async (path) => {
@@ -250,5 +264,5 @@ module.exports = {
     unmount,
     mount,
     rename,
-    formatDrive
+    streamFormatDrive
 }

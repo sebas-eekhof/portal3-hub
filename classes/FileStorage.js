@@ -157,13 +157,11 @@ const startAutoMount = () => {
             old_drives = drive_list;
 
             drive_list.map(async (drive) => {
-                if(!drive.is_system) {
-                    console.log(drive)
+                if(!drive.is_system)
                     for(let i = 0; i < (drive.children ? drive.children.length : 0); i++)
                         if(drive.children[i].mountpoint === null)
                             if(_.get(mount_wait, drive.children[i].path, false) === false)
                                 await mount(drive.children[i].path)
-                }
             })
 
             StorageEmitter.emit('drives', drive_list)

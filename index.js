@@ -133,7 +133,7 @@ const init = async ({console}) => {
             socket.emit(`stream.${stream_id}.kill`, await Crypto.FlowEncrypt(true))
         }
 
-        const onError = (error) => {
+        const onError = async (error) => {
             console.stream_out(path)
             socket.emit(`stream.${stream_id}.error`, await Crypto.FlowEncrypt(error))
         }

@@ -179,10 +179,10 @@ const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype =
         throw new Error('Can\'t format this drive')
 
     const start = async () => {
-        out({done: false, msg: 'Gegevens verzamelen'});
+        out({done: false, msg: 'Gegevens verzamelen', progress: 5});
         drive = await getDrive(drive);
 
-        out({done: false, msg: 'Ontkoppelen'});
+        out({done: false, msg: 'Ontkoppelen', progress: 10});
         let points = [];
         points.push(drive.path)
         
@@ -196,34 +196,34 @@ const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype =
                 await unmount(drive.children[i].path)
         }
 
-        out({done: false, msg: 'Bestandssysteem verwijderen'});
+        out({done: false, msg: 'Bestandssysteem verwijderen', progress: 20});
         await Device.exec(`wipefs -a ${drive.path}`)
 
-        out({done: false, msg: 'Data verwijderen'});
+        out({done: false, msg: 'Data verwijderen', progress: 25});
         const size = (quick ? 20000000 : drive.size);
         await Device.exec(`dd if=/dev/zero of=${drive.path} count=1 bs=${size} status=progress`)
 
 
-        out({done: false, msg: 'Partities inrichten'});
+        out({done: false, msg: 'Partities inrichten', progress: 60});
         await Device.exec(`echo 'type=83' | sudo sfdisk ${drive.path} --force`)
 
-        out({done: false, msg: 'Gegevens verzamelen'});
+        out({done: false, msg: 'Gegevens verzamelen', progress: 70});
         drive = await getDrive(drive.path);
 
-        out({done: false, msg: 'Nieuw bestandssysteem schrijven'});
+        out({done: false, msg: 'Nieuw bestandssysteem schrijven', progress: 75});
         await Device.exec(`mkfs -t ${fstype} ${_.get(drive, 'children[0].path', null)}`)
 
-        out({done: false, msg: 'Naam wijzigen'});
+        out({done: false, msg: 'Naam wijzigen', progress: 80});
         const util = _.get(disk_utils.rename, fstype, false)
         if(util)
             await Device.exec(util(_.get(drive, 'children[0].path', null), name))
 
-        out({done: false, msg: 'Afronden'});
+        out({done: false, msg: 'Afronden', progress: 90});
         await mount(_.get(drive, 'children[0].path', null))
         for(let i = 0; i < points.length; i++)
             delete mount_wait[points[i]];
             
-        out({done: true, msg: 'Klaar'});
+        out({done: true, msg: 'Klaar', progress: 100});
 
         kill();
     }

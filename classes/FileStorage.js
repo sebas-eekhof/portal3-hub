@@ -19,7 +19,7 @@ const downloadFile = async (url, fileName) => {
     return `/portal3/tmp/${fileName}`
 }
 
-const streamDrives = (out) => {
+const streamDrives = ({out}) => {
     const onData = (drives) => {out(drives)}
     StorageEmitter.on('drives', onData)
     return {

@@ -173,13 +173,30 @@ const startAutoMount = () => {
     checkHash()
 }
 
-const formatDrive = async (drive) => {
+const formatDrive = async (drive, name = 'usb', fstype = 'exfat') => {
     if(!drive.includes('/dev/s'))
         throw new Error('Can\'t format this drive')
-    await unmount(drive)
-    await Device.exec(`mkfs.ext4 -F ${drive}`)
-    await rename(drive, 'USB')
-    await mount(drive);
+
+    let parent = drive.replace('/dev/', '');
+    let searching_parent = true;
+    while(searching_parent) {
+        const current_parent = await Device.exec(`lsblk -no pkname /dev/${parent}`)
+        if(parent === current_parent)
+            searching_parent = false;
+        else
+            parent = current_parent;
+    }
+
+    drive = await getDrive(`/dev/${parent}`);
+
+    console.log(drive)
+
+    // if(drive.mountpoint)
+    //     await unmount(drive)
+    
+    // await Device.exec(`mkfs.ext4 -F ${drive}`)
+    // await rename(drive, 'USB')
+    // await mount(drive);
     return true;
 }
 

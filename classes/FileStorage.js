@@ -173,7 +173,7 @@ const startAutoMount = () => {
     checkHash()
 }
 
-const formatDriveStream = async (drive, name = 'usb', fstype = 'exfat', quick = true) => {
+const formatDrive = async (drive, name = 'usb', fstype = 'exfat', quick = true) => {
     if(!drive.includes('/dev/s'))
         throw new Error('Can\'t format this drive')
 

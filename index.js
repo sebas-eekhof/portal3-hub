@@ -123,7 +123,7 @@ const init = async ({console}) => {
             socket.emit(`stream.${stream_id}`, await Crypto.FlowEncrypt(data))
         }
 
-        const kill = () => {
+        const kill = async () => {
             console.stream_kill(path)
             if(typeof props.kill === 'function')
                 props.kill();

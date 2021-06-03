@@ -209,7 +209,7 @@ const streamFormatDrive = (out, { drive, name = 'usb', fstype = 'exfat', quick =
         await Device.exec(`echo 'type=83' | sudo sfdisk ${drive.path} --force`)
 
         out({done: false, msg: 'Gegevens verzamelen'});
-        drive = await getDrive(drive);
+        drive = await getDrive(drive.path);
 
         out({done: false, msg: 'Nieuw bestandssysteem schrijven'});
         await Device.exec(`mkfs -t ${fstype} ${_.get(drive, 'children[0].path', null)}`)

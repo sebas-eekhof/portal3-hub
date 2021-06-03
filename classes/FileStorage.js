@@ -197,7 +197,7 @@ const formatDrive = async (drive, name = 'usb', fstype = 'exfat', quick = true) 
 
     const size = (quick ? 20000000 : drive.size);
 
-    await Device.exec(`dd if=/dev/zero of=${drive.path} bs=1 count=${size} status=progress`)
+    await Device.exec(`dd if=/dev/zero of=${drive.path} count=1 bs=${size} status=progress`)
 
     return true;
 }

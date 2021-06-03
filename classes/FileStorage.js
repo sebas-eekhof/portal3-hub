@@ -199,6 +199,21 @@ const formatDrive = async (drive, name = 'usb', fstype = 'exfat', quick = true) 
 
     await Device.exec(`dd if=/dev/zero of=${drive.path} count=1 bs=${size} status=progress`)
 
+    await Device.exec(`echo 'type=83' | sudo sfdisk ${drive.path}`)
+
+    drive = await getDrive(drive);
+
+    await Device.exec(`mkfs -t ${fstype} ${_.get(drive, 'children[0].path', null)}`)
+
+    const util = _.get(disk_utils.rename, fstype, false)
+    if(util)
+        await Device.exec(util(_.get(drive, 'children[0].path', null), name))
+
+    await mount(_.get(drive, 'children[0].path', null))
+
+    for(let i = 0; i < points.length; i++)
+        delete mount_wait[points[i]];
+
     return true;
 }
 

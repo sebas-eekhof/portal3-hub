@@ -3,14 +3,15 @@ const HID = require('node-hid');
 const getDevices = () => HID.devices();
 
 const streamDevice = ({out, onError}, {device}) => {
+    HID.setDriverType('libusb')
     const dev = new HID.HID(device);
 
-    const deviceData = (error, data) => {
-        console.log(error, data)
+    const deviceData = (data) => {
+        console.log(data)
         out(data)
     }
 
-    dev.read(deviceData)
+    dev.on('data', deviceData)
     dev.on('error', onError)
 
     return {

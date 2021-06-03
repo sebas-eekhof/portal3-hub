@@ -4,7 +4,7 @@ const { EventEmitter } = require('events');
 const getDevices = () => HID.devices();
 
 const streamDevice = ({out, onError}, {device}) => {
-    const dev = new HID.HID(device.path);
+    const dev = new HID.HID(device);
 
     const deviceData = (data) => {
         data = data.toString();

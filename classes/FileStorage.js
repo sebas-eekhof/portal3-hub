@@ -205,7 +205,7 @@ const streamFormatDrive = (out, { drive, name = 'usb', fstype = 'exfat', quick =
 
 
         out({done: false, msg: 'Partities inrichten'});
-        await Device.exec(`echo 'type=83' | sudo sfdisk ${drive.path}`)
+        await Device.exec(`echo 'type=83' | sudo sfdisk ${drive.path} --force`)
 
         out({done: false, msg: 'Gegevens verzamelen'});
         drive = await getDrive(drive);

@@ -178,7 +178,7 @@ const streamFormatDrive = (out, { drive, name = 'usb', fstype = 'exfat', quick =
     if(!drive.includes('/dev/s'))
         throw new Error('Can\'t format this drive')
 
-    const start = () => {
+    const start = async () => {
         out({done: false, msg: 'Gegevens verzamelen'});
         drive = await getDrive(drive);
 

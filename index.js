@@ -123,11 +123,26 @@ const init = async ({console}) => {
             socket.emit(`stream.${stream_id}`, await Crypto.FlowEncrypt(data))
         }
 
+        const kill = () => {
+            console.stream_kill(path)
+            if(typeof props.kill === 'function')
+                props.kill();
+            else
+                logger.stream_debug(path, 'Kill function not defined')
+            socket.removeListener(`stream.${stream_id}`, receiveData)
+            socket.emit(`stream.${stream_id}.kill`, await Crypto.FlowEncrypt(true))
+        }
+
+        const onError = (error) => {
+            console.stream_out(path)
+            socket.emit(`stream.${stream_id}.error`, await Crypto.FlowEncrypt(error))
+        }
+
         try {
             if(!executable || typeof executable !== "function")
                 throw new Error(`Can't find //${path}(${JSON.stringify(args)})`);
             
-            const output = executable(out, args);
+            const output = executable({out, onError, kill}, args);
             if(typeof output.then === "function")
                 output.then(() => acceptStream(props)).catch(rejectStream);
             else

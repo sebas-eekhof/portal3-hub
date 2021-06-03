@@ -174,7 +174,7 @@ const startAutoMount = () => {
     checkHash()
 }
 
-const streamFormatDrive = (out, { drive, name = 'usb', fstype = 'exfat', quick = true }) => {
+const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype = 'exfat', quick = true }) => {
     if(!drive.includes('/dev/s'))
         throw new Error('Can\'t format this drive')
 
@@ -224,6 +224,8 @@ const streamFormatDrive = (out, { drive, name = 'usb', fstype = 'exfat', quick =
             delete mount_wait[points[i]];
             
         out({done: true, msg: 'Klaar'});
+
+        kill();
     }
 
     return {

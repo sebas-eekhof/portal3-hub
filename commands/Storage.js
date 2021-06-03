@@ -13,6 +13,6 @@ module.exports = {
     readDir: ({path}) => FileStorage.readDir(path),
     rename: ({drive, name}) => FileStorage.rename(drive, name),
     
-    streamFormatDrive: FileStorage.formatDrive,
-    streamDrives: FileStorage.streamDrives
+    streamDrives: FileStorage.streamDrives,
+    streamFormatDrive: FileStorage.streamFormatDrive
 }

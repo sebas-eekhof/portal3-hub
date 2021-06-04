@@ -176,6 +176,17 @@ const startAutoMount = () => {
     checkHash()
 }
 
+const streamExplorer = ({out, onError, kill}) => {
+
+    const navigateCommand = (command) => {
+        console.log(command)
+    }
+
+    return {
+        in: navigateCommand
+    }
+}
+
 const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype = 'exfat', quick = true }) => {
     if(!drive.includes('/dev/s'))
         throw new Error('Can\'t format this drive')
@@ -272,5 +283,6 @@ module.exports = {
     unmount,
     mount,
     rename,
-    streamFormatDrive
+    streamFormatDrive,
+    streamExplorer
 }

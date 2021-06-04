@@ -14,5 +14,6 @@ module.exports = {
     rename: ({drive, name}) => FileStorage.rename(drive, name),
     
     streamDrives: FileStorage.streamDrives,
-    streamFormatDrive: FileStorage.streamFormatDrive
+    streamFormatDrive: FileStorage.streamFormatDrive,
+    streamExplorer: FileStorage.streamExplorer
 }

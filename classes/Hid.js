@@ -1,7 +1,7 @@
 const HID = require('node-hid');
 const Gpio = require('./Gpio');
 
-const getDevices = () => HID.devices();
+const getDevices = () => HID.devices().filter(device => device.usage === 6);
 
 const hidMap = {
 	4: 'a',

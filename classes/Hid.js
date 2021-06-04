@@ -124,10 +124,8 @@ const streamDevice = ({out, onError}, {device}) => {
         else if (!sendCharacters.includes(characterValue))
             scanResult.push(hidMap[characterValue]);
         else {
-            let barcode = scanResult.join('');
+            out(scanResult.join(''));
             scanResult = [];
-            barcode = removeUTF8(barcode);
-            out(barcode);
         }
     }
 

@@ -12,8 +12,6 @@ const streamDevice = ({out, onError}, {device}) => {
     dev.on('data', deviceData)
     dev.on('error', onError)
 
-    dev.write([6000])
-
     return {
         init: () => {},
         kill: () => {

@@ -179,9 +179,7 @@ const startAutoMount = () => {
 const streamExplorer = ({out, onError, kill}) => {
 
     const navigateCommand = (command) => {
-        const dir = fs.readdirSync(command);
-        console.log(dir)
-        console.log(command)
+        out(readDir(command))
     }
 
     return {
@@ -252,7 +250,7 @@ const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype =
     }
 }
 
-const readDir = async (path) => {
+const readDir = (path) => {
     return fs.readdirSync(path).map(name => {
         let type;
         if(fs.lstatSync(`${path}/${name}`).isDirectory())

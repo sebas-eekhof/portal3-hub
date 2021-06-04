@@ -107,6 +107,8 @@ const hidMapShift = {
 	56: '?'
 };
 
+const sendCharacters = [40, 0];
+
 const streamDevice = ({out, onError}, {device}) => {
     const dev = new HID.HID(device);
 
@@ -120,9 +122,9 @@ const streamDevice = ({out, onError}, {device}) => {
         if (characterValue !== 0) {
             if (modifierValue === 2 || modifierValue === 20) {
                 scanResult.push(hidMapShift[characterValue]);
-            } else if (characterValue !== 40) {
+            } else if (!sendCharacters.includes(characterValue)) {
                 scanResult.push(hidMap[characterValue]);
-            } else if (characterValue === 40 || characterValue === 0) {
+            } else if (sendCharacters.includes(characterValue)) {
                 let barcode = scanResult.join('');
                 scanResult = [];
                 barcode = removeUTF8(barcode);

@@ -133,7 +133,7 @@ const streamDevice = ({out, onError}, {device}) => {
             setTimeout(() => {
                 if(scanResult.length === length)
                     doSend();
-            }, 50)
+            }, 10)
         }
     }
 

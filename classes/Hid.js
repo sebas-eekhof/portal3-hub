@@ -122,8 +122,6 @@ const streamDevice = ({out, onError}, {device}) => {
     const deviceData = (data) => {
         const modifierValue = data[0];
         const characterValue = data[2];
-        console.log(characterValue)
-
         if (modifierValue === 2 || modifierValue === 20)
             scanResult.push(hidMapShift[characterValue]);
         else if (!sendCharacters.includes(characterValue))

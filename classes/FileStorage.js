@@ -108,6 +108,9 @@ const unmount = async (mountpoint) => {
 }
 
 const unmountAll = async () => {
+    const dir = fs.readdirSync('/portal3/mnt');
+    if(!dir.length)
+        return true;
     await Device.exec(`umount /portal3/mnt/*`);
     await Device.exec(`rm -rf /portal3/mnt/*`);
     return true;

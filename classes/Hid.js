@@ -122,7 +122,7 @@ const streamDevice = ({out, onError}, {device}) => {
 
     const deviceData = (data) => {
         if(scanResult.length === 0)
-            Gpio.playEffectOnce('status_led', 'blink_once_fade')
+            Gpio.playEffectOnce('status_led', 'blink_once')
         const modifierValue = data[0];
         const characterValue = data[2];
         if (modifierValue === 2 || modifierValue === 20)

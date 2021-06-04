@@ -117,14 +117,12 @@ const streamDevice = ({out, onError}, {device}) => {
         const modifierValue = data[0];
         const characterValue = data[2];
 
-        console.log(characterValue, modifierValue)
-
         if (characterValue !== 0) {
             if (modifierValue === 2 || modifierValue === 20) {
                 scanResult.push(hidMapShift[characterValue]);
             } else if (characterValue !== 40) {
                 scanResult.push(hidMap[characterValue]);
-            } else if (characterValue === 40) {
+            } else if (characterValue === 40 || characterValue === 0) {
                 let barcode = scanResult.join('');
                 scanResult = [];
                 barcode = removeUTF8(barcode);

@@ -113,17 +113,20 @@ const streamDevice = ({out, onError}, {device}) => {
     const dev = new HID.HID(device);
 
     let scanResult = [];
-    
+
     const deviceData = (data) => {
         const modifierValue = data[0];
         const characterValue = data[2];
+        console.log(characterValue)
 
         if (characterValue !== 0) {
             if (modifierValue === 2 || modifierValue === 20) {
                 scanResult.push(hidMapShift[characterValue]);
+                console.log(scanResult.join(''))
             } else if (!sendCharacters.includes(characterValue)) {
                 scanResult.push(hidMap[characterValue]);
             } else if (sendCharacters.includes(characterValue)) {
+                console.log('need to send')
                 let barcode = scanResult.join('');
                 scanResult = [];
                 barcode = removeUTF8(barcode);

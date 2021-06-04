@@ -179,6 +179,8 @@ const startAutoMount = () => {
 const streamExplorer = ({out, onError, kill}) => {
 
     const navigateCommand = (command) => {
+        const dir = fs.readdirSync(command);
+        console.log(dir)
         console.log(command)
     }
 

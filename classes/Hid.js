@@ -114,6 +114,11 @@ const streamDevice = ({out, onError}, {device}) => {
 
     let scanResult = [];
 
+    const doSend = () => {
+        out(scanResult.join(''));
+        scanResult = [];
+    }
+
     const deviceData = (data) => {
         const modifierValue = data[0];
         const characterValue = data[2];
@@ -124,8 +129,11 @@ const streamDevice = ({out, onError}, {device}) => {
         else if (!sendCharacters.includes(characterValue))
             scanResult.push(hidMap[characterValue]);
         else {
-            out(scanResult.join(''));
-            scanResult = [];
+            const length = scanResult.length;
+            setTimeout(() => {
+                if(scanResult.length === length)
+                    doSend();
+            }, 50)
         }
     }
 

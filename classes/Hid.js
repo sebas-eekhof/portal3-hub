@@ -113,8 +113,7 @@ const streamDevice = ({out, onError}, {device}) => {
     const dev = new HID.HID(device);
 
     let scanResult = [];
-    let vCard = [];
-
+    
     const deviceData = (data) => {
         const modifierValue = data[0];
         const characterValue = data[2];

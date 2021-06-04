@@ -1,5 +1,5 @@
 const HID = require('node-hid');
-const { gpio } = require('../commands');
+const Gpio = require('./Gpio');
 
 const getDevices = () => HID.devices();
 
@@ -122,7 +122,7 @@ const streamDevice = ({out, onError}, {device}) => {
 
     const deviceData = (data) => {
         if(scanResult.length === 0)
-            gpio.playEffectOnce({name: 'status_led', effect: 'blink_twice'})
+            Gpio.playEffectOnce('status_led', 'blink_once_fade')
         const modifierValue = data[0];
         const characterValue = data[2];
         if (modifierValue === 2 || modifierValue === 20)

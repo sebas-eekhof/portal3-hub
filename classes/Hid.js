@@ -6,7 +6,7 @@ const streamDevice = ({out, onError}, {device}) => {
     const dev = new HID.HID(device);
 
     const deviceData = (data) => {
-        out(data.toString())
+        out({data: data.toString()})
     }
 
     dev.on('data', deviceData)

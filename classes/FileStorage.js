@@ -119,10 +119,6 @@ const unmountAll = async () => {
     return true;
 }
 
-const removeFile = async({path}) => {
-    
-}
-
 const rename = async (drive, name) => {
     drive = await getDrive(drive)
     if(!drive.fstype)

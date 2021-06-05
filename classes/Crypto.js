@@ -2,6 +2,7 @@ const crypto = require('crypto');
 const Device = require('./Device');
 const algorithm = 'aes-256-ctr';
 const fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
 
 const MakeSecret = async () => {
     const secret = await require('./Storage').secret.get();
@@ -10,16 +11,19 @@ const MakeSecret = async () => {
 }
 
 const EncryptFile = async (input, output) => {
+    const file_uuid = uuidv4()
+    await Device.exec(`zip /portal3/tmp/${file_uuid}.enczip ${path}`)
     const secret = await MakeSecret();
     const iv = crypto.randomBytes(16);
     const cipher = crypto.createCipheriv(algorithm, secret, iv);
 
-    const infile = fs.createReadStream(input);
+    const infile = fs.createReadStream(`/portal3/tmp/${file_uuid}.enczip`);
     const outfile = fs.createWriteStream(output);
     infile.on('data', data => outfile.write(cipher.update(data)))
     infile.on('close', () => {
         outfile.write(cipher.final());
         outfile.close();
+        await Device.exec(`rm -rf /portal3/tmp/${file_uuid}.enczip`)
         return true;
     })
 }

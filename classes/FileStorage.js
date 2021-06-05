@@ -272,7 +272,6 @@ const readDir = (path) => {
 const encryptFile = async (path) => {
     if(!fs.existsSync(path))
         throw new Error('File does not exists');
-    await Device.exec(`zip ${path}.enczip ${path}`)
     await Crypto.EncryptFile(`${path}.enczip`, `${path}.enc`)
     return true;
 }

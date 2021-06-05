@@ -271,6 +271,7 @@ const encryptFile = async (path) => {
     if(!fs.existsSync(path))
         throw new Error('File does not exists');
     await Device.exec(`zip ${path}.zip ${path}`)
+    return true;
 }
 
 const removeFile = (path) => {

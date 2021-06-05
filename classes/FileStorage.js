@@ -105,7 +105,7 @@ const disk_utils = {
 }
 
 const unmount = async (mountpoint) => {
-    await Device.exec(`umount ${mountpoint}`)
+    await Device.exec(`umount -f -l ${mountpoint}`)
     await Device.exec(`rm -rf ${mountpoint}`)
     return true;
 }

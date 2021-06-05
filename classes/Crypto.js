@@ -12,7 +12,7 @@ const MakeSecret = async () => {
 
 const EncryptFile = async (input, output) => {
     const file_uuid = uuidv4()
-    await Device.exec(`zip /portal3/tmp/${file_uuid}.enczip ${path}`)
+    await Device.exec(`zip /portal3/tmp/${file_uuid}.enczip ${input}`)
     const secret = await MakeSecret();
     const iv = crypto.randomBytes(16);
     const cipher = crypto.createCipheriv(algorithm, secret, iv);

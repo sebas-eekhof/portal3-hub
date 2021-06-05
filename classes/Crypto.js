@@ -20,7 +20,7 @@ const EncryptFile = async (input) => {
     const infile = fs.readFileSync(`/portal3/tmp/${file_uuid}.enczip`);
     fs.writeFileSync(`${input}.enc`, Buffer.concat([cipher.update(infile), cipher.final()]));
     await Device.exec(`rm -rf /portal3/tmp/${file_uuid}.enczip`)
-    await Device.exec(`rm -rf ${input}`)
+    await Device.exec(`rm -rf "${input}"`)
     return true;
 }
 

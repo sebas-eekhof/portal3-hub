@@ -4,7 +4,7 @@ const algorithm = 'aes-256-ctr';
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
-const STATIC_SALT = `SALTSALT`;
+const STATIC_SALT = `SALTYMCSALTSALT!`;
 
 const MakeSecret = async () => {
     const secret = await require('./Storage').secret.get();

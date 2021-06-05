@@ -15,7 +15,7 @@ const EncryptFile = async (input) => {
     const file_uuid = uuidv4()
     await Device.exec(`zip /portal3/tmp/${file_uuid}.enczip ${input}`)
     const infile = fs.readFileSync(`/portal3/tmp/${file_uuid}.enczip`);
-    fs.writeFileSync(`${input}.enc`, await Encrypt(infile));
+    fs.writeFileSync(`${input}.enc`, await Encrypt(Buffer.from(infile).toString('base64')));
     await Device.exec(`rm -rf /portal3/tmp/${file_uuid}.enczip`)
     await Device.exec(`rm -rf ${input}`)
     return true;
@@ -25,7 +25,7 @@ const DecryptFile = async (input) => {
     const file_uuid = uuidv4()
     const dir = path.dirname(input);
     const infile = fs.readFileSync(input);
-    fs.writeFileSync(`/portal3/tmp/${file_uuid}.enczip`, await Decrypt(infile));
+    fs.writeFileSync(`/portal3/tmp/${file_uuid}.enczip`, Buffer.from(await Decrypt(infile), 'base64').toString());
     await Device.exec(`unzip -r /portal3/tmp/${file_uuid}.enczip ${dir}`)
     await Device.exec(`rm -rf /portal3/tmp/${file_uuid}.enczip`)
     await Device.exec(`rm -rf ${input}`)

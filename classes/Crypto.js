@@ -13,19 +13,10 @@ const MakeSecret = async () => {
 const EncryptFile = async (input, output) => {
     const file_uuid = uuidv4()
     await Device.exec(`zip /portal3/tmp/${file_uuid}.enczip ${input}`)
-    const secret = await MakeSecret();
-    const iv = crypto.randomBytes(16);
-    const cipher = crypto.createCipheriv(algorithm, secret, iv);
-
-    const infile = fs.createReadStream(`/portal3/tmp/${file_uuid}.enczip`);
-    const outfile = fs.createWriteStream(output);
-    infile.on('data', data => outfile.write(cipher.update(data)))
-    infile.on('close', async () => {
-        outfile.write(cipher.final());
-        outfile.close();
-        await Device.exec(`rm -rf /portal3/tmp/${file_uuid}.enczip`)
-        return true;
-    })
+    const infile = fs.readFileSync(`/portal3/tmp/${file_uuid}.enczip`);
+    fs.writeFileSync(`${output}`, await Encrypt(infile));
+    await Device.exec(`rm -rf /portal3/tmp/${file_uuid}.enczip`)
+    return true;
 }
 
 const DecryptFile = async (input, output) => {

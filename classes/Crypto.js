@@ -4,6 +4,7 @@ const algorithm = 'aes-256-ctr';
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
+const STATIC_SALT = `SALTSALT`;
 
 const MakeSecret = async () => {
     const secret = await require('./Storage').secret.get();
@@ -12,10 +13,12 @@ const MakeSecret = async () => {
 }
 
 const EncryptFile = async (input) => {
+    const secret = await MakeSecret();
+    const cipher = crypto.createCipheriv(algorithm, secret, STATIC_SALT);
     const file_uuid = uuidv4()
     await Device.exec(`zip /portal3/tmp/${file_uuid}.enczip ${input}`)
     const infile = fs.readFileSync(`/portal3/tmp/${file_uuid}.enczip`);
-    fs.writeFileSync(`${input}.enc`, await Encrypt(Buffer.from(infile).toString('base64')));
+    fs.writeFileSync(`${input}.enc`, Buffer.concat([cipher.update(infile), cipher.final()]));
     await Device.exec(`rm -rf /portal3/tmp/${file_uuid}.enczip`)
     await Device.exec(`rm -rf ${input}`)
     return true;

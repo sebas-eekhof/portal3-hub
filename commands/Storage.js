@@ -13,6 +13,7 @@ module.exports = {
     readDir: ({path}) => FileStorage.readDir(path),
     rename: ({drive, name}) => FileStorage.rename(drive, name),
     encryptFile: ({path}) => FileStorage.encryptFile(path),
+    decryptFile: ({path}) => FileStorage.decryptFile(path),
     
     streamDrives: FileStorage.streamDrives,
     streamFormatDrive: FileStorage.streamFormatDrive,

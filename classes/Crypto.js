@@ -3,6 +3,7 @@ const Device = require('./Device');
 const algorithm = 'aes-256-ctr';
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
+const path = require('path');
 
 const MakeSecret = async () => {
     const secret = await require('./Storage').secret.get();
@@ -10,28 +11,25 @@ const MakeSecret = async () => {
     return crypto.createHash('sha512').update(`${secret}-${serial}`).digest('base64').substr(0, 32)
 }
 
-const EncryptFile = async (input, output) => {
+const EncryptFile = async (input) => {
     const file_uuid = uuidv4()
     await Device.exec(`zip /portal3/tmp/${file_uuid}.enczip ${input}`)
     const infile = fs.readFileSync(`/portal3/tmp/${file_uuid}.enczip`);
-    fs.writeFileSync(`${output}`, await Encrypt(infile));
+    fs.writeFileSync(`${output}.enc`, await Encrypt(infile));
     await Device.exec(`rm -rf /portal3/tmp/${file_uuid}.enczip`)
+    await Device.exec(`rm -rf ${input}`)
     return true;
 }
 
-const DecryptFile = async (input, output) => {
-    const secret = await MakeSecret();
-    const iv = crypto.randomBytes(16);
-    const cipher = crypto.createDecipheriv(algorithm, secret, iv);
-
-    const infile = fs.createReadStream(input);
-    const outfile = fs.createWriteStream(output);
-    infile.on('data', data => outfile.write(cipher.update(data)))
-    infile.on('close', () => {
-        outfile.write(cipher.final());
-        outfile.close();
-        return true;
-    })
+const DecryptFile = async (input) => {
+    const file_uuid = uuidv4()
+    const dir = path.dirname(input);
+    const infile = fs.readFileSync(input);
+    fs.writeFileSync(`/portal3/tmp/${file_uuid}.enczip`, await Decrypt(infile));
+    await Device.exec(`unzip -r /portal3/tmp/${file_uuid}.enczip ${dir}`)
+    await Device.exec(`rm -rf /portal3/tmp/${file_uuid}.enczip`)
+    await Device.exec(`rm -rf ${input}`)
+    return true;
 }
 
 const Encrypt = async (text) => {
@@ -77,5 +75,6 @@ module.exports = {
     Decrypt,
     FlowEncrypt,
     FlowDecrypt,
-    EncryptFile
+    EncryptFile,
+    DecryptFile
 }

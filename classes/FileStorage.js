@@ -71,6 +71,7 @@ const getDrives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,
                 if(item.children[i].mountpoint === '/') {
                     let child = item.children[i];
                     child.label = 'Opslag';
+                    child.mountpoint = '/portal3/storage';
                     points.push(child)
                 }
             }

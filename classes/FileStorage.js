@@ -4,6 +4,8 @@ const Device = require('./Device');
 const mime = require('mime-types');
 const { EventEmitter } = require('events');
 const _ = require('lodash');
+const Crypto = require('./Crypto');
+
 
 let mount_wait = {};
 
@@ -112,7 +114,7 @@ const unmountAll = async () => {
     const dir = fs.readdirSync('/portal3/mnt');
     if(!dir.length)
         return true;
-    await Device.exec(`umount /portal3/mnt/*`);
+    await Device.exec(`umount -f -l /portal3/mnt/*`);
     await Device.exec(`rm -rf /portal3/mnt/*`);
     return true;
 }
@@ -270,7 +272,8 @@ const readDir = (path) => {
 const encryptFile = async (path) => {
     if(!fs.existsSync(path))
         throw new Error('File does not exists');
-    await Device.exec(`zip ${path}.zip ${path}`)
+    await Device.exec(`zip ${path}.enczip ${path}`)
+    await Crypto.EncryptFile(`${path}.enczip`, `${path}.enc`)
     return true;
 }
 

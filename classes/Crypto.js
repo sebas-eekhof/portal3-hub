@@ -1,11 +1,42 @@
 const crypto = require('crypto');
 const Device = require('./Device');
 const algorithm = 'aes-256-ctr';
+const fs = require('fs');
 
 const MakeSecret = async () => {
     const secret = await require('./Storage').secret.get();
     const serial = await Device.GetSerialNumber();
     return crypto.createHash('sha512').update(`${secret}-${serial}`).digest('base64').substr(0, 32)
+}
+
+const EncryptFile = async (input, output) => {
+    const secret = await MakeSecret();
+    const iv = crypto.randomBytes(16);
+    const cipher = crypto.createCipheriv(algorithm, secret, iv);
+
+    const infile = fs.createReadStream(input);
+    const outfile = fs.createWriteStream(output);
+    infile.on('data', data => outfile.write(cipher.update(data)))
+    infile.on('close', () => {
+        outfile.write(cipher.final());
+        outfile.close();
+        return true;
+    })
+}
+
+const DecryptFile = async (input, output) => {
+    const secret = await MakeSecret();
+    const iv = crypto.randomBytes(16);
+    const cipher = crypto.createDecipheriv(algorithm, secret, iv);
+
+    const infile = fs.createReadStream(input);
+    const outfile = fs.createWriteStream(output);
+    infile.on('data', data => outfile.write(cipher.update(data)))
+    infile.on('close', () => {
+        outfile.write(cipher.final());
+        outfile.close();
+        return true;
+    })
 }
 
 const Encrypt = async (text) => {
@@ -50,5 +81,6 @@ module.exports = {
     Encrypt,
     Decrypt,
     FlowEncrypt,
-    FlowDecrypt
+    FlowDecrypt,
+    EncryptFile
 }

@@ -254,7 +254,7 @@ const readDir = (path) => {
     return fs.readdirSync(path).map(name => {
         let type;
         if(fs.lstatSync(`${path}/${name}`).isDirectory())
-            type = 'dir';
+            type = 'folder';
         else
             type = mime.lookup(`${path}/${name}`);
         if(!type)

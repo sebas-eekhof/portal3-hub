@@ -31,8 +31,11 @@ const DecryptFile = async (input) => {
     const dir = path.dirname(input);
     const infile = fs.readFileSync(input);
     fs.writeFileSync(`/portal3/tmp/${file_uuid}.deczip`, Buffer.concat([cipher.update(infile), cipher.final()]));
-    await Device.exec(`unzip /portal3/tmp/${file_uuid}.deczip -d ${dir}`)
+    await Device.exec(`mkdir /portal3/tmp/${file_uuid}`)
+    await Device.exec(`unzip /portal3/tmp/${file_uuid}.deczip -d /portal3/tmp/${file_uuid}`)
+    await Device.exec(`mv /portal3/tmp/${file_uuid}/* "${dir}"`)
     await Device.exec(`rm -rf /portal3/tmp/${file_uuid}.deczip`)
+    await Device.exec(`rm -rf /portal3/tmp/${file_uuid}`)
     await Device.exec(`rm -rf ${input}`)
     return true;
 }

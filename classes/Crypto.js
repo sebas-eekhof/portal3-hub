@@ -20,7 +20,7 @@ const EncryptFile = async (input, output) => {
     const infile = fs.createReadStream(`/portal3/tmp/${file_uuid}.enczip`);
     const outfile = fs.createWriteStream(output);
     infile.on('data', data => outfile.write(cipher.update(data)))
-    infile.on('close', () => {
+    infile.on('close', async () => {
         outfile.write(cipher.final());
         outfile.close();
         await Device.exec(`rm -rf /portal3/tmp/${file_uuid}.enczip`)

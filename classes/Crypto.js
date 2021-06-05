@@ -25,10 +25,12 @@ const EncryptFile = async (input) => {
 }
 
 const DecryptFile = async (input) => {
+    const secret = await MakeSecret();
+    const cipher = crypto.createDecipheriv(algorithm, secret, STATIC_SALT);
     const file_uuid = uuidv4()
     const dir = path.dirname(input);
     const infile = fs.readFileSync(input);
-    fs.writeFileSync(`/portal3/tmp/${file_uuid}.enczip`, Buffer.from(await Decrypt(infile), 'base64').toString());
+    fs.writeFileSync(`/portal3/tmp/${file_uuid}.enczip`, Buffer.concat([cipher.update(infile), cipher.final()]));
     await Device.exec(`unzip -r /portal3/tmp/${file_uuid}.enczip ${dir}`)
     await Device.exec(`rm -rf /portal3/tmp/${file_uuid}.enczip`)
     await Device.exec(`rm -rf ${input}`)

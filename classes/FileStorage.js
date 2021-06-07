@@ -258,9 +258,8 @@ const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype =
 }
 
 const readDir = (path) => {
-    return await fs.readdirSync(path).map(async name => {
+    return fs.readdirSync(path).map(async name => {
         let type;
-        const fs_stat = fs.statSync(`${path}/${name}`)
         if(fs.lstatSync(`${path}/${name}`).isDirectory())
             type = 'folder';
         else

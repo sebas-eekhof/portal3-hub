@@ -269,17 +269,21 @@ const readDir = (path) => {
     })
 }
 
-const encryptFile = async (path) => {
-    if(!fs.existsSync(path))
-        throw new Error('File does not exists');
-    await Crypto.EncryptFile(path)
+const encryptFiles = async (paths) => {
+    for(let i = 0; i < paths.length; i++) {
+        if(!fs.existsSync(path[i]))
+            throw new Error('File does not exists');
+        await Crypto.EncryptFile(path[i])
+    }
     return true;
 }
 
-const decryptFile = async (path) => {
-    if(!fs.existsSync(path))
-        throw new Error('File does not exists');
-    await Crypto.DecryptFile(path, `${path}.enc`)
+const decryptFiles = async (paths) => {
+    for(let i = 0; i < paths.length; i++) {
+        if(!fs.existsSync(paths[i]))
+            throw new Error('File does not exists');
+        await Crypto.DecryptFile(paths[i], `${paths[i]}.enc`)
+    }
     return true;
 }
 
@@ -302,6 +306,6 @@ module.exports = {
     rename,
     streamFormatDrive,
     streamExplorer,
-    encryptFile,
-    decryptFile
+    encryptFiles,
+    decryptFiles
 }

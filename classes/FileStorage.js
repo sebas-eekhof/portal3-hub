@@ -94,7 +94,7 @@ const mount = async (drive) => {
 const disk_utils = {
     rename: {
         exfat: (drive, name) => `exfatlabel ${drive} "${name}"`,
-        fat32: (drive, name) => `fatlabel ${drive} "${name}"`,
+        vfat: (drive, name) => `fatlabel ${drive} "${name}"`,
         ntfs: (drive, name) => `ntfslabel ${drive} "${name}"`,
         ext2: (drive, name) => `e2label ${drive} "${name}"`,
         ext3: (drive, name) => `e2label ${drive} "${name}"`,
@@ -104,7 +104,7 @@ const disk_utils = {
     },
     format: {
         exfat: (drive) => `mkfs.exfat "${drive}"`,
-        fat32: (drive) => `mkdosfs "${drive}"`,
+        vfat: (drive) => `mkdosfs "${drive}"`,
         ntfs: (drive) => `mkntfs -F -f "${drive}"`,
         ext2: (drive) => `mkfs.ext2 -F -q "${drive}"`,
         ext3: (drive) => `mkfs.ext3 -F -q "${drive}"`,

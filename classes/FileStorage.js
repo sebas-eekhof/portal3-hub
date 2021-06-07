@@ -70,6 +70,7 @@ const getDrives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,
         const is_system = !item.path.includes('/dev/sd');
         if(is_system) {
             item.name = 'Intern';
+            item.letter = 'Z';
             let points = [];
             for(let i = 0; i < item.children.length; i++) {
                 if(item.children[i].mountpoint === '/') {
@@ -80,7 +81,8 @@ const getDrives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,
                 }
             }
             item.children = points;
-        }
+        } else
+        item.letter = item.path.match(/sd([a-z])[0-9]/)
         return {
             is_system,
             ...item

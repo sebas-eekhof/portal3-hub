@@ -5,6 +5,8 @@ const mime = require('mime-types');
 const { EventEmitter } = require('events');
 const _ = require('lodash');
 const Crypto = require('./Crypto');
+const fastFolderSize = require('fast-folder-size');
+const util = require('util')
 
 
 let mount_wait = {};
@@ -186,6 +188,9 @@ const streamExplorer = ({out, onError, kill}) => {
             case 'dir':
                 out(readDir(command.dir))
             break;
+            case 'stats':
+                getStats(command.dir).then(out).catch(onError)
+            break;
         }
     }
 
@@ -272,6 +277,13 @@ const readDir = (path) => {
             type
         }
     })
+}
+
+const getStats = async (path) => {
+    const stats = fs.statSync(path);
+    if(fs.lstatSync(path).isDirectory())
+        stats.size = await util.promisify(fastFolderSize)(path)
+    return stats;
 }
 
 const encryptFiles = async (paths) => {

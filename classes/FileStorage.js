@@ -68,7 +68,6 @@ const getDrives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,
         const is_system = !item.path.includes('/dev/sd');
         if(is_system) {
             item.name = 'Intern';
-            item.letter = 'Z';
             let points = [];
             for(let i = 0; i < item.children.length; i++) {
                 if(item.children[i].mountpoint === '/') {
@@ -167,7 +166,7 @@ const startAutoMount = () => {
                 if(!drive.is_system)
                     for(let i = 0; i < (drive.children ? drive.children.length : 0); i++)
                         if(drive.children[i].mountpoint === null)
-                            if(_.get(mount_wait, drive.children[i].path, false) === false)
+                            if(_.get(mount_wait, drive.children[i].path, false) === false && _.get(mount_wait, drive.children[i].path.substr(0, -1), false) === false)
                                 await mount(drive.children[i].path)
             })
 

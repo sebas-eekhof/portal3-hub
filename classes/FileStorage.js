@@ -264,7 +264,8 @@ const readDir = (path) => {
             type = 'file';
         return {
             name,
-            type
+            type,
+            stats: fs.statSync(`${path}/${name}`)
         }
     })
 }

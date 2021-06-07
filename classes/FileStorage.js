@@ -271,8 +271,7 @@ const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype =
 
             kill();
         } catch(e) {
-            console.log('err:', e)
-            onError(e)
+            onError(e.toString())
         }
     }
 

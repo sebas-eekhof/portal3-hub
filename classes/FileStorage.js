@@ -261,8 +261,8 @@ const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype =
     }
 }
 
-const readDir = (path) => {
-    return fs.readdirSync(path).map(name => {
+const readDir = (path, with_stats = false) => {
+    return fs.readdirSync(path).map(async (name) => {
         let type;
         if(fs.lstatSync(`${path}/${name}`).isDirectory())
             type = 'folder';
@@ -271,20 +271,25 @@ const readDir = (path) => {
         if(!type)
             type = 'file';
 
-        return {
+        let ret = {
             name,
             type
+        };
+
+        if(with_stats) {
+            const stats = fs.statSync(`${path}${dir[i].name}`);
+            if(type === 'folder')
+                stats.size = await new Promise(resolve => fastFolderSize(`${path}${dir[i].name}`, (err, bytes) => { if(err) resolve(0); else resolve(bytes); }))
+            ret.stats = stats;
         }
+
+        return ret
     })
 }
 
 const readDirWithStats = async (path) => {
     const dir = readDir(path);
     for(let i = 0; i < dir.length; i++) {
-        const stats = fs.statSync(`${path}${dir[i].name}`);
-        if(dir[i].type === 'folder')
-            stats.size = await new Promise(resolve => fastFolderSize(`${path}${dir[i].name}`, (err, bytes) => { if(err) resolve(0); else resolve(bytes); }))
-        dir[i].stats = stats;
     }
     return dir;
 }

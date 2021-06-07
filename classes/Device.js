@@ -4,19 +4,7 @@ const raspi_serial = require('raspi-serial-number');
 const Git = require('./Git');
 const Npm = require('./Npm')
 
-const exec = (command) => new Promise((resolve, reject) => {
-    child_process.exec(command, (err, stdout, stderr) => {
-        if(err) {
-            reject(err)
-            return
-        }
-        // if(stderr) {
-        //     reject(stderr)
-        //     return
-        // }
-        resolve(stdout)
-    })
-})
+const exec = (command) => child_process.execSync(command)
 
 const spawn = (process, args = []) => new Promise((resolve, reject) => {
     const child = child_process.spawn(process, args);

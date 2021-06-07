@@ -103,7 +103,7 @@ const disk_utils = {
         swap: (drive, name) => `swaplabel -L "${name}" ${drive}`,
     },
     format: {
-        exfat: (drive) => `mkfs.exfat -F "${drive}"`,
+        exfat: (drive) => `mkfs.exfat "${drive}"`,
         fat32: (drive) => `mkdosfs "${drive}"`,
         ntfs: (drive) => `mkntfs -F -f "${drive}"`,
         ext2: (drive) => `mkfs.ext2 -F -q "${drive}"`,

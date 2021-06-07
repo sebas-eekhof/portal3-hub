@@ -252,6 +252,7 @@ const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype =
 
             step++;
             out({done: false, msg: 'Nieuw bestandssysteem schrijven', step, total_steps});
+            console.log(drive)
             await Device.exec(disk_utils.format[fstype](drive.children[0].path))
 
             step++;

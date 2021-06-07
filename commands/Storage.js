@@ -12,8 +12,8 @@ module.exports = {
     getDrive: ({drive}) => FileStorage.getDrive(drive),
     readDir: ({path}) => FileStorage.readDir(path),
     rename: ({drive, name}) => FileStorage.rename(drive, name),
-    encryptFiles: ({paths}) => FileStorage.encryptFile(paths),
-    decryptFiles: ({paths}) => FileStorage.decryptFile(paths),
+    encryptFiles: ({paths}) => FileStorage.encryptFiles(paths),
+    decryptFiles: ({paths}) => FileStorage.decryptFiles(paths),
     
     streamDrives: FileStorage.streamDrives,
     streamFormatDrive: FileStorage.streamFormatDrive,

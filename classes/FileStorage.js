@@ -279,10 +279,11 @@ const readDir = async (path) => {
         }
         if(!type)
             type = 'file';
+
         return {
             name,
             type,
-            stats: 
+            stats
         }
     })
 }

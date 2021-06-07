@@ -6,8 +6,6 @@ const { EventEmitter } = require('events');
 const _ = require('lodash');
 const Crypto = require('./Crypto');
 const fastFolderSize = require('fast-folder-size');
-const util = require('util')
-
 
 let mount_wait = {};
 
@@ -277,9 +275,9 @@ const readDir = (path, with_stats = false) => {
         };
 
         if(with_stats) {
-            const stats = fs.statSync(`${path}${dir[i].name}`);
+            const stats = fs.statSync(`${path}/${name}`);
             if(type === 'folder')
-                stats.size = await new Promise(resolve => fastFolderSize(`${path}${dir[i].name}`, (err, bytes) => { if(err) resolve(0); else resolve(bytes); }))
+                stats.size = await new Promise(resolve => fastFolderSize(`${path}/${name}`, (err, bytes) => { if(err) resolve(0); else resolve(bytes); }))
             ret.stats = stats;
         }
 

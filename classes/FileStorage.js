@@ -82,7 +82,7 @@ const getDrives = () => Device.exec(`lsblk -o name,mountpoint,label,size,fstype,
             }
             item.children = points;
         } else
-        item.letter = item.path.match(/sd([a-z])[0-9]/)
+            item.letter = item.path.match(/sd([a-z])[0-9]/gm)
         return {
             is_system,
             ...item

@@ -186,11 +186,7 @@ const streamExplorer = ({out, onError, kill}) => {
     const navigateCommand = async (command) => {
         switch(command.cmd) {
             case 'dir':
-                console.log('received dir', command)
-                getStats(command.path).then(data => {
-                    const dat = {cmd: 'stats', ...data, ...readDir(command.path)};
-                    console.log(dat)
-                }).catch(onError)
+                readDirWithStats(command.path).then(data => out(data)).catch(onError)
             break;
         }
     }
@@ -280,11 +276,15 @@ const readDir = (path) => {
     })
 }
 
-const getStats = async (path) => {
-    const stats = fs.statSync(path);
-    if(fs.lstatSync(path).isDirectory())
-        stats.size = await util.promisify(fastFolderSize)(path)
-    return stats;
+const readDirWithStats = async (path) => {
+    const dir = readDir(path);
+    for(let i = 0; i < dir.length; i++) {
+        const stats = fs.statSync(dir[i].path);
+        if(dir[i].type === 'folder')
+            stats.size = await new Promise(resolve => fastFolderSize(dir[i].path, (err, bytes) => { if(err) resolve(0); else resolve(bytes); }))
+        dir[i].stats = stats;
+    }
+    return dir;
 }
 
 const encryptFiles = async (paths) => {

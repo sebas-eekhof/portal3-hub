@@ -131,7 +131,7 @@ const init = async ({console}) => {
         }
 
         const onError = async (error) => {
-            console.stream_out(path)
+            console.stream_error(path)
             socket.emit(`stream.${stream_id}.error`, await Crypto.FlowEncrypt(error))
         }
 
@@ -207,6 +207,7 @@ const CreateLogger = () => {
         stream: (path, args) => SendMessage('yellow', 'STREAM', `${path}(${JSON.stringify(args)})`),
         stream_in: (path) => SendMessage('green', `STREAM [${path}]`, `DATA_RECEIVE`),
         stream_out: (path) => SendMessage('green', `STREAM [${path}]`, `DATA_SENT`),
+        stream_error: (path) => SendMessage('red', `STREAM [${path}]`, `ERROR_SENT`),
         stream_accept: (path) => SendMessage('green', `STREAM [${path}]`, `ACCEPTED`),
         stream_reject: (path) => SendMessage('red', `STREAM [${path}]`, `REJECTED`),
         stream_kill: (path) => SendMessage('red', `STREAM [${path}]`, `KILL`),

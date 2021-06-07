@@ -278,13 +278,19 @@ const readDir = (path) => {
 }
 
 const readDirWithStats = async (path) => {
+    console.log(1)
     const dir = readDir(path);
+    console.log(dir)
+    console.log(2)
     for(let i = 0; i < dir.length; i++) {
         const stats = fs.statSync(dir[i].path);
+        console.log(3)
         // if(dir[i].type === 'folder')
         //     stats.size = await new Promise(resolve => fastFolderSize(dir[i].path, (err, bytes) => { if(err) resolve(0); else resolve(bytes); }))
         dir[i].stats = stats;
+        console.log(4)
     }
+    console.log(5)
     return dir;
 }
 

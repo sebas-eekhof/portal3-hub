@@ -263,7 +263,7 @@ const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype =
 
             step++;
             out({done: false, msg: 'Afronden', step, total_steps});
-            await mount(_.get(drive, 'children[0].path', null))
+            try { await mount(_.get(drive, 'children[0].path', null)) } catch(e) {}
             for(let i = 0; i < points.length; i++)
                 delete mount_wait[points[i]];
                

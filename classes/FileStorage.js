@@ -184,6 +184,7 @@ const startAutoMount = () => {
 const streamExplorer = ({out, onError, kill}) => {
 
     const navigateCommand = async (command) => {
+        console.log(command)
         switch(command.cmd) {
             case 'dir':
                 readDirWithStats(command.dir).then(data => {console.log('data', data); out(data)}).catch(onError)

@@ -261,7 +261,7 @@ const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype =
 
 const readDir = async (path, with_stats = false) => {
     const dir = fs.readdirSync(path);
-    return await dir.map(async (name) => {
+    const map = await dir.map(async (name) => {
         let type;
         if(fs.lstatSync(`${path}/${name}`).isDirectory())
             type = 'folder';
@@ -274,19 +274,17 @@ const readDir = async (path, with_stats = false) => {
             name,
             type
         };
-
         if(with_stats) {
-            console.log(1)
-            console.log(`${path}/${name}`)
             const stats = fs.statSync(`${path}/${name}`);
             if(type === 'folder')
                 stats.size = await new Promise(resolve => fastFolderSize(`${path}/${name}`, (err, bytes) => { if(err) resolve(0); else resolve(bytes); }))
             ret.stats = stats;
-            console.log(2)
         }
 
         return ret
     })
+    console.log(map)
+    return map;
 }
 
 const encryptFiles = async (paths) => {

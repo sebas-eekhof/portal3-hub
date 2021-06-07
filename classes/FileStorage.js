@@ -182,7 +182,11 @@ const startAutoMount = () => {
 const streamExplorer = ({out, onError, kill}) => {
 
     const navigateCommand = async (command) => {
-        out(await readDir(command))
+        switch(command.cmd) {
+            case 'dir':
+                out(readDir(command))
+            break;
+        }
     }
 
     return {
@@ -253,37 +257,20 @@ const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype =
     }
 }
 
-const readDir = async (path) => {
+const readDir = (path) => {
     return await fs.readdirSync(path).map(async name => {
         let type;
         const fs_stat = fs.statSync(`${path}/${name}`)
-        let stats = {
-            created_at: fs_stat.birthtimeMs,
-            updated_at: fs_stat.mtimeMs,
-            opened_at: fs_stat.atimeMs,
-            size: 0
-        }
-        if(fs.lstatSync(`${path}/${name}`).isDirectory()) {
+        if(fs.lstatSync(`${path}/${name}`).isDirectory())
             type = 'folder';
-            stats.size = await new Promise(resolve => {
-                fastFolderSize(`${path}/${name}`, (err, bytes) => {
-                    if(err)
-                        resolve(0);
-                    else
-                        resolve(bytes); 
-                })
-            })
-        } else {
+        else
             type = mime.lookup(`${path}/${name}`);
-            stats.size = fs_stat.size;
-        }
         if(!type)
             type = 'file';
 
         return {
             name,
-            type,
-            stats
+            type
         }
     })
 }

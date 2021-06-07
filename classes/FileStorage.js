@@ -240,6 +240,8 @@ const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype =
 
             step++;
             out({done: false, msg: 'Data verwijderen', step, total_steps});
+            
+            const size = (quick ? 20000000 : drive.size);
             await new Promise(resolve => {
                 const process = child_process.spawn(`dd if=/dev/zero of=${drive.path} count=1 bs=${size} status=noxfer`)
                 process.stdout.on('data', data => {
@@ -248,7 +250,6 @@ const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype =
                 process.stderr.on('data', reject(data.toString()))
                 process.on('exit', (code, signal) => resolve())
             })
-            const size = (quick ? 20000000 : drive.size);
             await Device.exec(`dd if=/dev/zero of=${drive.path} count=1 bs=${size} status=progress`)
 
             step++;

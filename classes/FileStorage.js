@@ -216,10 +216,10 @@ const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype =
         try {
             const total_steps = 10;
             let step = 1;
-            out({done: false, msg: 'Gegevens verzamelen', step, total_steps, estimated: 0.5});
+            out({done: false, msg: 'Gegevens verzamelen', step, total_steps});
             drive = await getDrive(drive);
             step++;
-            out({done: false, msg: 'Ontkoppelen', step, total_steps, estimated: 1});
+            out({done: false, msg: 'Ontkoppelen', step, total_steps});
             let points = [];
             points.push(drive.path)
             
@@ -234,7 +234,7 @@ const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype =
             }
 
             step++;
-            out({done: false, msg: 'Bestandssysteem verwijderen', step, total_steps, estimated: 1});
+            out({done: false, msg: 'Bestandssysteem verwijderen', step, total_steps});
             await Device.exec(`wipefs -a ${drive.path} --force`)
 
             step++;
@@ -243,31 +243,32 @@ const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype =
             await Device.exec(`dd if=/dev/zero of=${drive.path} count=1 bs=${size} status=progress`)
 
             step++;
-            out({done: false, msg: 'Partities inrichten', step, total_steps, estimated: 2});
+            out({done: false, msg: 'Partities inrichten', step, total_steps});
             await Device.exec(`echo 'type=83' | sudo sfdisk ${drive.path} --force`)
 
             step++;
-            out({done: false, msg: 'Gegevens verzamelen', step, total_steps, estimated: 0.5});
+            out({done: false, msg: 'Gegevens verzamelen', step, total_steps});
             drive = await getDrive(drive.path);
 
             step++;
-            out({done: false, msg: 'Nieuw bestandssysteem schrijven', step, total_steps, estimated: 8});
+            out({done: false, msg: 'Nieuw bestandssysteem schrijven', step, total_steps});
+            console.log(isk_utils.format[fstype](drive.children[0].path))
             await Device.exec(disk_utils.format[fstype](drive.children[0].path))
 
             step++;
-            out({done: false, msg: 'Naam wijzigen', step, total_steps, estimated: 0.5});
+            out({done: false, msg: 'Naam wijzigen', step, total_steps});
             const util = _.get(disk_utils.rename, fstype, false)
             if(util)
                 await Device.exec(util(_.get(drive, 'children[0].path', null), name))
 
             step++;
-            out({done: false, msg: 'Afronden', step, total_steps, estimated: 2});
+            out({done: false, msg: 'Afronden', step, total_steps});
             await mount(_.get(drive, 'children[0].path', null))
             for(let i = 0; i < points.length; i++)
                 delete mount_wait[points[i]];
                
             step++; 
-            out({done: true, msg: 'Klaar', step, total_steps, estimated: 0});
+            out({done: true, msg: 'Klaar', step, total_steps});
 
             kill();
         } catch(e) {

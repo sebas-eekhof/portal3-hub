@@ -101,6 +101,15 @@ const disk_utils = {
         ext4: (drive, name) => `e2label ${drive} "${name}"`,
         btrfs: (drive, name) => `btrfs filesystem label ${drive} "${name}"`,
         swap: (drive, name) => `swaplabel -L "${name}" ${drive}`,
+    },
+    format: {
+        exfat: (drive) => `mkfs.exfat -F "${drive}"`,
+        fat32: (drive) => `mkdosfs "${drive}"`,
+        ntfs: (drive) => `mkntfs -F -f "${drive}"`,
+        ext2: (drive) => `mkfs.ext2 -F -q "${drive}"`,
+        ext3: (drive) => `mkfs.ext3 -F -q "${drive}"`,
+        ext4: (drive) => `mkfs.ext4 -F -q "${drive}"`,
+        btrfs: (drive) => `mkfs.btrfs -f -q "${drive}"`
     }
 }
 
@@ -168,7 +177,7 @@ const startAutoMount = () => {
                 if(!drive.is_system)
                     for(let i = 0; i < (drive.children ? drive.children.length : 0); i++)
                         if(drive.children[i].mountpoint === null)
-                            if(_.get(mount_wait, drive.children[i].path, false) === false && _.get(mount_wait, drive.children[i].path.substr(0, -1), false) === false)
+                            if(_.get(mount_wait, `drive.children[${i}].path`, false) === false && _.get(mount_wait, `drive.drive.path`, false) === false)
                                 try { await mount(drive.children[i].path) } catch(e) {}
             })
 
@@ -184,7 +193,6 @@ const startAutoMount = () => {
 const streamExplorer = ({out, onError, kill}) => {
 
     const navigateCommand = (command) => {
-        console.log(command)
         switch(command.cmd) {
             case 'dir':
                 readDir(command.dir, true).then(dir => out({cmd: 'dir', dir})).catch(onError)
@@ -197,16 +205,21 @@ const streamExplorer = ({out, onError, kill}) => {
     }
 }
 
-const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype = 'exfat', quick = true }) => {
+const streamFormatDrive = async ({out, onError, kill}, { drive, name = 'usb', fstype = 'exfat', quick = true }) => {
     if(!drive.includes('/dev/s'))
         throw new Error('Can\'t format this drive')
+    
+    if(typeof disk_utils.format[fstype] === 'undefined')
+        throw new Error(`Can't format drive as ${fstype}`)
 
     const start = async () => {
         try {
-            out({done: false, msg: 'Gegevens verzamelen', progress: 5});
+            const total_steps = 10;
+            let step = 1;
+            out({done: false, msg: 'Gegevens verzamelen', step, total_steps});
             drive = await getDrive(drive);
-
-            out({done: false, msg: 'Ontkoppelen', progress: 10});
+            step++;
+            out({done: false, msg: 'Ontkoppelen', step, total_steps});
             let points = [];
             points.push(drive.path)
             
@@ -220,34 +233,41 @@ const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype =
                     await unmount(drive.children[i].path)
             }
 
-            out({done: false, msg: 'Bestandssysteem verwijderen', progress: 20});
-            await Device.exec(`wipefs -a ${drive.path}`)
+            step++;
+            out({done: false, msg: 'Bestandssysteem verwijderen', step, total_steps});
+            await Device.exec(`wipefs -a ${drive.path} --force`)
 
-            out({done: false, msg: 'Data verwijderen', progress: 25});
+            step++;
+            out({done: false, msg: 'Data verwijderen', step, total_steps});
             const size = (quick ? 20000000 : drive.size);
             await Device.exec(`dd if=/dev/zero of=${drive.path} count=1 bs=${size} status=progress`)
 
-
-            out({done: false, msg: 'Partities inrichten', progress: 60});
+            step++;
+            out({done: false, msg: 'Partities inrichten', step, total_steps});
             await Device.exec(`echo 'type=83' | sudo sfdisk ${drive.path} --force`)
 
-            out({done: false, msg: 'Gegevens verzamelen', progress: 70});
+            step++;
+            out({done: false, msg: 'Gegevens verzamelen', step, total_steps});
             drive = await getDrive(drive.path);
 
-            out({done: false, msg: 'Nieuw bestandssysteem schrijven', progress: 75});
-            await Device.exec(`mkfs -t ${fstype} ${_.get(drive, 'children[0].path', null)}`)
+            step++;
+            out({done: false, msg: 'Nieuw bestandssysteem schrijven', step, total_steps});
+            await Device.exec(disk_utils.format[fstype](drive.children[0].path))
 
-            out({done: false, msg: 'Naam wijzigen', progress: 80});
+            step++;
+            out({done: false, msg: 'Naam wijzigen', step, total_steps});
             const util = _.get(disk_utils.rename, fstype, false)
             if(util)
                 await Device.exec(util(_.get(drive, 'children[0].path', null), name))
 
-            out({done: false, msg: 'Afronden', progress: 90});
+            step++;
+            out({done: false, msg: 'Afronden', step, total_steps});
             await mount(_.get(drive, 'children[0].path', null))
             for(let i = 0; i < points.length; i++)
                 delete mount_wait[points[i]];
-                
-            out({done: true, msg: 'Klaar', progress: 100});
+               
+            step++; 
+            out({done: true, msg: 'Klaar', step, total_steps});
 
             kill();
         } catch(e) {

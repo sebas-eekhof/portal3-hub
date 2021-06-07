@@ -187,7 +187,7 @@ const streamExplorer = ({out, onError, kill}) => {
         console.log(command)
         switch(command.cmd) {
             case 'dir':
-                readDirWithStats(command.dir).then(data => {console.log('data', data); out(data)}).catch(onError)
+                readDirWithStats(command.dir).then(data => {console.log('data', data); out({cmd: 'dir', ...data})}).catch(onError)
             break;
         }
     }

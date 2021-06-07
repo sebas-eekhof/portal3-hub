@@ -205,7 +205,7 @@ const streamExplorer = ({out, onError, kill}) => {
     }
 }
 
-const streamFormatDrive = async ({out, onError, kill}, { drive, name = 'usb', fstype = 'exfat', quick = true }) => {
+const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype = 'exfat', quick = true }) => {
     if(!drive.includes('/dev/s'))
         throw new Error('Can\'t format this drive')
     

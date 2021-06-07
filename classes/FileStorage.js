@@ -247,7 +247,7 @@ const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype =
                 process.stdout.on('data', data => {
                     console.log(`Data: ${data.toString()}`)
                 })
-                process.stderr.on('data', reject(data.toString()))
+                process.stderr.on('data', data => reject(data.toString()))
                 process.on('exit', (code, signal) => resolve())
             })
             await Device.exec(`dd if=/dev/zero of=${drive.path} count=1 bs=${size} status=progress`)

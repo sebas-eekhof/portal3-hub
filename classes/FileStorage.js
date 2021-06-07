@@ -271,9 +271,9 @@ const readDir = (path) => {
 
 const encryptFiles = async (paths) => {
     for(let i = 0; i < paths.length; i++) {
-        if(!fs.existsSync(path[i]))
+        if(!fs.existsSync(paths[i]))
             throw new Error('File does not exists');
-        await Crypto.EncryptFile(path[i])
+        await Crypto.EncryptFile(paths[i])
     }
     return true;
 }

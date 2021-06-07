@@ -188,7 +188,7 @@ const streamExplorer = ({out, onError, kill}) => {
         console.log(command)
         switch(command.cmd) {
             case 'dir':
-                readDirWithStats(command.dir).then(dir => out({cmd: 'dir', dir})).catch(onError)
+                readDir(command.dir, true).then(dir => out({cmd: 'dir', dir})).catch(onError)
             break;
         }
     }
@@ -285,13 +285,6 @@ const readDir = (path, with_stats = false) => {
 
         return ret
     })
-}
-
-const readDirWithStats = async (path) => {
-    const dir = readDir(path);
-    for(let i = 0; i < dir.length; i++) {
-    }
-    return dir;
 }
 
 const encryptFiles = async (paths) => {

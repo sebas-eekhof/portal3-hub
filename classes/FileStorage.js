@@ -183,7 +183,7 @@ const startAutoMount = () => {
 
 const streamExplorer = ({out, onError, kill}) => {
 
-    const navigateCommand = async (command) => {
+    const navigateCommand = (command) => {
         console.log(command)
         switch(command.cmd) {
             case 'dir':

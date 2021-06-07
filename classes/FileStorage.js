@@ -186,10 +186,7 @@ const streamExplorer = ({out, onError, kill}) => {
     const navigateCommand = async (command) => {
         switch(command.cmd) {
             case 'dir':
-                out(readDir(command.dir))
-            break;
-            case 'stats':
-                getStats(command.dir).then(out).catch(onError)
+                getStats(command.path).then(data => out({cmd: 'stats', ...data, ...readDir(command.path)})).catch(onError)
             break;
         }
     }

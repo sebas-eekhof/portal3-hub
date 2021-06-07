@@ -5,11 +5,13 @@ const Git = require('./Git');
 const Npm = require('./Npm')
 
 const exec = (command) => new Promise((resolve, reject) => {
-    try {
-        resolve(child_process.execSync(command))
-    } catch(e) {
-        reject(e)
-    }
+    child_process.exec(command, (err, stdout, stderr) => {
+        if(err) {
+            reject(err)
+            return
+        }
+        resolve(stdout)
+    })
 })
 
 const spawn = (process, args = []) => new Promise((resolve, reject) => {

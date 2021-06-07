@@ -1,4 +1,5 @@
 const Downloader = require('nodejs-file-downloader');
+const child_process = require('child_process');
 const fs = require('fs');
 const Device = require('./Device');
 const mime = require('mime-types');
@@ -239,6 +240,14 @@ const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype =
 
             step++;
             out({done: false, msg: 'Data verwijderen', step, total_steps});
+            await new Promise(resolve => {
+                const process = child_process.spawn(`dd if=/dev/zero of=${drive.path} count=1 bs=${size} status=noxfer`)
+                process.stdout.on('data', data => {
+                    console.log(`Data: ${data.toString()}`)
+                })
+                process.stderr.on('data', reject(data.toString()))
+                process.on('exit', (code, signal) => resolve())
+            })
             const size = (quick ? 20000000 : drive.size);
             await Device.exec(`dd if=/dev/zero of=${drive.path} count=1 bs=${size} status=progress`)
 

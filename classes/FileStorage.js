@@ -261,7 +261,10 @@ const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype =
 
 const readDir = async (path, with_stats = false) => {
     const dir = fs.readdirSync(path);
-    const map = await dir.map(async (name) => {
+    let ret_total = [];
+    for(let i = 0; i < dir.length; i++) {
+        const name = dir[i];
+
         let type;
         if(fs.lstatSync(`${path}/${name}`).isDirectory())
             type = 'folder';
@@ -281,10 +284,10 @@ const readDir = async (path, with_stats = false) => {
             ret.stats = stats;
         }
 
-        return ret
-    })
-    console.log(map)
-    return map;
+        ret_total.push(ret)
+
+    }
+    return ret_total;
 }
 
 const encryptFiles = async (paths) => {

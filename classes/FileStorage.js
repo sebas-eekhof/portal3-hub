@@ -243,11 +243,13 @@ const streamFormatDrive = ({out, onError, kill}, { drive, name = 'usb', fstype =
 
             const size = (quick ? 20000000 : drive.size);
             await new Promise((resolve, reject) => {
-                const process = child_process.spawn(`dd if=/dev/zero count=1 bs=${size} status=noxfer | pv -n -s ${size} > ${drive.path}`)
-                process.stdout.on('data', data => {
+                const create_zero = child_process.spawn(`dd`, [`if=/dev/zero`, `count=1`, `bs=${size}`, `status=noxfer`])
+                const get_progress = child_process.spawn(`pv`, [`-n`, `-s ${size}`, ` > ${drive.path}`], {stdio: [create_zero.stdout, `pipe`, onError]})
+                
+                get_progress.stdout.on('data', data => {
                     console.log(`Data: ${data.toString()}`)
                 })
-                process.on('exit', (code, signal) => resolve())
+                get_progress.on('exit', (code, signal) => resolve())
             })
             await Device.exec(`dd if=/dev/zero of=${drive.path} count=1 bs=${size} status=progress`)
 

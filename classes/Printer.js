@@ -10,7 +10,10 @@ const getPrinters = async () => {
     let matches = [];
     let printers = [];
 
-    console.log(/printer (\w*)/.exec(lpstat))
+    while((matches = /printer (\w*)/.exec(lpstat)) !== null)
+        printers.push(matches[1])
+
+    console.log(printers)
 }
 
 const getPrinterType = async (name) => {

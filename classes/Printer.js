@@ -35,7 +35,6 @@ const start_discovery = () => {
                     devices.push(info)
             }
             allDevices = devices;
-            console.log(allDevices)
             setTimeout(run, 5000)
         } catch(e) {
             setTimeout(run, 100)
@@ -60,6 +59,7 @@ const getPrinterType = async (name) => {
 const getPrinterDevice = async (uri) => {
     const setup_device = getSetupPrinters().find(i => i.options['device-uri'] === uri);
     const connected_device = allDevices.find(i => i.uri === uri);
+    console.log(connected_device)
     let ret = {
         ...connected_device,
         setup: setup_device ? true : false,

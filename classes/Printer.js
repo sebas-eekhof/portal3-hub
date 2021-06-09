@@ -86,9 +86,8 @@ const getPrinters = async () => {
     let printers = getSetupPrinters()
     let list = [];
     for(let i = 0; i < printers.length; i++) {
-        try {
-            const device_info = await getPrinterDevice(printers[i].options['device-uri']);
-        } catch(e) {console.error(e)}
+        console.log(`Length1 ${printers.length}`)
+        const device_info = await getPrinterDevice(printers[i].options['device-uri']);
         if(device_info.setup && typeof device_info.setup_device.name === "string" && device_info.setup_device.name.length !== 0)
             list.push(device_info)
     }

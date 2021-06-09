@@ -23,7 +23,7 @@ const init = async ({console}) => {
 
     FileStorage.startAutoMount();
 
-    // Printer.start_discovery();
+    Printer.start_discovery();
     
     Gpio.playEffect('status_led', 'wave', 1)
 

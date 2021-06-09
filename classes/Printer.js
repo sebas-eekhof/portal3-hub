@@ -7,7 +7,12 @@ const IppPrinter = require('ipp-printer');
 
 const getPrinters = async () => {
     const lpstat = await Device.exec(`lpstat -p -d`);
-    const printers = lpstat.match(/printer (\w*)/);
+    let matches = [];
+    let printers = [];
+
+    while(matches = /printer (\w*)/.exec(lpstat))
+        printers.push(matches[1])
+
     console.log(printers)
 }
 

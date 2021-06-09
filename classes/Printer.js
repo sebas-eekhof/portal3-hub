@@ -4,10 +4,11 @@ const _ = require('lodash');
 const { v4: uuidv4 } = require('uuid');
 const { downloadFile, removeFile } = require('./FileStorage');
 const IppPrinter = require('ipp-printer');
+const matchAll = requre('match-all');
 
 const getPrinters = async () => {
     const lpstat = await Device.exec(`lpstat -p -d`);
-    const printers = lpstat.matchAll(/printer (\w*)/)
+    const printers = matchAll(lpstat, /printer (\w*)/gm)
 
     console.log(printers)
 }

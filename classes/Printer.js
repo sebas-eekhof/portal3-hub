@@ -5,90 +5,9 @@ const { v4: uuidv4 } = require('uuid');
 const { downloadFile, removeFile } = require('./FileStorage');
 const IppPrinter = require('ipp-printer');
 
-let allDevices = [];
-let setupDevices = [];
-
-const start_discovery = () => {
-    const run = async () => {
-        try {
-            let list = await Device.spawn('lpinfo', ['-l', '-v'])
-            list = list.split('Device: ').filter(i => i.length !== 0)
-            let devices = [];
-            for(let i = 0; i < list.length; i++) {
-                const info_rules = list[i].match(/(\w+) = ([^\s]+[ ]?)+/g);
-                let info = {
-                    uri: null,
-                    class: null,
-                    info: null,
-                    model: null,
-                    id: null
-                }
-                for(let i = 0; i < info_rules.length; i++) {
-                    const rule = info_rules[i].split(' = ');
-                    if(rule.length === 2)
-                        if(typeof info[rule[0]] !== "undefined") {
-                            let val = rule[1];
-                            if(val.slice(-1) === '')
-                                val = val.substr(0, -1);
-                            info[rule[0]] = val;
-                        }
-                }
-                if(info.id && info.class !== 'file')
-                    devices.push(info)
-            }
-            allDevices = devices;
-            checkIpp(devices)
-            setTimeout(run, 5000)
-        } catch(e) {
-            setTimeout(run, 100)
-        }
-    }
-    run();
-}
-
-let ipp_running = false
-let ipp_devices = [];
-
-const start_ipp_broadcast = () => {
-    if(ipp_running)
-        return;
-    const performCheck = async () => {
-        if(!ipp_running)
-            return;
-
-        getPrinters()
-            .then(printers => {
-                setupDevices = printers;
-                console.log(`Currently ${printers.length} printers`)
-                for(let i = 0; i < printers.length; i++) {
-                    const printer = printers[i];
-                    if(printer.setup_device && printer.setup_device.name.length !== 0 && !ipp_devices.includes(`${printer.id}${printer.setup_device.name}`)) {
-                        if(printer.setup_device.printer_type === 'a4') {
-                            const ippPrinter = new IppPrinter(printer.setup_device.name);
-                            ipp_devices.push(`${printer.id}${printer.setup_device.name}`)
-                            ippPrinter.on('job', function (job) {
-                                console.log('[job %d] Printing document: %s', job.id, job.name)
-                              
-                                const filename = 'job-' + job.id + '.ps'
-                                const file = fs.createWriteStream(`/portal3/jobs/${filename}`)
-                              
-                                job.on('end', function () {
-                                    console.log('[job %d] Document saved as %s', job.id, filename)
-                                })
-                              
-                                job.pipe(file)
-                            })
-                        }
-                    }
-                }
-            })
-            .catch(console.error)
-
-        if(ipp_running)
-            setTimeout(() => performCheck(), 5000)
-    }
-    ipp_running = true;
-    performCheck();
+const getPrinters = async () => {
+    const printers = await Device.exec(`lpstat -p -d`).match(/printer (\w*)/);
+    console.log(printers)
 }
 
 const getPrinterType = async (name) => {
@@ -118,7 +37,7 @@ const getPrinterDevice = async (uri) => {
     return ret;
 }
 
-const removePrinter = (printer) => Device.exec(`lpadmin -x ${printer}`)
+const removePrinter = (printer) => Device.exec(`lpadmin -x "${printer}"`)
 const printFromUrl = async (printer, url) => {
     const fileName = uuidv4();
     await downloadFile(url, fileName)
@@ -127,42 +46,12 @@ const printFromUrl = async (printer, url) => {
     return true;
 }
 const printFromFile = (printer, filename, path) => Device.exec(`cd ${path} && lp -d ${printer} ${filename}`)
-const printText = (text, printer) => Device.exec(`echo "${text}" | lp -d ${printer}`)
 const addPrinter = (name, uri, driver) => Device.exec(`lpadmin -p "${name}" -E -v ${uri} -P ${driver}`)
-const getSetupPrinters = () => Printer.getPrinters()
-const getPrinters = async () => {
-    let printers = getSetupPrinters()
-    let list = [];
-    for(let i = 0; i < printers.length; i++) {
-        const device_info = await getPrinterDevice(printers[i].options['device-uri']);
-        if(device_info.setup && typeof device_info.setup_device.name === "string" && device_info.setup_device.name.length !== 0)
-            list.push(device_info)
-    }
-    return list.filter(i => (typeof i.uri !== "undefined"))
-}
 
-const getCommands = () => Printer.getSupportedJobCommands()
-const getDevices = async () => {
-    let devices = allDevices.filter(i => !getSetupPrinters().map(i => i.options['device-uri']).includes(i.uri))
-    let list = [];
-    for(let i = 0; i < devices.length; i++)
-        list.push(await getPrinterDevice(devices[i].uri))
-    return list;
-}
-const getByUsb = async (usb_device) => {
-    if(usb_device.device_info.class !== 'printer')
-        return null;
-    const usb_printers = allDevices.filter(i => i.class === 'direct');
-    if(usb_device.serial_number && usb_device.serial_number.length !== 0)
-        for(let i = 0; i < usb_printers.length; i++)
-            if(usb_printers[i].id.includes(usb_device.serial_number))
-                return await getPrinterDevice(usb_printers[i].uri);
-    
-    for(let i = 0; i < usb_printers.length; i++)
-        if(usb_printers[i].id.includes(usb_device.name))
-            return await getPrinterDevice(usb_printers[i].uri);
-    return null;
-}
+
+
+
+
 const getDrivers = async (printer) => {
     let list = [];
     try {
@@ -222,15 +111,15 @@ const getDrivers = async (printer) => {
 }
 
 module.exports = {
-    start_discovery,
-    start_ipp_broadcast,
+    // start_discovery,
+    // start_ipp_broadcast,
     getPrinters,
-    getCommands,
+    // getCommands,
     getDrivers,
-    getDevices,
-    getByUsb,
+    // getDevices,
+    // getByUsb,
     addPrinter,
-    printText,
+    // printText,
     removePrinter,
     printFromFile,
     printFromUrl

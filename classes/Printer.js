@@ -8,7 +8,7 @@ const matchAll = require('match-all');
 
 const getPrinters = async () => {
     const lpstat = await Device.exec(`lpstat -t`);
-    return matchAll(lpstat, /device for (\w*): (\w*:\/\/([A-Z\/a-z%0-9?=]*))/g).toArray().map(name => {
+    return matchAll(lpstat, /device for \w*: (\w*:\/\/([A-Z\/a-z%0-9?=]*))/g).toArray().map(name => {
         console.log(name)
     });
 }

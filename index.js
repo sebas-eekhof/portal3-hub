@@ -24,10 +24,6 @@ const init = async ({console}) => {
     FileStorage.startAutoMount();
 
     Printer.start_discovery();
-
-    Printer.getPrinters();
-
-    await new Promise(resolve => {})
     
     Gpio.playEffect('status_led', 'wave', 1)
 

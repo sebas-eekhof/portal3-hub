@@ -105,7 +105,6 @@ const getPrinters = async () => {
         if(uri)
             list.push(await getPrinterDevice(uri));
     }
-    console.log(list)
     return list;
 }
 const getCommands = () => Printer.getSupportedJobCommands()

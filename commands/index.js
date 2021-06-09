@@ -10,5 +10,6 @@ module.exports = {
     apt: require('./Apt'),
     usb: require('./Usb'),
     hid: require('./Hid'),
-    printer: require('./Printer')
+    printer: require('./Printer'),
+    user: require('./User')
 }

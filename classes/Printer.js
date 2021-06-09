@@ -8,7 +8,6 @@ const IppPrinter = require('ipp-printer');
 let allDevices = [];
 
 const start_discovery = () => {
-    Device.exec(`cupsctl --no-share-printers`)
     const run = async () => {
         try {
             let list = await Device.spawn('lpinfo', ['-l', '-v'])

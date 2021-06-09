@@ -105,7 +105,7 @@ const getPrinters = async () => {
         if(uri)
             list.push(await getPrinterDevice(uri));
     }
-    return list.filter(item => typeof item.uri !== 'undefined');
+    return list.filter(item => (typeof item.uri !== 'undefined' && typeof item.name !== 'undefined'));
 }
 const getCommands = () => Printer.getSupportedJobCommands()
 const getDevices = async () => {

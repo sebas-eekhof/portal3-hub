@@ -163,9 +163,47 @@ const getByUsb = async (usb_device) => {
     return null;
 }
 const getDrivers = async (printer) => {
+    let list = [];
     try {
-        let list = await Device.exec(`lpinfo --device-id "${printer.id}" -m`);
-        console.log(list)
+        list = await Device.exec(`lpinfo --device-id "${printer.id}" -m`)
+            .split('\n')
+            .filter(i => (i.length !== 0 && i.includes(':')))
+            .map(item => {
+                const split_for_maker = item.split(':')[0].split('-');
+                const split_for_path = item.split(' ');
+                return {
+                    maker: split_for_maker[0],
+                    uri: split_for_path[0],
+                    name: item.replace(`${split_for_path[0]} `, '')
+                }
+            })
+        if(list.length !== 0)
+            return list;
+    } catch(e) {}
+        
+    try {
+        list = await Device.exec(`lpinfo --make-and-model "${printer.model}" -m`)
+            .split('\n')
+            .filter(i => (i.length !== 0 && i.includes(':')))
+            .map(item => {
+                const split_for_maker = item.split(':')[0].split('-');
+                const split_for_path = item.split(' ');
+                return {
+                    maker: split_for_maker[0],
+                    uri: split_for_path[0],
+                    name: item.replace(`${split_for_path[0]} `, '')
+                }
+            })
+        if(list.length !== 0)
+            return list;
+    } catch(e) {}
+
+    try {
+        const split = printer.model.split(' ');
+        let make_model = split[0];
+        if(split.length !== 1)
+            make_model += ` ${split[1]}`;
+        list = await Device.exec(`lpinfo --make-and-model "${make_model}" -m`);
         list = list
             .split('\n')
             .filter(i => (i.length !== 0 && i.includes(':')))
@@ -178,48 +216,8 @@ const getDrivers = async (printer) => {
                     name: item.replace(`${split_for_path[0]} `, '')
                 }
             })
-        console.log(list.length)
-        if(list.length === 0) {
-            list = await Device.exec(`lpinfo --make-and-model "${printer.model}" -m`);
-            list = list
-                .split('\n')
-                .filter(i => (i.length !== 0 && i.includes(':')))
-                .map(item => {
-                    const split_for_maker = item.split(':')[0].split('-');
-                    const split_for_path = item.split(' ');
-                    return {
-                        maker: split_for_maker[0],
-                        uri: split_for_path[0],
-                        name: item.replace(`${split_for_path[0]} `, '')
-                    }
-                })
-        }
-        console.log(list.length)
-        if(list.length === 0) {
-            const split = printer.model.split(' ');
-            let make_model = split[0];
-            if(split.length !== 1)
-                make_model += ` ${split[1]}`;
-            list = await Device.exec(`lpinfo --make-and-model "${make_model}" -m`);
-            list = list
-                .split('\n')
-                .filter(i => (i.length !== 0 && i.includes(':')))
-                .map(item => {
-                    const split_for_maker = item.split(':')[0].split('-');
-                    const split_for_path = item.split(' ');
-                    return {
-                        maker: split_for_maker[0],
-                        uri: split_for_path[0],
-                        name: item.replace(`${split_for_path[0]} `, '')
-                    }
-                })
-        }
-        console.log(list.length)
         return list;
-    } catch(e) {
-        console.error(e)
-        return [];
-    }
+    } catch(e) {}
 }
 
 module.exports = {

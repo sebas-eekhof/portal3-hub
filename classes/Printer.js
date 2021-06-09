@@ -217,6 +217,7 @@ const getDrivers = async (printer) => {
         console.log(list.length)
         return list;
     } catch(e) {
+        console.error(e)
         return [];
     }
 }

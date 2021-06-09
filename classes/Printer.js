@@ -165,6 +165,7 @@ const getByUsb = async (usb_device) => {
 const getDrivers = async (printer) => {
     try {
         let list = await Device.exec(`lpinfo --device-id "${printer.id}" -m`);
+        console.log(list)
         list = list
             .split('\n')
             .filter(i => (i.length !== 0 && i.includes(':')))
@@ -177,6 +178,7 @@ const getDrivers = async (printer) => {
                     name: item.replace(`${split_for_path[0]} `, '')
                 }
             })
+        console.log(list.length)
         if(list.length === 0) {
             list = await Device.exec(`lpinfo --make-and-model "${printer.model}" -m`);
             list = list
@@ -192,6 +194,7 @@ const getDrivers = async (printer) => {
                     }
                 })
         }
+        console.log(list.length)
         if(list.length === 0) {
             const split = printer.model.split(' ');
             let make_model = split[0];
@@ -211,6 +214,7 @@ const getDrivers = async (printer) => {
                     }
                 })
         }
+        console.log(list.length)
         return list;
     } catch(e) {
         return [];

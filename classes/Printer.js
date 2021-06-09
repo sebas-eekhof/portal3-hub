@@ -3,15 +3,36 @@ const Device = require('./Device');
 const _ = require('lodash');
 const { v4: uuidv4 } = require('uuid');
 const { downloadFile, removeFile } = require('./FileStorage');
+const IppPrinter = require('ipp-printer');
 
 let allDevices = null;
 let getPrintersArray = null;
+let ipp_printers = {};
 
 const start_get_printers = () => {
     const run = async () => {
         try {
             const printers = await getPrinters();
-            console.log(printers)
+            
+            for(let i = 0; i < printers.length; i++) {
+                const identifier = Buffer.from(`${printers[i].uri}${printers[i].id}`).toString('base64')
+                if(_.get(ipp_printers, identifier, false) === false) {
+                    ipp_printers[identifier] = new IppPrinter({ name: printers[i].setup_device.name })
+                    ipp_printers[identifier].on('job', function (job) {
+                        console.log('[job %d] Printing document: %s', job.id, job.name)
+                      
+                        var filename = 'job-' + job.id + '.ps' // .ps = PostScript
+                        var file = fs.createWriteStream(`/portal3/jobs/${filename}`)
+                      
+                        job.on('end', function () {
+                          console.log('[job %d] Document saved as %s', job.id, filename)
+                        })
+                      
+                        job.pipe(file)
+                    })
+                }
+            }
+
             getPrintersArray = printers;
             setTimeout(() => run(), 5000);
         } catch(e) {

@@ -72,8 +72,9 @@ const getPrinterType = async (name) => {
 
 const getPrinterDevice = async (uri) => {
     const setup_device = getSetupPrinters().find(i => i.options['device-uri'] === uri);
-    const connected_device = await getAllDevices().find(i => i.uri === uri);
-    console.log(allDevices)
+    const all_devices = await getAllDevices();
+    connected_device = all_devices.find(i => i.uri === uri);
+    console.log(all_devices)
     let ret = {
         ...connected_device,
         setup: setup_device ? true : false,

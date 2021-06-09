@@ -91,8 +91,7 @@ const getPrinters = async () => {
         if(device_info.setup && typeof device_info.setup_device.name === "string" && device_info.setup_device.name.length !== 0)
             list.push(device_info)
     }
-    console.log(list)
-    return list.filter(i => (typeof i.uri !== "undefined"))
+    return list;
 }
 const getCommands = () => Printer.getSupportedJobCommands()
 const getDevices = async () => {

@@ -7,10 +7,10 @@ const IppPrinter = require('ipp-printer');
 const matchAll = require('match-all');
 
 const getPrinters = async () => {
-    const lpstat = await Device.exec(`lpstat -p -d`);
-    const printers = matchAll(lpstat, /printer (\w*)/gm).toArray();
-
-    console.log(printers)
+    const lpstat = await Device.exec(`lpstat -t`);
+    return matchAll(lpstat, /device for (\w*): (\w*:\/\/([A-Z\/a-z%0-9?=]*))/g).toArray().map(name => {
+        console.log(name)
+    });
 }
 
 const getPrinterType = async (name) => {

@@ -59,7 +59,6 @@ const getPrinterType = async (name) => {
 const getPrinterDevice = async (uri) => {
     const setup_device = getSetupPrinters().find(i => i.options['device-uri'] === uri);
     const connected_device = allDevices.find(i => i.uri === uri);
-    console.log(connected_device)
     let ret = {
         ...connected_device,
         setup: setup_device ? true : false,
@@ -84,17 +83,9 @@ const printText = (text, printer) => Device.exec(`echo "${text}" | lp -d ${print
 const addPrinter = (name, uri, driver) => Device.exec(`lpadmin -p "${name}" -E -v ${uri} -m ${driver}`)
 const getSetupPrinters = () => Printer.getPrinters()
 const getPrinters = async () => {
-    let printers = getSetupPrinters()
+    const printers = getSetupPrinters()
     let list = [];
-    for(let i = 0; i < printers.length; i++) {
-        console.log(`Length1 ${printers.length}`)
-        console.log(printers[i])
-        if(_.get(printers[i], `options.device-uri`, false)) {
-            const device_info = await getPrinterDevice(printers[i].options['device-uri']);
-            if(device_info.setup && typeof device_info.setup_device.name === "string" && device_info.setup_device.name.length !== 0)
-                list.push(device_info)
-        }
-    }
+    console.log(printers)
     return list;
 }
 const getCommands = () => Printer.getSupportedJobCommands()

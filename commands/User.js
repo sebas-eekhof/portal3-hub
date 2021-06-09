@@ -1,5 +1,5 @@
 const User = require('../classes/User');
 
-module.export = {
+module.exports = {
     getUsers: User.getUsers
 }

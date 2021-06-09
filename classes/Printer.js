@@ -5,6 +5,21 @@ const { v4: uuidv4 } = require('uuid');
 const { downloadFile, removeFile } = require('./FileStorage');
 
 let allDevices = null;
+let getPrintersArray = null;
+
+const start_get_printers = () => {
+    const run = async () => {
+        try {
+            const printers = await getPrinters();
+            getPrintersArray = printers;
+            setTimeout(() => run(), 5000);
+        } catch(e) {
+            console.error(e);
+            setTimeout(() => run(), 50)
+        }
+    }
+    run();
+}
 
 const start_discovery = () => {
     const run = async () => {
@@ -107,6 +122,19 @@ const getPrinters = async () => {
     }
     return list.filter(item => (typeof item.uri !== 'undefined' && typeof item.name !== 'undefined'));
 }
+const getPrintersFast = () => new Promise(resolve => {
+    if(getPrintersArray !== null) {
+        resolve(getPrintersArray);
+        return;
+    }
+    const allInterval = setInterval(() => {
+        if(getPrintersArray !== null) {
+            clearInterval(allInterval);
+            resolve(getPrintersArray);
+            return;
+        }
+    }, 50)
+})
 const getCommands = () => Printer.getSupportedJobCommands()
 const getDevices = async () => {
     let devices = allDevices.filter(i => !getSetupPrinters().map(i => i.options['device-uri']).includes(i.uri))
@@ -172,7 +200,7 @@ const getDrivers = async (printer) => {
 
 module.exports = {
     start_discovery,
-    getPrinters,
+    getPrinters: getPrintersFast,
     getCommands,
     getDrivers,
     getDevices,

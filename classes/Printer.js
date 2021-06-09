@@ -11,6 +11,7 @@ const start_get_printers = () => {
     const run = async () => {
         try {
             const printers = await getPrinters();
+            console.log(printers)
             getPrintersArray = printers;
             setTimeout(() => run(), 5000);
         } catch(e) {

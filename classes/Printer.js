@@ -6,6 +6,7 @@ const { downloadFile, removeFile } = require('./FileStorage');
 const IppPrinter = require('ipp-printer');
 
 let allDevices = [];
+let setupDevices = [];
 
 const start_discovery = () => {
     const run = async () => {
@@ -56,6 +57,7 @@ const start_ipp_broadcast = () => {
             return;
 
         const printers = await getPrinters();
+        setupDevices = printers;
         for(let i = 0; i < printers.length; i++) {
             const printer = printers[i];
             if(printer.setup_device && printer.setup_device.name.length !== 0 && !ipp_devices.includes(`${printer.id}${printer.setup_device.name}`)) {
@@ -133,6 +135,9 @@ const getPrinters = async () => {
             list.push(device_info)
     }
     return list.filter(i => (typeof i.uri !== "undefined"))
+}
+const getPrintersFast = async () => {
+    return setupDevices
 }
 const getCommands = () => Printer.getSupportedJobCommands()
 const getDevices = async () => {
@@ -214,7 +219,7 @@ const getDrivers = async (printer) => {
 module.exports = {
     start_discovery,
     start_ipp_broadcast,
-    getPrinters,
+    getPrinters: getPrintersFast,
     getCommands,
     getDrivers,
     getDevices,

@@ -82,7 +82,6 @@ let effects = {
 
 const init = () => {
     if(!Device.IsDevelopment()) {
-        Pigpio.configureSocketPort(8884);
         pins = {
             status_led: {
                 running_effect: null,

@@ -6,7 +6,6 @@ const { downloadFile, removeFile } = require('./FileStorage');
 const IppPrinter = require('ipp-printer');
 
 let allDevices = [];
-let ippPrinters = [];
 
 const start_discovery = () => {
     const run = async () => {
@@ -46,8 +45,23 @@ const start_discovery = () => {
     run();
 }
 
-const checkIpp = (devices) => {
-    console.log(devices)
+let ipp_running = false
+
+const start_ipp_broadcast = () => {
+    if(ipp_running)
+        return;
+    const performCheck = async () => {
+        if(!ipp_running)
+            return;
+
+        const printers = await getPrinters();
+        console.log(printers)
+
+        if(ipp_running)
+            setTimeout(() => performCheck(), 5000)
+    }
+    ipp_running = true;
+    performCheck();
 }
 
 const getPrinterType = async (name) => {
@@ -178,6 +192,7 @@ const getDrivers = async (printer) => {
 
 module.exports = {
     start_discovery,
+    start_ipp_broadcast,
     getPrinters,
     getCommands,
     getDrivers,

@@ -3,11 +3,9 @@ const Device = require('./Device');
 const _ = require('lodash');
 const { v4: uuidv4 } = require('uuid');
 const { downloadFile, removeFile } = require('./FileStorage');
-const IppPrinter = require('ipp-printer');
 
 let allDevices = null;
 let getPrintersArray = null;
-let ipp_printers = {};
 
 const start_get_printers = () => {
     const run = async () => {

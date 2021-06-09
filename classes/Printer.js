@@ -6,7 +6,8 @@ const { downloadFile, removeFile } = require('./FileStorage');
 const IppPrinter = require('ipp-printer');
 
 const getPrinters = async () => {
-    const printers = await Device.exec(`lpstat -p -d`).match(/printer (\w*)/);
+    const lpstat = await Device.exec(`lpstat -p -d`);
+    const printers = lpstat.match(/printer (\w*)/);
     console.log(printers)
 }
 

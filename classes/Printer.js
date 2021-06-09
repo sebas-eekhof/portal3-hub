@@ -58,6 +58,7 @@ const start_ipp_broadcast = () => {
 
         const printers = await getPrinters();
         setupDevices = printers;
+        console.log(`Currently ${printers.length} printers`)
         for(let i = 0; i < printers.length; i++) {
             const printer = printers[i];
             if(printer.setup_device && printer.setup_device.name.length !== 0 && !ipp_devices.includes(`${printer.id}${printer.setup_device.name}`)) {

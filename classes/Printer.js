@@ -74,6 +74,8 @@ const getPrinterDevice = async (uri) => {
     const setup_device = getSetupPrinters().find(i => i.options['device-uri'] === uri);
     const all_devices = await getAllDevices();
     connected_device = all_devices.find(i => i.uri === uri);
+    console.log(`Need uri ${uri}`)
+    console.log(all_devices)
     console.log(connected_device)
     let ret = {
         ...connected_device,

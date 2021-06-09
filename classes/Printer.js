@@ -7,9 +7,12 @@ const IppPrinter = require('ipp-printer');
 const matchAll = require('match-all');
 
 const getPrinters = async () => {
-    const lpstat = await Device.exec(`lpstat -t`);
-    return matchAll(lpstat, /device for \w*: (\w*:\/\/([A-Z\/a-z%0-9?=]*))/g).toArray().map(name => {
-        console.log(name)
+    const lpstat = await Device.exec(`lpstat -p -d`);
+    const printers = matchAll(lpstat, /printer (\w*)/gm).toArray().map(async (name) => {
+        return {
+            name,
+            type: await getPrinterType(name)
+        }
     });
 }
 
@@ -26,19 +29,19 @@ const getPrinterType = async (name) => {
     }
 }
 
-const getPrinterDevice = async (uri) => {
-    const setup_device = getSetupPrinters().find(i => i.options['device-uri'] === uri);
-    const connected_device = allDevices.find(i => i.uri === uri);
-    let ret = {
-        ...connected_device,
-        setup: setup_device ? true : false,
-        setup_device: setup_device ? {
-            ...setup_device,
-            printer_type: await getPrinterType(setup_device.name)
-        } : null
-    }
-    return ret;
-}
+// const getPrinterDevice = async (uri) => {
+//     const setup_device = getSetupPrinters().find(i => i.options['device-uri'] === uri);
+//     const connected_device = allDevices.find(i => i.uri === uri);
+//     let ret = {
+//         ...connected_device,
+//         setup: setup_device ? true : false,
+//         setup_device: setup_device ? {
+//             ...setup_device,
+//             printer_type: await getPrinterType(setup_device.name)
+//         } : null
+//     }
+//     return ret;
+// }
 
 const removePrinter = (printer) => Device.exec(`lpadmin -x "${printer}"`)
 const printFromUrl = async (printer, url) => {

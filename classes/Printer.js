@@ -60,7 +60,7 @@ const start_ipp_broadcast = () => {
             const printer = printers[i];
             if(printer.setup_device && printer.setup_device.name.length !== 0 && !ipp_devices.includes(`${printer.id}${printer.setup_device.name}`)) {
                 if(printer.setup_device.printer_type === 'a4') {
-                    const ippPrinter = new IppPrinter(`Hub | ${printer.setup_device.name}`);
+                    const ippPrinter = new IppPrinter(printer.setup_device.name);
                     ipp_devices.push(`${printer.id}${printer.setup_device.name}`)
                     ippPrinter.on('job', function (job) {
                         console.log('[job %d] Printing document: %s', job.id, job.name)

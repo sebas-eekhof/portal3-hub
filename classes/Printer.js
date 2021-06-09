@@ -125,7 +125,7 @@ const printFromUrl = async (printer, url) => {
 }
 const printFromFile = (printer, filename, path) => Device.exec(`cd ${path} && lp -d ${printer} ${filename}`)
 const printText = (text, printer) => Device.exec(`echo "${text}" | lp -d ${printer}`)
-const addPrinter = (name, uri, driver) => Device.exec(`lpadmin -p "${name}" -E -v ${uri} -m ${driver}`)
+const addPrinter = (name, uri, driver) => Device.exec(`lpadmin -p "${name}" -E -v ${uri} -P ${driver}`)
 const getSetupPrinters = () => Printer.getPrinters()
 const getPrinters = async () => {
     let printers = getSetupPrinters()

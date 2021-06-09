@@ -35,6 +35,7 @@ const start_discovery = () => {
                     devices.push(info)
             }
             allDevices = devices;
+            console.log(allDevices)
             setTimeout(run, 5000)
         } catch(e) {
             setTimeout(run, 100)
@@ -88,12 +89,13 @@ const getPrinters = async () => {
     for(let i = 0; i < printers.length; i++) {
         console.log(`Length1 ${printers.length}`)
         console.log(printers[i])
-        const device_info = await getPrinterDevice(printers[i].options['device-uri']);
-        if(device_info.setup && typeof device_info.setup_device.name === "string" && device_info.setup_device.name.length !== 0)
-            list.push(device_info)
+        if(_.get(printers[i], `options.device-uri`, false)) {
+            const device_info = await getPrinterDevice(printers[i].options['device-uri']);
+            if(device_info.setup && typeof device_info.setup_device.name === "string" && device_info.setup_device.name.length !== 0)
+                list.push(device_info)
+        }
     }
-    console.log(list)
-    return list.filter(i => (typeof i.uri !== "undefined"))
+    return list;
 }
 const getCommands = () => Printer.getSupportedJobCommands()
 const getDevices = async () => {
@@ -102,20 +104,6 @@ const getDevices = async () => {
     for(let i = 0; i < devices.length; i++)
         list.push(await getPrinterDevice(devices[i].uri))
     return list;
-}
-const getByUsb = async (usb_device) => {
-    if(usb_device.device_info.class !== 'printer')
-        return null;
-    const usb_printers = allDevices.filter(i => i.class === 'direct');
-    if(usb_device.serial_number && usb_device.serial_number.length !== 0)
-        for(let i = 0; i < usb_printers.length; i++)
-            if(usb_printers[i].id.includes(usb_device.serial_number))
-                return await getPrinterDevice(usb_printers[i].uri);
-    
-    for(let i = 0; i < usb_printers.length; i++)
-        if(usb_printers[i].id.includes(usb_device.name))
-            return await getPrinterDevice(usb_printers[i].uri);
-    return null;
 }
 const getDrivers = async (printer) => {
     try {
@@ -178,7 +166,6 @@ module.exports = {
     getCommands,
     getDrivers,
     getDevices,
-    getByUsb,
     addPrinter,
     printText,
     removePrinter,

@@ -140,9 +140,7 @@ const getPrinters = async () => {
     }
     return list.filter(i => (typeof i.uri !== "undefined"))
 }
-const getPrintersFast = async () => {
-    return setupDevices
-}
+
 const getCommands = () => Printer.getSupportedJobCommands()
 const getDevices = async () => {
     let devices = allDevices.filter(i => !getSetupPrinters().map(i => i.options['device-uri']).includes(i.uri))
@@ -226,7 +224,7 @@ const getDrivers = async (printer) => {
 module.exports = {
     start_discovery,
     start_ipp_broadcast,
-    getPrinters: getPrintersFast,
+    getPrinters,
     getCommands,
     getDrivers,
     getDevices,

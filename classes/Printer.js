@@ -4,7 +4,7 @@ const _ = require('lodash');
 const { v4: uuidv4 } = require('uuid');
 const { downloadFile, removeFile } = require('./FileStorage');
 
-let allDevices = [];
+let allDevices = null;
 
 const start_discovery = () => {
     const run = async () => {
@@ -43,6 +43,20 @@ const start_discovery = () => {
     run();
 }
 
+const getAllDevices = () => new Promise(resolve => {
+    if(allDevices !== null) {
+        resolve(allDevices);
+        return;
+    }
+    const allInterval = setInterval(() => {
+        if(allDevices !== null) {
+            clearInterval(allInterval);
+            resolve(allDevices);
+            return;
+        }
+    }, 50)
+})
+
 const getPrinterType = async (name) => {
     try {
         const options = await Device.exec(`lpoptions -p ${name} -l`);
@@ -58,7 +72,7 @@ const getPrinterType = async (name) => {
 
 const getPrinterDevice = async (uri) => {
     const setup_device = getSetupPrinters().find(i => i.options['device-uri'] === uri);
-    const connected_device = allDevices.find(i => i.uri === uri);
+    const connected_device = await getAllDevices().find(i => i.uri === uri);
     console.log(allDevices)
     let ret = {
         ...connected_device,

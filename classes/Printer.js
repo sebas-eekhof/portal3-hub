@@ -52,35 +52,37 @@ let ipp_devices = [];
 const start_ipp_broadcast = () => {
     if(ipp_running)
         return;
-    console.log('Started ipp')
     const performCheck = async () => {
         if(!ipp_running)
             return;
 
-        const printers = await getPrinters();
-        setupDevices = printers;
-        console.log(`Currently ${printers.length} printers`)
-        for(let i = 0; i < printers.length; i++) {
-            const printer = printers[i];
-            if(printer.setup_device && printer.setup_device.name.length !== 0 && !ipp_devices.includes(`${printer.id}${printer.setup_device.name}`)) {
-                if(printer.setup_device.printer_type === 'a4') {
-                    const ippPrinter = new IppPrinter(printer.setup_device.name);
-                    ipp_devices.push(`${printer.id}${printer.setup_device.name}`)
-                    ippPrinter.on('job', function (job) {
-                        console.log('[job %d] Printing document: %s', job.id, job.name)
-                      
-                        const filename = 'job-' + job.id + '.ps'
-                        const file = fs.createWriteStream(`/portal3/jobs/${filename}`)
-                      
-                        job.on('end', function () {
-                            console.log('[job %d] Document saved as %s', job.id, filename)
-                        })
-                      
-                        job.pipe(file)
-                    })
+        getPrinters()
+            .then(printers => {
+                setupDevices = printers;
+                console.log(`Currently ${printers.length} printers`)
+                for(let i = 0; i < printers.length; i++) {
+                    const printer = printers[i];
+                    if(printer.setup_device && printer.setup_device.name.length !== 0 && !ipp_devices.includes(`${printer.id}${printer.setup_device.name}`)) {
+                        if(printer.setup_device.printer_type === 'a4') {
+                            const ippPrinter = new IppPrinter(printer.setup_device.name);
+                            ipp_devices.push(`${printer.id}${printer.setup_device.name}`)
+                            ippPrinter.on('job', function (job) {
+                                console.log('[job %d] Printing document: %s', job.id, job.name)
+                              
+                                const filename = 'job-' + job.id + '.ps'
+                                const file = fs.createWriteStream(`/portal3/jobs/${filename}`)
+                              
+                                job.on('end', function () {
+                                    console.log('[job %d] Document saved as %s', job.id, filename)
+                                })
+                              
+                                job.pipe(file)
+                            })
+                        }
+                    }
                 }
-            }
-        }
+            })
+            .catch(console.error)
 
         if(ipp_running)
             setTimeout(() => performCheck(), 5000)

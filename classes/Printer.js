@@ -3,8 +3,10 @@ const Device = require('./Device');
 const _ = require('lodash');
 const { v4: uuidv4 } = require('uuid');
 const { downloadFile, removeFile } = require('./FileStorage');
+const IppPrinter = require('ipp-printer');
 
 let allDevices = [];
+let ippPrinters = [];
 
 const start_discovery = () => {
     const run = async () => {
@@ -35,12 +37,17 @@ const start_discovery = () => {
                     devices.push(info)
             }
             allDevices = devices;
+            checkIpp(devices)
             setTimeout(run, 5000)
         } catch(e) {
             setTimeout(run, 100)
         }
     }
     run();
+}
+
+const checkIpp = (devices) => {
+    console.log(devices)
 }
 
 const getPrinterType = async (name) => {

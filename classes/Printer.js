@@ -3,31 +3,19 @@ const Device = require('./Device');
 const _ = require('lodash');
 const { v4: uuidv4 } = require('uuid');
 const { downloadFile, removeFile } = require('./FileStorage');
-const IppPrinter = require('ipp-printer');
-
-const printer = new IppPrinter({name: 'Test_Printer_Node'});
-printer.on('job', function (job) {
-    console.log('[job %d] Printing document: %s', job.id, job.name)
-   
-    var filename = 'job-' + job.id + '.ps' // .ps = PostScript
-    var file = fs.createWriteStream(`/portal3/jobs/${filename}`)
-   
-    job.on('end', function () {
-      console.log('[job %d] Document saved as %s', job.id, filename)
-    })
-   
-    job.pipe(file)
-})
 
 
 let allDevices = null;
 let getPrintersArray = null;
+let airprintProxies = {};
 
 const start_get_printers = () => {
     const run = async () => {
         try {
             const printers = await getPrinters();
             getPrintersArray = printers;
+            console.log(printers)
+            for(let i = 0; i < printers.length; i++) {}
             setTimeout(() => run(), 5000);
         } catch(e) {
             console.error(e);

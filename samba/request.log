@@ -1,8 +1,0 @@
-2021-06-09T17:58:20.361Z - info: [1623261500361] -> GET http://localhost:4502/api/assets/.json?limit=9999&showProperty=jcr:created&showProperty=jcr:lastModified&showProperty=asset:size&showProperty=asset:readonly&showProperty=cq:drivelock
-2021-06-09T17:58:20.373Z - error: [1623261500361] <- ERR GET http://localhost:4502/api/assets/.json?limit=9999&showProperty=jcr:created&showProperty=jcr:lastModified&showProperty=asset:size&showProperty=asset:readonly&showProperty=cq:drivelock message=connect ECONNREFUSED 127.0.0.1:4502, stack=Error: connect ECONNREFUSED 127.0.0.1:4502
-    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16)
-    at TCPConnectWrap.callbackTrampoline (internal/async_hooks.js:134:14), errno=-61, code=ECONNREFUSED, syscall=connect, address=127.0.0.1, port=4502
-2021-06-09T17:58:20.375Z - info: [1623261500375] -> GET http://localhost:4502/api/assets/.json?limit=9999&showProperty=jcr:created&showProperty=jcr:lastModified&showProperty=asset:size&showProperty=asset:readonly&showProperty=cq:drivelock
-2021-06-09T17:58:20.379Z - error: [1623261500375] <- ERR GET http://localhost:4502/api/assets/.json?limit=9999&showProperty=jcr:created&showProperty=jcr:lastModified&showProperty=asset:size&showProperty=asset:readonly&showProperty=cq:drivelock message=connect ECONNREFUSED 127.0.0.1:4502, stack=Error: connect ECONNREFUSED 127.0.0.1:4502
-    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16)
-    at TCPConnectWrap.callbackTrampoline (internal/async_hooks.js:134:14), errno=-61, code=ECONNREFUSED, syscall=connect, address=127.0.0.1, port=4502

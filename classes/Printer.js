@@ -52,6 +52,7 @@ let ipp_devices = [];
 const start_ipp_broadcast = () => {
     if(ipp_running)
         return;
+    console.log('Started ipp')
     const performCheck = async () => {
         if(!ipp_running)
             return;

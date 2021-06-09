@@ -200,6 +200,7 @@ const getDrivers = async (printer) => {
 
 module.exports = {
     start_discovery,
+    start_get_printers,
     getPrinters: getPrintersFast,
     getCommands,
     getDrivers,

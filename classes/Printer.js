@@ -8,7 +8,7 @@ const matchAll = require('match-all');
 
 const getPrinters = async () => {
     const lpstat = await Device.exec(`lpstat -p -d`);
-    const printers = matchAll(lpstat, /printer (\w*)/gm)
+    const printers = matchAll(lpstat, /printer (\w*)/gm).toArray();
 
     console.log(printers)
 }

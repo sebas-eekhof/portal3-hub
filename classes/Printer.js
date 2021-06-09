@@ -75,7 +75,7 @@ const getPrinterDevice = async (uri) => {
     const all_devices = await getAllDevices();
     connected_device = all_devices.find(i => i.uri === uri);
     let ret = {
-        ...connected_device,
+        connected_device,
         setup: setup_device ? true : false,
         setup_device: setup_device ? {
             ...setup_device,

@@ -16,6 +16,7 @@
     "fast-folder-size": "^1.3.0",
     "install": "^0.13.0",
     "ipp-printer": "^1.0.0",
+    "linux-sys-user": "^1.1.3",
     "lodash": "^4.17.21",
     "match-all": "^1.2.6",
     "mime-types": "^2.1.30",

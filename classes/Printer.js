@@ -46,6 +46,7 @@ const start_discovery = () => {
 }
 
 let ipp_running = false
+let ipp_devices = [];
 
 const start_ipp_broadcast = () => {
     if(ipp_running)
@@ -55,7 +56,27 @@ const start_ipp_broadcast = () => {
             return;
 
         const printers = await getPrinters();
-        console.log(printers)
+        for(let i = 0; i < printers.length; i++) {
+            const printer = printers[i];
+            if(printer.setup_device && printer.setup_device.name.length !== 0 && !ipp_devices.includes(`${printer.id}${printer.setup_device.name}`)) {
+                if(printer.setup_device.printer_type === 'a4') {
+                    const ippPrinter = new IppPrinter(`Hub | ${printer.setup_device.name}`);
+                    ipp_devices.push(`${printer.id}${printer.setup_device.name}`)
+                    ippPrinter.on('job', function (job) {
+                        console.log('[job %d] Printing document: %s', job.id, job.name)
+                      
+                        const filename = 'job-' + job.id + '.ps'
+                        const file = fs.createWriteStream(`/portal3/jobs/${filename}`)
+                      
+                        job.on('end', function () {
+                            console.log('[job %d] Document saved as %s', job.id, filename)
+                        })
+                      
+                        job.pipe(file)
+                    })
+                }
+            }
+        }
 
         if(ipp_running)
             setTimeout(() => performCheck(), 5000)

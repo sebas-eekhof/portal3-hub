@@ -1,0 +1,74 @@
+{
+  "_from": "node-smb-server",
+  "_id": "node-smb-server@0.10.36",
+  "_inBundle": false,
+  "_integrity": "sha512-VPfx01s90mQD8hAPutH1BCJZbjrgXMiBWpczwu448gKzUWyU4M13UhCDsAEfnhVwlk6xB/+19/KXJqtgHlYPqg==",
+  "_location": "/node-smb-server",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "node-smb-server",
+    "name": "node-smb-server",
+    "escapedName": "node-smb-server",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/node-smb-server/-/node-smb-server-0.10.36.tgz",
+  "_shasum": "2181feae11e106e7f9e0e0181bab101ee08439f5",
+  "_spec": "node-smb-server",
+  "_where": "/Users/sebastiaaneekhof/Documents/portal3-hub",
+  "bugs": {
+    "url": "https://github.com/adobe/node-smb-server/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "async": "^1.4.2",
+    "binary": "~0.3.0",
+    "dnscache": "^1.0.1",
+    "errno": "~0.1.4",
+    "lodash": "^4.5.0",
+    "long": "^3.0.3",
+    "mime": "^1.3.4",
+    "mkdirp": "^0.5.1",
+    "nedb": "^1.8.0",
+    "put": "~0.0.6",
+    "request": "^2.85.0",
+    "requestretry": "^1.12.0",
+    "temp": "^0.8.3",
+    "unorm": "^1.4.1",
+    "winston": "^2.2.0"
+  },
+  "deprecated": false,
+  "description": "A Pure JavaScript SMB Server Implementation",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "homepage": "https://github.com/adobe/node-smb-server#readme",
+  "keywords": [
+    "SMB",
+    "CIFS",
+    "Samba",
+    "NTLM",
+    "NetBIOS",
+    "File-Sharing",
+    "Share",
+    "Server"
+  ],
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "name": "node-smb-server",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adobe/node-smb-server.git"
+  },
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "version": "0.10.36"
+}

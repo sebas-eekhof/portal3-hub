@@ -1,0 +1,314 @@
+2021-06-09T17:57:52.492Z - debug: [NEGOTIATE] dialects: NT LM 0.12,SMB 2.002,SMB 2.???
+2021-06-09T17:58:05.480Z - debug: [SESSION_SETUP_ANDX] maxBufferSize: 33028, maxMpxCount: 50, vcNumber: 1148, sessionKey: 1, capabilities: 10000000000000001100000001011100, accountName: test, primaryDomain: MAC-MINI-VAN-SEBASTIAAN, nativeOS: Mac OS X 11, nativeLanMan: SMBFS 3.6
+2021-06-09T17:58:05.496Z - debug: [TREE_CONNECT_ANDX] flags: 1000, password: 00, service: ?????, path: \\localhost\IPC$
+2021-06-09T17:58:05.497Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 11000000000000000000000000000000, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 11, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \srvsvc
+2021-06-09T17:58:05.500Z - debug: [TRANSACTION][TRANS_TRANSACT_NMPIPE] totalParameterCount: 0, parameterCount: 0, totalDataCount: 72, dataCount: 72, flags: 0
+2021-06-09T17:58:05.500Z - debug: [TRANS_TRANSACT_NMPIPE] fid: 1 [fileName: srvsvc], data: 05000b0310000000480000000b00000000800080000000000100000000000100c84f324b7016d30112785a47bf6ee18803000000045d888aeb1cc9119fe808002b10486002000000
+2021-06-09T17:58:05.502Z - debug: [TRANSACTION][TRANS_TRANSACT_NMPIPE] totalParameterCount: 0, parameterCount: 0, totalDataCount: 92, dataCount: 92, flags: 0
+2021-06-09T17:58:05.502Z - debug: [TRANS_TRANSACT_NMPIPE] fid: 1 [fileName: srvsvc], data: 05000003100000005c0000000a0000004400000000000f00010000000a000000000000000a0000006c006f00630061006c0068006f007300740000000100000001000000010000000000000000000000ffffffff0100000000000000
+2021-06-09T17:58:05.505Z - debug: [CLOSE] fid: 1 [fileName: srvsvc], lastModified: 4294967295
+2021-06-09T17:58:05.506Z - debug: [TREE_DISCONNECT] tid: 1
+2021-06-09T17:58:12.539Z - debug: [TREE_CONNECT_ANDX] flags: 1000, password: 00, service: ?????, path: \\localhost\FS
+2021-06-09T17:58:12.542Z - debug: [TREE_CONNECT_ANDX] flags: 1000, password: 00, service: ?????, path: \\localhost\IPC$
+2021-06-09T17:58:12.543Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 11000000000000000000000000000000, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 11, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \lsarpc
+2021-06-09T17:58:12.543Z - debug: \lsarpc STATUS_ACCESS_DENIED
+2021-06-09T17:58:12.543Z - debug: 'NT_CREATE_ANDX' returned error status STATUS_ACCESS_DENIED (0xc0000022)
+2021-06-09T17:58:12.544Z - debug: [TREE_DISCONNECT] tid: 3
+2021-06-09T17:58:12.545Z - debug: [TRANSACTION2][TRANS2_QUERY_FS_INFORMATION] totalParameterCount: 2, parameterCount: 2, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.545Z - debug: [TRANS2_QUERY_FS_INFORMATION] informationLevel: QUERY_FS_SIZE_INFO
+2021-06-09T17:58:12.546Z - debug: [TRANSACTION2][TRANS2_QUERY_FS_INFORMATION] totalParameterCount: 2, parameterCount: 2, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.546Z - debug: [TRANS2_QUERY_FS_INFORMATION] informationLevel: QUERY_FS_ATTRIBUTE_INFO
+2021-06-09T17:58:12.547Z - debug: [TRANSACTION2][TRANS2_QUERY_PATH_INFORMATION] totalParameterCount: 10, parameterCount: 10, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.547Z - debug: [TRANS2_QUERY_PATH_INFORMATION] informationLevel: QUERY_FILE_ALL_INFO, fileName: 0
+2021-06-09T17:58:12.550Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 1, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \
+2021-06-09T17:58:12.551Z - debug: [CLOSE] fid: 3 [fileName: null], lastModified: 4294967295
+2021-06-09T17:58:12.552Z - debug: [TRANSACTION2][TRANS2_QUERY_FS_INFORMATION] totalParameterCount: 2, parameterCount: 2, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.552Z - debug: [TRANS2_QUERY_FS_INFORMATION] informationLevel: QUERY_FS_SIZE_INFO
+2021-06-09T17:58:12.555Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 22, parameterCount: 22, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.555Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._
+2021-06-09T17:58:12.556Z - debug: 'TRANSACTION2' returned error status STATUS_NO_SUCH_FILE (0xc000000f)
+2021-06-09T17:58:12.560Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 24, parameterCount: 24, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.561Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \DCIM
+2021-06-09T17:58:12.561Z - debug: 'TRANSACTION2' returned error status STATUS_NO_SUCH_FILE (0xc000000f)
+2021-06-09T17:58:12.562Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 86, parameterCount: 86, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.562Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \.metadata_never_index_unless_rootfs
+2021-06-09T17:58:12.563Z - debug: 'TRANSACTION2' returned error status STATUS_NO_SUCH_FILE (0xc000000f)
+2021-06-09T17:58:12.563Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 58, parameterCount: 58, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.563Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \.metadata_never_index
+2021-06-09T17:58:12.565Z - debug: 'TRANSACTION2' returned error status STATUS_NO_SUCH_FILE (0xc000000f)
+2021-06-09T17:58:12.565Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 46, parameterCount: 46, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.565Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \.Spotlight-V100
+2021-06-09T17:58:12.566Z - debug: 'TRANSACTION2' returned error status STATUS_NO_SUCH_FILE (0xc000000f)
+2021-06-09T17:58:12.571Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 34, parameterCount: 34, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.571Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \.DS_Store
+2021-06-09T17:58:12.573Z - debug: 'TRANSACTION2' returned error status STATUS_NO_SUCH_FILE (0xc000000f)
+2021-06-09T17:58:12.577Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 100000000000000001, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \.hidden
+2021-06-09T17:58:12.577Z - debug: \.hidden no such file or directory [smbroot/.hidden] [unable to create file due to unexpected error /.hidden]
+2021-06-09T17:58:12.578Z - debug: 'NT_CREATE_ANDX' returned error status STATUS_NO_SUCH_FILE (0xc000000f)
+2021-06-09T17:58:12.579Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 100000000000000000001, allocationSize: 0, extFileAttributes: 10000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \
+2021-06-09T17:58:12.581Z - debug: [NT_TRANSACT][NT_TRANSACT_NOTIFY_CHANGE] totalParameterCount: 0, parameterCount: 0, totalDataCount: 0, dataCount: 0, setup: 0x470d000004000000
+2021-06-09T17:58:12.582Z - debug: [NT_TRANSACT_NOTIFY_CHANGE] completionFilter: 110101000111, fid: 4 [fileName: ], watchTree: 0
+2021-06-09T17:58:12.584Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 18, parameterCount: 18, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.584Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 344, flags: 110, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \*
+2021-06-09T17:58:12.586Z - debug: 'TRANSACTION2' returned error status STATUS_NO_SUCH_FILE (0xc000000f)
+2021-06-09T17:58:12.590Z - debug: [TREE_CONNECT_ANDX] flags: 1000, password: 00, service: ?????, path: \\localhost\IPC$
+2021-06-09T17:58:12.629Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 11000000000000000000000000000000, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 11, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \mdssvc
+2021-06-09T17:58:12.629Z - debug: \mdssvc STATUS_ACCESS_DENIED
+2021-06-09T17:58:12.629Z - debug: 'NT_CREATE_ANDX' returned error status STATUS_ACCESS_DENIED (0xc0000022)
+2021-06-09T17:58:12.630Z - debug: [TREE_DISCONNECT] tid: 4
+2021-06-09T17:58:12.716Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 100000000000000111, allocationSize: 0, extFileAttributes: 10100010, shareAccess: 111, createDisposition: 0x2, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \.DS_Store
+2021-06-09T17:58:12.718Z - debug: [NT_TRANSACT_NOTIFY_CHANGE][FILE_ACTION_ADDED] name: .DS_Store
+2021-06-09T17:58:12.719Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 1, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \.DS_Store
+2021-06-09T17:58:12.720Z - debug: [CLOSE] fid: 6 [fileName: .DS_Store], lastModified: 4294967295
+2021-06-09T17:58:12.720Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.720Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:12.721Z - debug: 'TRANSACTION2' returned error status STATUS_NO_SUCH_FILE (0xc000000f)
+2021-06-09T17:58:12.721Z - debug: [NT_TRANSACT][NT_TRANSACT_NOTIFY_CHANGE] totalParameterCount: 0, parameterCount: 0, totalDataCount: 0, dataCount: 0, setup: 0x470d000004000000
+2021-06-09T17:58:12.721Z - debug: [NT_TRANSACT_NOTIFY_CHANGE] completionFilter: 110101000111, fid: 4 [fileName: ], watchTree: 0
+2021-06-09T17:58:12.721Z - debug: [CLOSE] fid: 5 [fileName: .DS_Store], lastModified: 4294967295
+2021-06-09T17:58:12.722Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 34, parameterCount: 34, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.722Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \.DS_Store
+2021-06-09T17:58:12.725Z - debug: [TRANSACTION2][TRANS2_QUERY_PATH_INFORMATION] totalParameterCount: 10, parameterCount: 10, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.725Z - debug: [TRANS2_QUERY_PATH_INFORMATION] informationLevel: QUERY_FILE_ALL_INFO, fileName: 0
+2021-06-09T17:58:12.726Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 34, parameterCount: 34, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.726Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \.DS_Store
+2021-06-09T17:58:12.728Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.729Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:12.729Z - debug: 'TRANSACTION2' returned error status STATUS_NO_SUCH_FILE (0xc000000f)
+2021-06-09T17:58:12.730Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.730Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:12.730Z - debug: 'TRANSACTION2' returned error status STATUS_NO_SUCH_FILE (0xc000000f)
+2021-06-09T17:58:12.731Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 10, allocationSize: 0, extFileAttributes: 10100010, shareAccess: 111, createDisposition: 0x2, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \._.DS_Store
+2021-06-09T17:58:12.732Z - debug: [NT_TRANSACT_NOTIFY_CHANGE][FILE_ACTION_ADDED] name: ._.DS_Store
+2021-06-09T17:58:12.733Z - debug: [CLOSE] fid: 8 [fileName: ._.DS_Store], lastModified: 4294967295
+2021-06-09T17:58:12.734Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 1, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \._.DS_Store
+2021-06-09T17:58:12.735Z - debug: [CLOSE] fid: 9 [fileName: ._.DS_Store], lastModified: 4294967295
+2021-06-09T17:58:12.736Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.736Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:12.736Z - debug: [NT_TRANSACT][NT_TRANSACT_NOTIFY_CHANGE] totalParameterCount: 0, parameterCount: 0, totalDataCount: 0, dataCount: 0, setup: 0x470d000004000000
+2021-06-09T17:58:12.736Z - debug: [NT_TRANSACT_NOTIFY_CHANGE] completionFilter: 110101000111, fid: 4 [fileName: ], watchTree: 0
+2021-06-09T17:58:12.738Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 100000000000000111, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \._.DS_Store
+2021-06-09T17:58:12.739Z - debug: [LOCKING_ANDX] fid: 10 [fileName: ._.DS_Store], typeOfLock: 10000, newOpLockLevel: 0, timeout: 0xffffffff, numberOfRequestedUnlocks: 0, numberOfRequestedLocks: 1
+2021-06-09T17:58:12.739Z - debug: [LOCKING_ANDX] fid: 10 [fileName: ._.DS_Store], typeOfLock: 10000, newOpLockLevel: 0, timeout: 0x0, numberOfRequestedUnlocks: 1, numberOfRequestedLocks: 0
+2021-06-09T17:58:12.740Z - debug: [WRITE_ANDX] fid: 10 [fileName: ._.DS_Store], offset: 0, timeout: 0, remaining: 0, dataLengthHigh: 0, dataLength: 4096, dataOffset: 64
+2021-06-09T17:58:12.741Z - debug: [TRANSACTION2][TRANS2_SET_FILE_INFORMATION] totalParameterCount: 6, parameterCount: 6, totalDataCount: 8, dataCount: 8, flags: 0
+2021-06-09T17:58:12.741Z - debug: [TRANS2_SET_FILE_INFORMATION] informationLevel: undefined, fid: 10 [fileName: ._.DS_Store]
+2021-06-09T17:58:12.743Z - debug: [TRANSACTION2][TRANS2_QUERY_PATH_INFORMATION] totalParameterCount: 10, parameterCount: 10, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.743Z - debug: [TRANS2_QUERY_PATH_INFORMATION] informationLevel: QUERY_FILE_ALL_INFO, fileName: 0
+2021-06-09T17:58:12.745Z - debug: [FLUSH] fid: 10 [fileName: ._.DS_Store]
+2021-06-09T17:58:12.745Z - debug: [NT_TRANSACT_NOTIFY_CHANGE][FILE_ACTION_MODIFIED] name: ._.DS_Store
+2021-06-09T17:58:12.746Z - debug: [CLOSE] fid: 10 [fileName: ._.DS_Store], lastModified: 4294967295
+2021-06-09T17:58:12.746Z - debug: [NT_TRANSACT][NT_TRANSACT_NOTIFY_CHANGE] totalParameterCount: 0, parameterCount: 0, totalDataCount: 0, dataCount: 0, setup: 0x470d000004000000
+2021-06-09T17:58:12.746Z - debug: [NT_TRANSACT_NOTIFY_CHANGE] completionFilter: 110101000111, fid: 4 [fileName: ], watchTree: 0
+2021-06-09T17:58:12.747Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.747Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:12.749Z - debug: [QUERY_INFORMATION] fileName: \.DS_Store
+2021-06-09T17:58:12.751Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 34, parameterCount: 34, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.751Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \.DS_Store
+2021-06-09T17:58:12.752Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 100000000000000111, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \.DS_Store
+2021-06-09T17:58:12.753Z - debug: [TRANSACTION2][TRANS2_SET_FILE_INFORMATION] totalParameterCount: 6, parameterCount: 6, totalDataCount: 8, dataCount: 8, flags: 0
+2021-06-09T17:58:12.753Z - debug: [TRANS2_SET_FILE_INFORMATION] informationLevel: undefined, fid: 13 [fileName: .DS_Store]
+2021-06-09T17:58:12.755Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 34, parameterCount: 34, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.755Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \.DS_Store
+2021-06-09T17:58:12.756Z - debug: [WRITE_ANDX] fid: 13 [fileName: .DS_Store], offset: 0, timeout: 0, remaining: 0, dataLengthHigh: 0, dataLength: 4, dataOffset: 64
+2021-06-09T17:58:12.757Z - debug: [WRITE_ANDX] fid: 13 [fileName: .DS_Store], offset: 4, timeout: 0, remaining: 0, dataLengthHigh: 0, dataLength: 6144, dataOffset: 64
+2021-06-09T17:58:12.758Z - debug: [TRANSACTION2][TRANS2_SET_FILE_INFORMATION] totalParameterCount: 6, parameterCount: 6, totalDataCount: 8, dataCount: 8, flags: 0
+2021-06-09T17:58:12.758Z - debug: [TRANS2_SET_FILE_INFORMATION] informationLevel: undefined, fid: 13 [fileName: .DS_Store]
+2021-06-09T17:58:12.760Z - debug: [FLUSH] fid: 13 [fileName: .DS_Store]
+2021-06-09T17:58:12.760Z - debug: [NT_TRANSACT_NOTIFY_CHANGE][FILE_ACTION_MODIFIED] name: .DS_Store
+2021-06-09T17:58:12.761Z - debug: [CLOSE] fid: 13 [fileName: .DS_Store], lastModified: 4294967295
+2021-06-09T17:58:12.762Z - debug: [NT_TRANSACT][NT_TRANSACT_NOTIFY_CHANGE] totalParameterCount: 0, parameterCount: 0, totalDataCount: 0, dataCount: 0, setup: 0x470d000004000000
+2021-06-09T17:58:12.762Z - debug: [NT_TRANSACT_NOTIFY_CHANGE] completionFilter: 110101000111, fid: 4 [fileName: ], watchTree: 0
+2021-06-09T17:58:12.762Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 34, parameterCount: 34, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.762Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \.DS_Store
+2021-06-09T17:58:12.764Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 34, parameterCount: 34, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.764Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \.DS_Store
+2021-06-09T17:58:12.765Z - debug: [TRANSACTION2][TRANS2_QUERY_PATH_INFORMATION] totalParameterCount: 10, parameterCount: 10, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.765Z - debug: [TRANS2_QUERY_PATH_INFORMATION] informationLevel: QUERY_FILE_ALL_INFO, fileName: 0
+2021-06-09T17:58:12.767Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 22, parameterCount: 22, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.767Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._
+2021-06-09T17:58:12.768Z - debug: 'TRANSACTION2' returned error status STATUS_NO_SUCH_FILE (0xc000000f)
+2021-06-09T17:58:12.768Z - debug: [TRANSACTION2][TRANS2_QUERY_FS_INFORMATION] totalParameterCount: 2, parameterCount: 2, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:12.768Z - debug: [TRANS2_QUERY_FS_INFORMATION] informationLevel: QUERY_FS_SIZE_INFO
+2021-06-09T17:58:13.079Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 18, parameterCount: 18, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:13.079Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 344, flags: 110, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \*
+2021-06-09T17:58:13.080Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:13.081Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:13.082Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:13.082Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:13.084Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 100000000000000001, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \._.DS_Store
+2021-06-09T17:58:13.084Z - debug: [CLOSE] fid: 15 [fileName: ._.DS_Store], lastModified: 4294967295
+2021-06-09T17:58:13.085Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:13.085Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:13.086Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:13.086Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:13.087Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 100000000000000001, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \._.DS_Store
+2021-06-09T17:58:13.088Z - debug: [LOCKING_ANDX] fid: 16 [fileName: ._.DS_Store], typeOfLock: 10000, newOpLockLevel: 0, timeout: 0xffffffff, numberOfRequestedUnlocks: 0, numberOfRequestedLocks: 1
+2021-06-09T17:58:13.089Z - debug: [LOCKING_ANDX] fid: 16 [fileName: ._.DS_Store], typeOfLock: 10000, newOpLockLevel: 0, timeout: 0x0, numberOfRequestedUnlocks: 1, numberOfRequestedLocks: 0
+2021-06-09T17:58:13.089Z - debug: [CLOSE] fid: 16 [fileName: ._.DS_Store], lastModified: 4294967295
+2021-06-09T17:58:13.089Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:13.089Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:17.764Z - debug: [NT_TRANSACT_NOTIFY_CHANGE][FILE_ACTION_MODIFIED] name: 
+2021-06-09T17:58:17.765Z - debug: [NT_TRANSACT][NT_TRANSACT_NOTIFY_CHANGE] totalParameterCount: 0, parameterCount: 0, totalDataCount: 0, dataCount: 0, setup: 0x470d000004000000
+2021-06-09T17:58:17.765Z - debug: [NT_TRANSACT_NOTIFY_CHANGE] completionFilter: 110101000111, fid: 4 [fileName: ], watchTree: 0
+2021-06-09T17:58:17.775Z - debug: [TRANSACTION2][TRANS2_QUERY_PATH_INFORMATION] totalParameterCount: 10, parameterCount: 10, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:17.775Z - debug: [TRANS2_QUERY_PATH_INFORMATION] informationLevel: QUERY_FILE_ALL_INFO, fileName: 0
+2021-06-09T17:58:17.775Z - debug: [TRANSACTION2][TRANS2_QUERY_PATH_INFORMATION] totalParameterCount: 10, parameterCount: 10, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:17.775Z - debug: [TRANS2_QUERY_PATH_INFORMATION] informationLevel: QUERY_FILE_ALL_INFO, fileName: 0
+2021-06-09T17:58:18.081Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 22, parameterCount: 22, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:18.081Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._
+2021-06-09T17:58:18.082Z - debug: 'TRANSACTION2' returned error status STATUS_NO_SUCH_FILE (0xc000000f)
+2021-06-09T17:58:18.083Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 18, parameterCount: 18, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:18.083Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 344, flags: 110, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \*
+2021-06-09T17:58:18.085Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 34, parameterCount: 34, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:18.085Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \.DS_Store
+2021-06-09T17:58:18.086Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:18.087Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:18.088Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:18.088Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:18.089Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 100000000000000001, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \._.DS_Store
+2021-06-09T17:58:18.090Z - debug: [CLOSE] fid: 19 [fileName: ._.DS_Store], lastModified: 4294967295
+2021-06-09T17:58:18.090Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:18.090Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:18.092Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:18.092Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:18.093Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 100000000000000001, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \._.DS_Store
+2021-06-09T17:58:18.094Z - debug: [LOCKING_ANDX] fid: 20 [fileName: ._.DS_Store], typeOfLock: 10000, newOpLockLevel: 0, timeout: 0xffffffff, numberOfRequestedUnlocks: 0, numberOfRequestedLocks: 1
+2021-06-09T17:58:18.095Z - debug: [LOCKING_ANDX] fid: 20 [fileName: ._.DS_Store], typeOfLock: 10000, newOpLockLevel: 0, timeout: 0x0, numberOfRequestedUnlocks: 1, numberOfRequestedLocks: 0
+2021-06-09T17:58:18.095Z - debug: [CLOSE] fid: 20 [fileName: ._.DS_Store], lastModified: 4294967295
+2021-06-09T17:58:18.096Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:18.096Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:18.097Z - debug: [TRANSACTION2][TRANS2_QUERY_FS_INFORMATION] totalParameterCount: 2, parameterCount: 2, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:18.097Z - debug: [TRANS2_QUERY_FS_INFORMATION] informationLevel: QUERY_FS_SIZE_INFO
+2021-06-09T17:58:18.167Z - debug: [CLOSE] fid: 4 [fileName: null], lastModified: 4294967295
+2021-06-09T17:58:18.168Z - debug: [TREE_CONNECT_ANDX] flags: 1000, password: 00, service: ?????, path: \\localhost\IPC$
+2021-06-09T17:58:18.171Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 11000000000000000000000000000000, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 11, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \srvsvc
+2021-06-09T17:58:18.173Z - debug: [TRANSACTION][TRANS_TRANSACT_NMPIPE] totalParameterCount: 0, parameterCount: 0, totalDataCount: 72, dataCount: 72, flags: 0
+2021-06-09T17:58:18.174Z - debug: [TRANS_TRANSACT_NMPIPE] fid: 21 [fileName: srvsvc], data: 05000b0310000000480000000e00000000800080000000000100000000000100c84f324b7016d30112785a47bf6ee18803000000045d888aeb1cc9119fe808002b10486002000000
+2021-06-09T17:58:18.175Z - debug: [TRANSACTION][TRANS_TRANSACT_NMPIPE] totalParameterCount: 0, parameterCount: 0, totalDataCount: 92, dataCount: 92, flags: 0
+2021-06-09T17:58:18.175Z - debug: [TRANS_TRANSACT_NMPIPE] fid: 21 [fileName: srvsvc], data: 05000003100000005c0000000d0000004400000000000f00010000000a000000000000000a0000006c006f00630061006c0068006f007300740000000100000001000000010000000000000000000000ffffffff0100000000000000
+2021-06-09T17:58:18.177Z - debug: [CLOSE] fid: 21 [fileName: srvsvc], lastModified: 4294967295
+2021-06-09T17:58:18.178Z - debug: [TREE_DISCONNECT] tid: 5
+2021-06-09T17:58:20.360Z - debug: [TREE_CONNECT_ANDX] flags: 1000, password: 00, service: ?????, path: \\localhost\DAM
+2021-06-09T17:58:20.372Z - debug: 'TREE_CONNECT_ANDX' returned error status STATUS_ACCESS_DENIED (0xc0000022)
+2021-06-09T17:58:20.375Z - debug: [TREE_CONNECT_ANDX] flags: 1000, password: 00, service: ?????, path: \\127.0.0.1\DAM
+2021-06-09T17:58:20.378Z - debug: 'TREE_CONNECT_ANDX' returned error status STATUS_ACCESS_DENIED (0xc0000022)
+2021-06-09T17:58:20.605Z - debug: [TRANSACTION2][TRANS2_QUERY_PATH_INFORMATION] totalParameterCount: 10, parameterCount: 10, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:20.606Z - debug: [TRANS2_QUERY_PATH_INFORMATION] informationLevel: QUERY_FILE_ALL_INFO, fileName: 0
+2021-06-09T17:58:22.607Z - debug: [TREE_CONNECT_ANDX] flags: 1000, password: 00, service: ?????, path: \\localhost\IPC$
+2021-06-09T17:58:22.608Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 11000000000000000000000000000000, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 11, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \srvsvc
+2021-06-09T17:58:22.609Z - debug: [TRANSACTION][TRANS_TRANSACT_NMPIPE] totalParameterCount: 0, parameterCount: 0, totalDataCount: 72, dataCount: 72, flags: 0
+2021-06-09T17:58:22.609Z - debug: [TRANS_TRANSACT_NMPIPE] fid: 23 [fileName: srvsvc], data: 05000b0310000000480000001000000000800080000000000100000000000100c84f324b7016d30112785a47bf6ee18803000000045d888aeb1cc9119fe808002b10486002000000
+2021-06-09T17:58:22.610Z - debug: [TRANSACTION][TRANS_TRANSACT_NMPIPE] totalParameterCount: 0, parameterCount: 0, totalDataCount: 92, dataCount: 92, flags: 0
+2021-06-09T17:58:22.610Z - debug: [TRANS_TRANSACT_NMPIPE] fid: 23 [fileName: srvsvc], data: 05000003100000005c0000000f0000004400000000000f00010000000a000000000000000a0000006c006f00630061006c0068006f007300740000000100000001000000010000000000000000000000ffffffff0100000000000000
+2021-06-09T17:58:22.612Z - debug: [CLOSE] fid: 23 [fileName: srvsvc], lastModified: 4294967295
+2021-06-09T17:58:22.613Z - debug: [TREE_DISCONNECT] tid: 6
+2021-06-09T17:58:22.768Z - debug: [NT_TRANSACT_NOTIFY_CHANGE][FILE_ACTION_MODIFIED] name: 
+2021-06-09T17:58:23.783Z - debug: [TRANSACTION2][TRANS2_QUERY_PATH_INFORMATION] totalParameterCount: 10, parameterCount: 10, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:23.783Z - debug: [TRANS2_QUERY_PATH_INFORMATION] informationLevel: QUERY_FILE_ALL_INFO, fileName: 0
+2021-06-09T17:58:23.800Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 34, parameterCount: 34, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:23.800Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \.DS_Store
+2021-06-09T17:58:23.804Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:23.804Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:23.806Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:23.806Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:23.807Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 100000000000000001, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \._.DS_Store
+2021-06-09T17:58:23.808Z - debug: [CLOSE] fid: 25 [fileName: ._.DS_Store], lastModified: 4294967295
+2021-06-09T17:58:23.809Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:23.809Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:23.811Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:23.811Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:23.813Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 100000000000000001, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \._.DS_Store
+2021-06-09T17:58:23.814Z - debug: [LOCKING_ANDX] fid: 26 [fileName: ._.DS_Store], typeOfLock: 10000, newOpLockLevel: 0, timeout: 0xffffffff, numberOfRequestedUnlocks: 0, numberOfRequestedLocks: 1
+2021-06-09T17:58:23.814Z - debug: [LOCKING_ANDX] fid: 26 [fileName: ._.DS_Store], typeOfLock: 10000, newOpLockLevel: 0, timeout: 0x0, numberOfRequestedUnlocks: 1, numberOfRequestedLocks: 0
+2021-06-09T17:58:23.814Z - debug: [CLOSE] fid: 26 [fileName: ._.DS_Store], lastModified: 4294967295
+2021-06-09T17:58:23.815Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:23.815Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:23.816Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 34, parameterCount: 34, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:23.816Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \.DS_Store
+2021-06-09T17:58:23.818Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 100000000000000111, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \.DS_Store
+2021-06-09T17:58:23.820Z - debug: [TRANSACTION2][TRANS2_SET_FILE_INFORMATION] totalParameterCount: 6, parameterCount: 6, totalDataCount: 8, dataCount: 8, flags: 0
+2021-06-09T17:58:23.820Z - debug: [TRANS2_SET_FILE_INFORMATION] informationLevel: undefined, fid: 27 [fileName: .DS_Store]
+2021-06-09T17:58:23.822Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 34, parameterCount: 34, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:23.822Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \.DS_Store
+2021-06-09T17:58:23.824Z - debug: [WRITE_ANDX] fid: 27 [fileName: .DS_Store], offset: 0, timeout: 0, remaining: 0, dataLengthHigh: 0, dataLength: 4, dataOffset: 64
+2021-06-09T17:58:23.826Z - debug: [WRITE_ANDX] fid: 27 [fileName: .DS_Store], offset: 4, timeout: 0, remaining: 0, dataLengthHigh: 0, dataLength: 6144, dataOffset: 64
+2021-06-09T17:58:23.827Z - debug: [TRANSACTION2][TRANS2_SET_FILE_INFORMATION] totalParameterCount: 6, parameterCount: 6, totalDataCount: 8, dataCount: 8, flags: 0
+2021-06-09T17:58:23.827Z - debug: [TRANS2_SET_FILE_INFORMATION] informationLevel: undefined, fid: 27 [fileName: .DS_Store]
+2021-06-09T17:58:23.828Z - debug: [FLUSH] fid: 27 [fileName: .DS_Store]
+2021-06-09T17:58:23.829Z - debug: [CLOSE] fid: 27 [fileName: .DS_Store], lastModified: 4294967295
+2021-06-09T17:58:23.829Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 34, parameterCount: 34, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:23.829Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \.DS_Store
+2021-06-09T17:58:23.832Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 18, parameterCount: 18, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:23.833Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 344, flags: 110, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \*
+2021-06-09T17:58:23.834Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:23.834Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:23.835Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 100000000000000001, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \._.DS_Store
+2021-06-09T17:58:23.836Z - debug: [CLOSE] fid: 28 [fileName: ._.DS_Store], lastModified: 4294967295
+2021-06-09T17:58:23.837Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:23.837Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:23.838Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:23.838Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:23.839Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 100000000000000001, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \._.DS_Store
+2021-06-09T17:58:23.840Z - debug: [LOCKING_ANDX] fid: 29 [fileName: ._.DS_Store], typeOfLock: 10000, newOpLockLevel: 0, timeout: 0xffffffff, numberOfRequestedUnlocks: 0, numberOfRequestedLocks: 1
+2021-06-09T17:58:23.841Z - debug: [LOCKING_ANDX] fid: 29 [fileName: ._.DS_Store], typeOfLock: 10000, newOpLockLevel: 0, timeout: 0x0, numberOfRequestedUnlocks: 1, numberOfRequestedLocks: 0
+2021-06-09T17:58:23.841Z - debug: [CLOSE] fid: 29 [fileName: ._.DS_Store], lastModified: 4294967295
+2021-06-09T17:58:23.841Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:23.841Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:23.843Z - debug: [TRANSACTION2][TRANS2_QUERY_FS_INFORMATION] totalParameterCount: 2, parameterCount: 2, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:23.843Z - debug: [TRANS2_QUERY_FS_INFORMATION] informationLevel: QUERY_FS_SIZE_INFO
+2021-06-09T17:58:23.844Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 100000000000000000001, allocationSize: 0, extFileAttributes: 10000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \
+2021-06-09T17:58:23.845Z - debug: [NT_TRANSACT][NT_TRANSACT_NOTIFY_CHANGE] totalParameterCount: 0, parameterCount: 0, totalDataCount: 0, dataCount: 0, setup: 0x470d00001e000000
+2021-06-09T17:58:23.845Z - debug: [NT_TRANSACT_NOTIFY_CHANGE] completionFilter: 110101000111, fid: 30 [fileName: ], watchTree: 0
+2021-06-09T17:58:24.333Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 18, parameterCount: 18, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:24.333Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 344, flags: 110, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \*
+2021-06-09T17:58:24.335Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:24.335Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:24.336Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 100000000000000001, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \._.DS_Store
+2021-06-09T17:58:24.337Z - debug: [CLOSE] fid: 31 [fileName: ._.DS_Store], lastModified: 4294967295
+2021-06-09T17:58:24.338Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:24.338Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:24.339Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:24.339Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:24.341Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 100000000000000001, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \._.DS_Store
+2021-06-09T17:58:24.342Z - debug: [LOCKING_ANDX] fid: 32 [fileName: ._.DS_Store], typeOfLock: 10000, newOpLockLevel: 0, timeout: 0xffffffff, numberOfRequestedUnlocks: 0, numberOfRequestedLocks: 1
+2021-06-09T17:58:24.342Z - debug: [LOCKING_ANDX] fid: 32 [fileName: ._.DS_Store], typeOfLock: 10000, newOpLockLevel: 0, timeout: 0x0, numberOfRequestedUnlocks: 1, numberOfRequestedLocks: 0
+2021-06-09T17:58:24.343Z - debug: [CLOSE] fid: 32 [fileName: ._.DS_Store], lastModified: 4294967295
+2021-06-09T17:58:24.343Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:24.343Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:28.849Z - debug: [NT_TRANSACT_NOTIFY_CHANGE][FILE_ACTION_MODIFIED] name: 
+2021-06-09T17:58:28.850Z - debug: [NT_TRANSACT][NT_TRANSACT_NOTIFY_CHANGE] totalParameterCount: 0, parameterCount: 0, totalDataCount: 0, dataCount: 0, setup: 0x470d00001e000000
+2021-06-09T17:58:28.850Z - debug: [NT_TRANSACT_NOTIFY_CHANGE] completionFilter: 110101000111, fid: 30 [fileName: ], watchTree: 0
+2021-06-09T17:58:28.861Z - debug: [TRANSACTION2][TRANS2_QUERY_PATH_INFORMATION] totalParameterCount: 10, parameterCount: 10, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:28.861Z - debug: [TRANS2_QUERY_PATH_INFORMATION] informationLevel: QUERY_FILE_ALL_INFO, fileName: 0
+2021-06-09T17:58:28.861Z - debug: [TRANSACTION2][TRANS2_QUERY_PATH_INFORMATION] totalParameterCount: 10, parameterCount: 10, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:28.861Z - debug: [TRANS2_QUERY_PATH_INFORMATION] informationLevel: QUERY_FILE_ALL_INFO, fileName: 0
+2021-06-09T17:58:28.862Z - debug: [TRANSACTION2][TRANS2_QUERY_PATH_INFORMATION] totalParameterCount: 10, parameterCount: 10, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:28.862Z - debug: [TRANS2_QUERY_PATH_INFORMATION] informationLevel: QUERY_FILE_ALL_INFO, fileName: 0
+2021-06-09T17:58:28.862Z - debug: [TRANSACTION2][TRANS2_QUERY_PATH_INFORMATION] totalParameterCount: 10, parameterCount: 10, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:28.862Z - debug: [TRANS2_QUERY_PATH_INFORMATION] informationLevel: QUERY_FILE_ALL_INFO, fileName: 0
+2021-06-09T17:58:28.865Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 22, parameterCount: 22, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:28.865Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._
+2021-06-09T17:58:28.866Z - debug: 'TRANSACTION2' returned error status STATUS_NO_SUCH_FILE (0xc000000f)
+2021-06-09T17:58:28.902Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 18, parameterCount: 18, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:28.903Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 344, flags: 110, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \*
+2021-06-09T17:58:28.904Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 34, parameterCount: 34, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:28.905Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \.DS_Store
+2021-06-09T17:58:28.906Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:28.906Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:28.907Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:28.907Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:28.908Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 100000000000000001, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \._.DS_Store
+2021-06-09T17:58:28.909Z - debug: [CLOSE] fid: 37 [fileName: ._.DS_Store], lastModified: 4294967295
+2021-06-09T17:58:28.910Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:28.910Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:28.911Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:28.911Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:28.912Z - debug: [NT_CREATE_ANDX] flags: 10000, rootDirectoryFID: 0, desiredAccess: 100000000000000001, allocationSize: 0, extFileAttributes: 10000000, shareAccess: 111, createDisposition: 0x1, createOptions: 0, impersonationLevel: 0x2, securityFlags: 0, fileName: \._.DS_Store
+2021-06-09T17:58:28.914Z - debug: [LOCKING_ANDX] fid: 38 [fileName: ._.DS_Store], typeOfLock: 10000, newOpLockLevel: 0, timeout: 0xffffffff, numberOfRequestedUnlocks: 0, numberOfRequestedLocks: 1
+2021-06-09T17:58:28.914Z - debug: [LOCKING_ANDX] fid: 38 [fileName: ._.DS_Store], typeOfLock: 10000, newOpLockLevel: 0, timeout: 0x0, numberOfRequestedUnlocks: 1, numberOfRequestedLocks: 0
+2021-06-09T17:58:28.915Z - debug: [CLOSE] fid: 38 [fileName: ._.DS_Store], lastModified: 4294967295
+2021-06-09T17:58:28.915Z - debug: [TRANSACTION2][TRANS2_FIND_FIRST2] totalParameterCount: 38, parameterCount: 38, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:28.915Z - debug: [TRANS2_FIND_FIRST2] searchAttributes: 10110, searchCount: 1, flags: 111, informationLevel: FIND_FILE_BOTH_DIRECTORY_INFO, searchStorageType: 0, fileName: \._.DS_Store
+2021-06-09T17:58:28.917Z - debug: [TRANSACTION2][TRANS2_QUERY_FS_INFORMATION] totalParameterCount: 2, parameterCount: 2, totalDataCount: 0, dataCount: 0, flags: 0
+2021-06-09T17:58:28.917Z - debug: [TRANS2_QUERY_FS_INFORMATION] informationLevel: QUERY_FS_SIZE_INFO

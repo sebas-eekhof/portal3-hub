@@ -1,0 +1,565 @@
+2021-06-09T17:58:05.497Z - debug: [ipc] tree.open /srvsvc
+2021-06-09T17:58:05.497Z - debug: [ipc] file.open /srvsvc
+2021-06-09T17:58:05.505Z - debug: [fid=1] file.close /srvsvc deleteOnClose=0
+2021-06-09T17:58:05.505Z - debug: [ipc] file.close /srvsvc
+2021-06-09T17:58:05.506Z - debug: [ipc] tree.disconnect
+2021-06-09T17:58:12.543Z - debug: [ipc] tree.open /lsarpc
+2021-06-09T17:58:12.544Z - debug: [ipc] tree.disconnect
+2021-06-09T17:58:12.547Z - debug: [fs] tree.open /
+2021-06-09T17:58:12.547Z - debug: [fs] file.open /
+2021-06-09T17:58:12.549Z - debug: [fid=2] file.close / deleteOnClose=0
+2021-06-09T17:58:12.549Z - debug: [fs] file.close /
+2021-06-09T17:58:12.550Z - debug: [fs] tree.open /
+2021-06-09T17:58:12.550Z - debug: [fs] file.open /
+2021-06-09T17:58:12.551Z - debug: [fid=3] file.close / deleteOnClose=0
+2021-06-09T17:58:12.551Z - debug: [fs] file.close /
+2021-06-09T17:58:12.555Z - debug: [fs] tree.list /._
+2021-06-09T17:58:12.555Z - debug: [fs] tree.exists /._
+2021-06-09T17:58:12.556Z - debug: [fs] tree.exists /._ > false
+2021-06-09T17:58:12.561Z - debug: [fs] tree.list /DCIM
+2021-06-09T17:58:12.561Z - debug: [fs] tree.exists /DCIM
+2021-06-09T17:58:12.561Z - debug: [fs] tree.exists /DCIM > false
+2021-06-09T17:58:12.562Z - debug: [fs] tree.list /.metadata_never_index_unless_rootfs
+2021-06-09T17:58:12.562Z - debug: [fs] tree.exists /.metadata_never_index_unless_rootfs
+2021-06-09T17:58:12.563Z - debug: [fs] tree.exists /.metadata_never_index_unless_rootfs > false
+2021-06-09T17:58:12.564Z - debug: [fs] tree.list /.metadata_never_index
+2021-06-09T17:58:12.564Z - debug: [fs] tree.exists /.metadata_never_index
+2021-06-09T17:58:12.564Z - debug: [fs] tree.exists /.metadata_never_index > false
+2021-06-09T17:58:12.565Z - debug: [fs] tree.list /.Spotlight-V100
+2021-06-09T17:58:12.565Z - debug: [fs] tree.exists /.Spotlight-V100
+2021-06-09T17:58:12.566Z - debug: [fs] tree.exists /.Spotlight-V100 > false
+2021-06-09T17:58:12.571Z - debug: [fs] tree.list /.DS_Store
+2021-06-09T17:58:12.572Z - debug: [fs] tree.exists /.DS_Store
+2021-06-09T17:58:12.573Z - debug: [fs] tree.exists /.DS_Store > false
+2021-06-09T17:58:12.577Z - debug: [fs] tree.open /.hidden
+2021-06-09T17:58:12.579Z - debug: [fs] tree.open /
+2021-06-09T17:58:12.579Z - debug: [fs] file.open /
+2021-06-09T17:58:12.584Z - debug: [fs] tree.list /*
+2021-06-09T17:58:12.629Z - debug: [ipc] tree.open /mdssvc
+2021-06-09T17:58:12.630Z - debug: [ipc] tree.disconnect
+2021-06-09T17:58:12.716Z - debug: [fs] tree.createFile /.DS_Store
+2021-06-09T17:58:12.717Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:12.717Z - debug: [fs] allocationSize /.DS_Store (0 bytes)
+2021-06-09T17:58:12.717Z - debug: [fs] size /.DS_Store (0 bytes)
+2021-06-09T17:58:12.719Z - debug: [fs] tree.open /.DS_Store
+2021-06-09T17:58:12.719Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:12.719Z - debug: [fs] allocationSize /.DS_Store (0 bytes)
+2021-06-09T17:58:12.719Z - debug: [fs] size /.DS_Store (0 bytes)
+2021-06-09T17:58:12.720Z - debug: [fid=6] file.close /.DS_Store deleteOnClose=0
+2021-06-09T17:58:12.720Z - debug: [fs] file.close /.DS_Store
+2021-06-09T17:58:12.720Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:12.720Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:12.721Z - debug: [fs] tree.exists /._.DS_Store > false
+2021-06-09T17:58:12.722Z - debug: [fid=5] file.close /.DS_Store deleteOnClose=0
+2021-06-09T17:58:12.722Z - debug: [fs] file.close /.DS_Store
+2021-06-09T17:58:12.722Z - debug: [fs] tree.list /.DS_Store
+2021-06-09T17:58:12.722Z - debug: [fs] tree.exists /.DS_Store
+2021-06-09T17:58:12.723Z - debug: [fs] tree.exists /.DS_Store > true
+2021-06-09T17:58:12.723Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:12.723Z - debug: [fs] tree.list /.DS_Store > 1
+2021-06-09T17:58:12.723Z - debug: [fs] size /.DS_Store (0 bytes)
+2021-06-09T17:58:12.725Z - debug: [fs] tree.open /
+2021-06-09T17:58:12.725Z - debug: [fs] file.open /
+2021-06-09T17:58:12.725Z - debug: [fid=7] file.close / deleteOnClose=0
+2021-06-09T17:58:12.725Z - debug: [fs] file.close /
+2021-06-09T17:58:12.726Z - debug: [fs] tree.list /.DS_Store
+2021-06-09T17:58:12.726Z - debug: [fs] tree.exists /.DS_Store
+2021-06-09T17:58:12.726Z - debug: [fs] tree.exists /.DS_Store > true
+2021-06-09T17:58:12.727Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:12.727Z - debug: [fs] tree.list /.DS_Store > 1
+2021-06-09T17:58:12.727Z - debug: [fs] size /.DS_Store (0 bytes)
+2021-06-09T17:58:12.729Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:12.729Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:12.729Z - debug: [fs] tree.exists /._.DS_Store > false
+2021-06-09T17:58:12.730Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:12.730Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:12.730Z - debug: [fs] tree.exists /._.DS_Store > false
+2021-06-09T17:58:12.731Z - debug: [fs] tree.createFile /._.DS_Store
+2021-06-09T17:58:12.732Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:12.732Z - debug: [fs] allocationSize /._.DS_Store (0 bytes)
+2021-06-09T17:58:12.732Z - debug: [fs] size /._.DS_Store (0 bytes)
+2021-06-09T17:58:12.733Z - debug: [fid=8] file.close /._.DS_Store deleteOnClose=0
+2021-06-09T17:58:12.733Z - debug: [fs] file.close /._.DS_Store
+2021-06-09T17:58:12.734Z - debug: [fs] tree.open /._.DS_Store
+2021-06-09T17:58:12.734Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:12.735Z - debug: [fs] allocationSize /._.DS_Store (0 bytes)
+2021-06-09T17:58:12.735Z - debug: [fs] size /._.DS_Store (0 bytes)
+2021-06-09T17:58:12.735Z - debug: [fid=9] file.close /._.DS_Store deleteOnClose=0
+2021-06-09T17:58:12.735Z - debug: [fs] file.close /._.DS_Store
+2021-06-09T17:58:12.736Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:12.736Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:12.736Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:12.737Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:12.737Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:12.737Z - debug: [fs] size /._.DS_Store (0 bytes)
+2021-06-09T17:58:12.738Z - debug: [fs] tree.open /._.DS_Store
+2021-06-09T17:58:12.738Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:12.738Z - debug: [fs] allocationSize /._.DS_Store (0 bytes)
+2021-06-09T17:58:12.738Z - debug: [fs] size /._.DS_Store (0 bytes)
+2021-06-09T17:58:12.740Z - debug: [fid=10] file.write /._.DS_Store data.length=4096, position=0
+2021-06-09T17:58:12.740Z - debug: [fs] file.write /._.DS_Store data.length=4096, position=0
+2021-06-09T17:58:12.740Z - debug: [fs] getDescriptor /._.DS_Store
+2021-06-09T17:58:12.741Z - debug: [fid=10] file.setLength /._.DS_Store length=4096
+2021-06-09T17:58:12.742Z - debug: [fs] file.setLength /._.DS_Store length=4096
+2021-06-09T17:58:12.742Z - debug: [fs] file.close /._.DS_Store
+2021-06-09T17:58:12.743Z - debug: [fs] tree.open /
+2021-06-09T17:58:12.743Z - debug: [fs] file.open /
+2021-06-09T17:58:12.744Z - debug: [fid=11] file.close / deleteOnClose=0
+2021-06-09T17:58:12.744Z - debug: [fs] file.close /
+2021-06-09T17:58:12.745Z - debug: [fid=10] file.flush /._.DS_Store
+2021-06-09T17:58:12.745Z - debug: [fs] file.flush /._.DS_Store
+2021-06-09T17:58:12.746Z - debug: [fid=10] file.close /._.DS_Store deleteOnClose=0
+2021-06-09T17:58:12.746Z - debug: [fs] file.close /._.DS_Store
+2021-06-09T17:58:12.747Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:12.747Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:12.748Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:12.748Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:12.748Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:12.748Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:12.749Z - debug: [fs] tree.open /.DS_Store
+2021-06-09T17:58:12.749Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:12.750Z - debug: [fs] size /.DS_Store (0 bytes)
+2021-06-09T17:58:12.750Z - debug: [fid=12] file.close /.DS_Store deleteOnClose=0
+2021-06-09T17:58:12.750Z - debug: [fs] file.close /.DS_Store
+2021-06-09T17:58:12.751Z - debug: [fs] tree.list /.DS_Store
+2021-06-09T17:58:12.751Z - debug: [fs] tree.exists /.DS_Store
+2021-06-09T17:58:12.751Z - debug: [fs] tree.exists /.DS_Store > true
+2021-06-09T17:58:12.751Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:12.752Z - debug: [fs] tree.list /.DS_Store > 1
+2021-06-09T17:58:12.752Z - debug: [fs] size /.DS_Store (0 bytes)
+2021-06-09T17:58:12.752Z - debug: [fs] tree.open /.DS_Store
+2021-06-09T17:58:12.753Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:12.753Z - debug: [fs] allocationSize /.DS_Store (0 bytes)
+2021-06-09T17:58:12.753Z - debug: [fs] size /.DS_Store (0 bytes)
+2021-06-09T17:58:12.754Z - debug: [fid=13] file.setLength /.DS_Store length=0
+2021-06-09T17:58:12.754Z - debug: [fs] file.setLength /.DS_Store length=0
+2021-06-09T17:58:12.754Z - debug: [fs] file.close /.DS_Store
+2021-06-09T17:58:12.755Z - debug: [fs] tree.list /.DS_Store
+2021-06-09T17:58:12.755Z - debug: [fs] tree.exists /.DS_Store
+2021-06-09T17:58:12.755Z - debug: [fs] tree.exists /.DS_Store > true
+2021-06-09T17:58:12.755Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:12.755Z - debug: [fs] tree.list /.DS_Store > 1
+2021-06-09T17:58:12.755Z - debug: [fs] size /.DS_Store (0 bytes)
+2021-06-09T17:58:12.756Z - debug: [fid=13] file.write /.DS_Store data.length=4, position=0
+2021-06-09T17:58:12.756Z - debug: [fs] file.write /.DS_Store data.length=4, position=0
+2021-06-09T17:58:12.756Z - debug: [fs] getDescriptor /.DS_Store
+2021-06-09T17:58:12.757Z - debug: [fid=13] file.write /.DS_Store data.length=6144, position=4
+2021-06-09T17:58:12.757Z - debug: [fs] file.write /.DS_Store data.length=6144, position=4
+2021-06-09T17:58:12.757Z - debug: [fs] getDescriptor /.DS_Store
+2021-06-09T17:58:12.758Z - debug: [fid=13] file.setLength /.DS_Store length=6148
+2021-06-09T17:58:12.758Z - debug: [fs] file.setLength /.DS_Store length=6148
+2021-06-09T17:58:12.758Z - debug: [fs] file.close /.DS_Store
+2021-06-09T17:58:12.760Z - debug: [fid=13] file.flush /.DS_Store
+2021-06-09T17:58:12.760Z - debug: [fs] file.flush /.DS_Store
+2021-06-09T17:58:12.761Z - debug: [fid=13] file.close /.DS_Store deleteOnClose=0
+2021-06-09T17:58:12.761Z - debug: [fs] file.close /.DS_Store
+2021-06-09T17:58:12.762Z - debug: [fs] tree.list /.DS_Store
+2021-06-09T17:58:12.763Z - debug: [fs] tree.exists /.DS_Store
+2021-06-09T17:58:12.763Z - debug: [fs] tree.exists /.DS_Store > true
+2021-06-09T17:58:12.763Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:12.763Z - debug: [fs] tree.list /.DS_Store > 1
+2021-06-09T17:58:12.763Z - debug: [fs] size /.DS_Store (6148 bytes)
+2021-06-09T17:58:12.764Z - debug: [fs] tree.list /.DS_Store
+2021-06-09T17:58:12.764Z - debug: [fs] tree.exists /.DS_Store
+2021-06-09T17:58:12.764Z - debug: [fs] tree.exists /.DS_Store > true
+2021-06-09T17:58:12.764Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:12.764Z - debug: [fs] tree.list /.DS_Store > 1
+2021-06-09T17:58:12.765Z - debug: [fs] size /.DS_Store (6148 bytes)
+2021-06-09T17:58:12.766Z - debug: [fs] tree.open /
+2021-06-09T17:58:12.766Z - debug: [fs] file.open /
+2021-06-09T17:58:12.766Z - debug: [fid=14] file.close / deleteOnClose=0
+2021-06-09T17:58:12.766Z - debug: [fs] file.close /
+2021-06-09T17:58:12.767Z - debug: [fs] tree.list /._
+2021-06-09T17:58:12.767Z - debug: [fs] tree.exists /._
+2021-06-09T17:58:12.767Z - debug: [fs] tree.exists /._ > false
+2021-06-09T17:58:13.079Z - debug: [fs] tree.list /*
+2021-06-09T17:58:13.079Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:13.079Z - debug: [fs] tree.list /* > 1
+2021-06-09T17:58:13.080Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:13.080Z - debug: [fs] tree.list /* > 2
+2021-06-09T17:58:13.080Z - debug: [fs] size /.DS_Store (6148 bytes)
+2021-06-09T17:58:13.080Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:13.081Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:13.081Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:13.081Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:13.081Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:13.081Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:13.081Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:13.082Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:13.082Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:13.082Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:13.082Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:13.082Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:13.083Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:13.084Z - debug: [fs] tree.open /._.DS_Store
+2021-06-09T17:58:13.084Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:13.084Z - debug: [fs] allocationSize /._.DS_Store (32768 bytes)
+2021-06-09T17:58:13.084Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:13.084Z - debug: [fid=15] file.close /._.DS_Store deleteOnClose=0
+2021-06-09T17:58:13.084Z - debug: [fs] file.close /._.DS_Store
+2021-06-09T17:58:13.085Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:13.085Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:13.085Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:13.085Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:13.085Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:13.086Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:13.086Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:13.086Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:13.086Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:13.087Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:13.087Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:13.087Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:13.087Z - debug: [fs] tree.open /._.DS_Store
+2021-06-09T17:58:13.088Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:13.088Z - debug: [fs] allocationSize /._.DS_Store (32768 bytes)
+2021-06-09T17:58:13.088Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:13.089Z - debug: [fid=16] file.close /._.DS_Store deleteOnClose=0
+2021-06-09T17:58:13.089Z - debug: [fs] file.close /._.DS_Store
+2021-06-09T17:58:13.090Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:13.090Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:13.090Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:13.090Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:13.090Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:13.091Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:17.775Z - debug: [fs] tree.open /
+2021-06-09T17:58:17.775Z - debug: [fs] tree.open /
+2021-06-09T17:58:17.775Z - debug: [fs] file.open /
+2021-06-09T17:58:17.776Z - debug: [fs] file.open /
+2021-06-09T17:58:17.776Z - debug: [fid=17] file.close / deleteOnClose=0
+2021-06-09T17:58:17.776Z - debug: [fs] file.close /
+2021-06-09T17:58:17.776Z - debug: [fid=18] file.close / deleteOnClose=0
+2021-06-09T17:58:17.776Z - debug: [fs] file.close /
+2021-06-09T17:58:18.081Z - debug: [fs] tree.list /._
+2021-06-09T17:58:18.081Z - debug: [fs] tree.exists /._
+2021-06-09T17:58:18.082Z - debug: [fs] tree.exists /._ > false
+2021-06-09T17:58:18.083Z - debug: [fs] tree.list /*
+2021-06-09T17:58:18.084Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:18.084Z - debug: [fs] tree.list /* > 1
+2021-06-09T17:58:18.084Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:18.084Z - debug: [fs] tree.list /* > 2
+2021-06-09T17:58:18.084Z - debug: [fs] size /.DS_Store (6148 bytes)
+2021-06-09T17:58:18.084Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:18.085Z - debug: [fs] tree.list /.DS_Store
+2021-06-09T17:58:18.085Z - debug: [fs] tree.exists /.DS_Store
+2021-06-09T17:58:18.085Z - debug: [fs] tree.exists /.DS_Store > true
+2021-06-09T17:58:18.086Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:18.086Z - debug: [fs] tree.list /.DS_Store > 1
+2021-06-09T17:58:18.086Z - debug: [fs] size /.DS_Store (6148 bytes)
+2021-06-09T17:58:18.087Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:18.087Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:18.087Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:18.087Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:18.087Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:18.087Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:18.088Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:18.088Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:18.088Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:18.088Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:18.088Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:18.089Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:18.089Z - debug: [fs] tree.open /._.DS_Store
+2021-06-09T17:58:18.089Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:18.089Z - debug: [fs] allocationSize /._.DS_Store (32768 bytes)
+2021-06-09T17:58:18.089Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:18.090Z - debug: [fid=19] file.close /._.DS_Store deleteOnClose=0
+2021-06-09T17:58:18.090Z - debug: [fs] file.close /._.DS_Store
+2021-06-09T17:58:18.091Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:18.091Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:18.091Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:18.092Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:18.092Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:18.092Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:18.092Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:18.092Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:18.093Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:18.093Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:18.093Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:18.093Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:18.094Z - debug: [fs] tree.open /._.DS_Store
+2021-06-09T17:58:18.094Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:18.094Z - debug: [fs] allocationSize /._.DS_Store (32768 bytes)
+2021-06-09T17:58:18.094Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:18.095Z - debug: [fid=20] file.close /._.DS_Store deleteOnClose=0
+2021-06-09T17:58:18.095Z - debug: [fs] file.close /._.DS_Store
+2021-06-09T17:58:18.096Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:18.096Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:18.096Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:18.096Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:18.096Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:18.096Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:18.167Z - debug: [fid=4] file.close / deleteOnClose=0
+2021-06-09T17:58:18.167Z - debug: [fs] file.close /
+2021-06-09T17:58:18.171Z - debug: [ipc] tree.open /srvsvc
+2021-06-09T17:58:18.172Z - debug: [ipc] file.open /srvsvc
+2021-06-09T17:58:18.177Z - debug: [fid=21] file.close /srvsvc deleteOnClose=0
+2021-06-09T17:58:18.177Z - debug: [ipc] file.close /srvsvc
+2021-06-09T17:58:18.178Z - debug: [ipc] tree.disconnect
+2021-06-09T17:58:20.361Z - debug: fetching content /, deep=true
+2021-06-09T17:58:20.371Z - error: invalid share configuration: {"host":"localhost","port":4502,"path":"/content/dam"} message=connect ECONNREFUSED 127.0.0.1:4502, stack=Error: connect ECONNREFUSED 127.0.0.1:4502
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16)
+    at TCPConnectWrap.callbackTrampoline (internal/async_hooks.js:134:14), errno=-61, code=ECONNREFUSED, syscall=connect, address=127.0.0.1, port=4502
+2021-06-09T17:58:20.375Z - debug: fetching content /, deep=true
+2021-06-09T17:58:20.378Z - error: invalid share configuration: {"host":"localhost","port":4502,"path":"/content/dam"} message=connect ECONNREFUSED 127.0.0.1:4502, stack=Error: connect ECONNREFUSED 127.0.0.1:4502
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16)
+    at TCPConnectWrap.callbackTrampoline (internal/async_hooks.js:134:14), errno=-61, code=ECONNREFUSED, syscall=connect, address=127.0.0.1, port=4502
+2021-06-09T17:58:20.606Z - debug: [fs] tree.open /
+2021-06-09T17:58:20.606Z - debug: [fs] file.open /
+2021-06-09T17:58:20.606Z - debug: [fid=22] file.close / deleteOnClose=0
+2021-06-09T17:58:20.606Z - debug: [fs] file.close /
+2021-06-09T17:58:22.608Z - debug: [ipc] tree.open /srvsvc
+2021-06-09T17:58:22.608Z - debug: [ipc] file.open /srvsvc
+2021-06-09T17:58:22.612Z - debug: [fid=23] file.close /srvsvc deleteOnClose=0
+2021-06-09T17:58:22.612Z - debug: [ipc] file.close /srvsvc
+2021-06-09T17:58:22.613Z - debug: [ipc] tree.disconnect
+2021-06-09T17:58:23.783Z - debug: [fs] tree.open /
+2021-06-09T17:58:23.783Z - debug: [fs] file.open /
+2021-06-09T17:58:23.784Z - debug: [fid=24] file.close / deleteOnClose=0
+2021-06-09T17:58:23.784Z - debug: [fs] file.close /
+2021-06-09T17:58:23.800Z - debug: [fs] tree.list /.DS_Store
+2021-06-09T17:58:23.800Z - debug: [fs] tree.exists /.DS_Store
+2021-06-09T17:58:23.801Z - debug: [fs] tree.exists /.DS_Store > true
+2021-06-09T17:58:23.801Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:23.801Z - debug: [fs] tree.list /.DS_Store > 1
+2021-06-09T17:58:23.801Z - debug: [fs] size /.DS_Store (6148 bytes)
+2021-06-09T17:58:23.804Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:23.805Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:23.805Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:23.805Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:23.805Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:23.805Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:23.806Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:23.806Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:23.806Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:23.807Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:23.807Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:23.807Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:23.807Z - debug: [fs] tree.open /._.DS_Store
+2021-06-09T17:58:23.808Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:23.808Z - debug: [fs] allocationSize /._.DS_Store (32768 bytes)
+2021-06-09T17:58:23.808Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:23.808Z - debug: [fid=25] file.close /._.DS_Store deleteOnClose=0
+2021-06-09T17:58:23.808Z - debug: [fs] file.close /._.DS_Store
+2021-06-09T17:58:23.809Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:23.809Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:23.810Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:23.810Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:23.810Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:23.810Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:23.811Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:23.811Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:23.811Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:23.811Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:23.812Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:23.812Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:23.813Z - debug: [fs] tree.open /._.DS_Store
+2021-06-09T17:58:23.813Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:23.813Z - debug: [fs] allocationSize /._.DS_Store (32768 bytes)
+2021-06-09T17:58:23.813Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:23.815Z - debug: [fid=26] file.close /._.DS_Store deleteOnClose=0
+2021-06-09T17:58:23.815Z - debug: [fs] file.close /._.DS_Store
+2021-06-09T17:58:23.815Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:23.815Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:23.815Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:23.815Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:23.816Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:23.816Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:23.817Z - debug: [fs] tree.list /.DS_Store
+2021-06-09T17:58:23.817Z - debug: [fs] tree.exists /.DS_Store
+2021-06-09T17:58:23.817Z - debug: [fs] tree.exists /.DS_Store > true
+2021-06-09T17:58:23.817Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:23.817Z - debug: [fs] tree.list /.DS_Store > 1
+2021-06-09T17:58:23.817Z - debug: [fs] size /.DS_Store (6148 bytes)
+2021-06-09T17:58:23.818Z - debug: [fs] tree.open /.DS_Store
+2021-06-09T17:58:23.818Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:23.818Z - debug: [fs] allocationSize /.DS_Store (65536 bytes)
+2021-06-09T17:58:23.818Z - debug: [fs] size /.DS_Store (6148 bytes)
+2021-06-09T17:58:23.820Z - debug: [fid=27] file.setLength /.DS_Store length=0
+2021-06-09T17:58:23.820Z - debug: [fs] file.setLength /.DS_Store length=0
+2021-06-09T17:58:23.820Z - debug: [fs] file.close /.DS_Store
+2021-06-09T17:58:23.822Z - debug: [fs] tree.list /.DS_Store
+2021-06-09T17:58:23.822Z - debug: [fs] tree.exists /.DS_Store
+2021-06-09T17:58:23.823Z - debug: [fs] tree.exists /.DS_Store > true
+2021-06-09T17:58:23.823Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:23.823Z - debug: [fs] tree.list /.DS_Store > 1
+2021-06-09T17:58:23.823Z - debug: [fs] size /.DS_Store (0 bytes)
+2021-06-09T17:58:23.825Z - debug: [fid=27] file.write /.DS_Store data.length=4, position=0
+2021-06-09T17:58:23.825Z - debug: [fs] file.write /.DS_Store data.length=4, position=0
+2021-06-09T17:58:23.825Z - debug: [fs] getDescriptor /.DS_Store
+2021-06-09T17:58:23.827Z - debug: [fid=27] file.write /.DS_Store data.length=6144, position=4
+2021-06-09T17:58:23.827Z - debug: [fs] file.write /.DS_Store data.length=6144, position=4
+2021-06-09T17:58:23.827Z - debug: [fs] getDescriptor /.DS_Store
+2021-06-09T17:58:23.828Z - debug: [fid=27] file.setLength /.DS_Store length=6148
+2021-06-09T17:58:23.828Z - debug: [fs] file.setLength /.DS_Store length=6148
+2021-06-09T17:58:23.828Z - debug: [fs] file.close /.DS_Store
+2021-06-09T17:58:23.828Z - debug: [fid=27] file.flush /.DS_Store
+2021-06-09T17:58:23.829Z - debug: [fs] file.flush /.DS_Store
+2021-06-09T17:58:23.829Z - debug: [fid=27] file.close /.DS_Store deleteOnClose=0
+2021-06-09T17:58:23.829Z - debug: [fs] file.close /.DS_Store
+2021-06-09T17:58:23.829Z - debug: [fs] tree.list /.DS_Store
+2021-06-09T17:58:23.829Z - debug: [fs] tree.exists /.DS_Store
+2021-06-09T17:58:23.830Z - debug: [fs] tree.exists /.DS_Store > true
+2021-06-09T17:58:23.830Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:23.830Z - debug: [fs] tree.list /.DS_Store > 1
+2021-06-09T17:58:23.830Z - debug: [fs] size /.DS_Store (6148 bytes)
+2021-06-09T17:58:23.833Z - debug: [fs] tree.list /*
+2021-06-09T17:58:23.833Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:23.833Z - debug: [fs] tree.list /* > 1
+2021-06-09T17:58:23.833Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:23.833Z - debug: [fs] tree.list /* > 2
+2021-06-09T17:58:23.833Z - debug: [fs] size /.DS_Store (6148 bytes)
+2021-06-09T17:58:23.833Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:23.834Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:23.834Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:23.834Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:23.834Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:23.835Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:23.835Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:23.835Z - debug: [fs] tree.open /._.DS_Store
+2021-06-09T17:58:23.835Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:23.836Z - debug: [fs] allocationSize /._.DS_Store (32768 bytes)
+2021-06-09T17:58:23.836Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:23.836Z - debug: [fid=28] file.close /._.DS_Store deleteOnClose=0
+2021-06-09T17:58:23.836Z - debug: [fs] file.close /._.DS_Store
+2021-06-09T17:58:23.837Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:23.837Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:23.837Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:23.837Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:23.837Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:23.837Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:23.838Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:23.838Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:23.838Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:23.839Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:23.839Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:23.839Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:23.839Z - debug: [fs] tree.open /._.DS_Store
+2021-06-09T17:58:23.840Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:23.840Z - debug: [fs] allocationSize /._.DS_Store (32768 bytes)
+2021-06-09T17:58:23.840Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:23.841Z - debug: [fid=29] file.close /._.DS_Store deleteOnClose=0
+2021-06-09T17:58:23.841Z - debug: [fs] file.close /._.DS_Store
+2021-06-09T17:58:23.841Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:23.841Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:23.842Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:23.842Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:23.842Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:23.842Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:23.844Z - debug: [fs] tree.open /
+2021-06-09T17:58:23.844Z - debug: [fs] file.open /
+2021-06-09T17:58:24.333Z - debug: [fs] tree.list /*
+2021-06-09T17:58:24.334Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:24.334Z - debug: [fs] tree.list /* > 1
+2021-06-09T17:58:24.334Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:24.334Z - debug: [fs] tree.list /* > 2
+2021-06-09T17:58:24.334Z - debug: [fs] size /.DS_Store (6148 bytes)
+2021-06-09T17:58:24.334Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:24.335Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:24.335Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:24.335Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:24.336Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:24.336Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:24.336Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:24.336Z - debug: [fs] tree.open /._.DS_Store
+2021-06-09T17:58:24.337Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:24.337Z - debug: [fs] allocationSize /._.DS_Store (32768 bytes)
+2021-06-09T17:58:24.337Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:24.337Z - debug: [fid=31] file.close /._.DS_Store deleteOnClose=0
+2021-06-09T17:58:24.337Z - debug: [fs] file.close /._.DS_Store
+2021-06-09T17:58:24.338Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:24.338Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:24.338Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:24.338Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:24.338Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:24.338Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:24.339Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:24.339Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:24.339Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:24.339Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:24.339Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:24.340Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:24.341Z - debug: [fs] tree.open /._.DS_Store
+2021-06-09T17:58:24.341Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:24.341Z - debug: [fs] allocationSize /._.DS_Store (32768 bytes)
+2021-06-09T17:58:24.341Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:24.343Z - debug: [fid=32] file.close /._.DS_Store deleteOnClose=0
+2021-06-09T17:58:24.343Z - debug: [fs] file.close /._.DS_Store
+2021-06-09T17:58:24.343Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:24.343Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:24.344Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:24.344Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:24.344Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:24.344Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:28.861Z - debug: [fs] tree.open /
+2021-06-09T17:58:28.861Z - debug: [fs] tree.open /
+2021-06-09T17:58:28.862Z - debug: [fs] tree.open /
+2021-06-09T17:58:28.862Z - debug: [fs] tree.open /
+2021-06-09T17:58:28.862Z - debug: [fs] file.open /
+2021-06-09T17:58:28.863Z - debug: [fs] file.open /
+2021-06-09T17:58:28.863Z - debug: [fs] file.open /
+2021-06-09T17:58:28.863Z - debug: [fs] file.open /
+2021-06-09T17:58:28.864Z - debug: [fid=33] file.close / deleteOnClose=0
+2021-06-09T17:58:28.864Z - debug: [fs] file.close /
+2021-06-09T17:58:28.864Z - debug: [fid=34] file.close / deleteOnClose=0
+2021-06-09T17:58:28.864Z - debug: [fs] file.close /
+2021-06-09T17:58:28.864Z - debug: [fid=35] file.close / deleteOnClose=0
+2021-06-09T17:58:28.864Z - debug: [fs] file.close /
+2021-06-09T17:58:28.864Z - debug: [fid=36] file.close / deleteOnClose=0
+2021-06-09T17:58:28.864Z - debug: [fs] file.close /
+2021-06-09T17:58:28.866Z - debug: [fs] tree.list /._
+2021-06-09T17:58:28.866Z - debug: [fs] tree.exists /._
+2021-06-09T17:58:28.866Z - debug: [fs] tree.exists /._ > false
+2021-06-09T17:58:28.903Z - debug: [fs] tree.list /*
+2021-06-09T17:58:28.903Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:28.903Z - debug: [fs] tree.list /* > 1
+2021-06-09T17:58:28.903Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:28.903Z - debug: [fs] tree.list /* > 2
+2021-06-09T17:58:28.904Z - debug: [fs] size /.DS_Store (6148 bytes)
+2021-06-09T17:58:28.904Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:28.905Z - debug: [fs] tree.list /.DS_Store
+2021-06-09T17:58:28.905Z - debug: [fs] tree.exists /.DS_Store
+2021-06-09T17:58:28.905Z - debug: [fs] tree.exists /.DS_Store > true
+2021-06-09T17:58:28.905Z - debug: [fs] file.open /.DS_Store
+2021-06-09T17:58:28.905Z - debug: [fs] tree.list /.DS_Store > 1
+2021-06-09T17:58:28.905Z - debug: [fs] size /.DS_Store (6148 bytes)
+2021-06-09T17:58:28.906Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:28.906Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:28.906Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:28.907Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:28.907Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:28.907Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:28.907Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:28.908Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:28.908Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:28.908Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:28.908Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:28.908Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:28.909Z - debug: [fs] tree.open /._.DS_Store
+2021-06-09T17:58:28.909Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:28.909Z - debug: [fs] allocationSize /._.DS_Store (32768 bytes)
+2021-06-09T17:58:28.909Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:28.909Z - debug: [fid=37] file.close /._.DS_Store deleteOnClose=0
+2021-06-09T17:58:28.909Z - debug: [fs] file.close /._.DS_Store
+2021-06-09T17:58:28.910Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:28.910Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:28.910Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:28.910Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:28.910Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:28.910Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:28.911Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:28.911Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:28.911Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:28.911Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:28.911Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:28.911Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:28.912Z - debug: [fs] tree.open /._.DS_Store
+2021-06-09T17:58:28.913Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:28.913Z - debug: [fs] allocationSize /._.DS_Store (32768 bytes)
+2021-06-09T17:58:28.913Z - debug: [fs] size /._.DS_Store (4096 bytes)
+2021-06-09T17:58:28.915Z - debug: [fid=38] file.close /._.DS_Store deleteOnClose=0
+2021-06-09T17:58:28.915Z - debug: [fs] file.close /._.DS_Store
+2021-06-09T17:58:28.915Z - debug: [fs] tree.list /._.DS_Store
+2021-06-09T17:58:28.915Z - debug: [fs] tree.exists /._.DS_Store
+2021-06-09T17:58:28.915Z - debug: [fs] tree.exists /._.DS_Store > true
+2021-06-09T17:58:28.915Z - debug: [fs] file.open /._.DS_Store
+2021-06-09T17:58:28.916Z - debug: [fs] tree.list /._.DS_Store > 1
+2021-06-09T17:58:28.916Z - debug: [fs] size /._.DS_Store (4096 bytes)

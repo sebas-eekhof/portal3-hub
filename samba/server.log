@@ -1,0 +1,39 @@
+2021-06-09T17:56:54.788Z - info: logging initialized.
+2021-06-09T17:56:54.794Z - info: configuration successfully read: /Users/sebastiaaneekhof/Documents/portal3-hub/node_modules/node-smb-server/config.json
+2021-06-09T17:56:55.009Z - debug: registering share syncfilestart event
+2021-06-09T17:56:55.010Z - debug: registering share syncfileend event
+2021-06-09T17:56:55.010Z - debug: registering share syncfileerr event
+2021-06-09T17:56:55.010Z - debug: registering share syncfileabort event
+2021-06-09T17:56:55.010Z - debug: registering share syncfileprogress event
+2021-06-09T17:56:55.010Z - debug: registering share syncerr event
+2021-06-09T17:56:55.010Z - debug: registering share syncpurged event
+2021-06-09T17:56:55.010Z - debug: registering share syncconflict event
+2021-06-09T17:56:55.010Z - debug: registering share folderlist event
+2021-06-09T17:56:55.010Z - debug: registering share requestqueueinit event
+2021-06-09T17:56:55.010Z - debug: registering share longdownload event
+2021-06-09T17:56:55.010Z - debug: registering share downloadprogress event
+2021-06-09T17:56:55.010Z - debug: registering share downloadstart event
+2021-06-09T17:56:55.010Z - debug: registering share downloadend event
+2021-06-09T17:56:55.010Z - debug: registering share downloaderr event
+2021-06-09T17:56:55.014Z - info: [70797] SMB server started listening on port 8445
+2021-06-09T17:57:32.228Z - info: logging initialized.
+2021-06-09T17:57:32.233Z - info: configuration successfully read: /Users/sebastiaaneekhof/Documents/portal3-hub/node_modules/node-smb-server/config.json
+2021-06-09T17:57:32.420Z - debug: registering share syncfilestart event
+2021-06-09T17:57:32.420Z - debug: registering share syncfileend event
+2021-06-09T17:57:32.420Z - debug: registering share syncfileerr event
+2021-06-09T17:57:32.420Z - debug: registering share syncfileabort event
+2021-06-09T17:57:32.420Z - debug: registering share syncfileprogress event
+2021-06-09T17:57:32.420Z - debug: registering share syncerr event
+2021-06-09T17:57:32.420Z - debug: registering share syncpurged event
+2021-06-09T17:57:32.420Z - debug: registering share syncconflict event
+2021-06-09T17:57:32.420Z - debug: registering share folderlist event
+2021-06-09T17:57:32.421Z - debug: registering share requestqueueinit event
+2021-06-09T17:57:32.421Z - debug: registering share longdownload event
+2021-06-09T17:57:32.421Z - debug: registering share downloadprogress event
+2021-06-09T17:57:32.421Z - debug: registering share downloadstart event
+2021-06-09T17:57:32.421Z - debug: registering share downloadend event
+2021-06-09T17:57:32.421Z - debug: registering share downloaderr event
+2021-06-09T17:57:32.424Z - info: [70824] SMB server started listening on port 8445
+2021-06-09T17:57:52.485Z - info: established client connection #1 from [127.0.0.1:56355] -> [127.0.0.1:8445]
+2021-06-09T17:57:52.486Z - info: established client connection #2 from [127.0.0.1:56356] -> [127.0.0.1:8445]
+2021-06-09T17:57:52.488Z - info: client #1 disconnected (received: 0kb, sent: 0kb)

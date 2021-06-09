@@ -3,7 +3,11 @@ const Device = require('./Device');
 const _ = require('lodash');
 const { v4: uuidv4 } = require('uuid');
 const { downloadFile, removeFile } = require('./FileStorage');
-
+const APProxy = require("airprint-proxy");
+const Network = require('../commands/Network');
+const PrinterProxy = APProxy.PrinterProxy;
+const Printer = APProxy.Printer;
+const proxy = new PrinterProxy();
 
 let allDevices = null;
 let getPrintersArray = null;
@@ -12,10 +16,15 @@ let airprintProxies = {};
 const start_get_printers = () => {
     const run = async () => {
         try {
+            const ipv4 = await Network.getPrivateIp();
             const printers = await getPrinters();
             getPrintersArray = printers;
-            console.log(printers)
-            for(let i = 0; i < printers.length; i++) {}
+            for(let i = 0; i < printers.length; i++) {
+                if(_.get(airprintProxies, `printers[${i}].setup_device.name`, false) === false) {
+                    airprintProxies[printers[i].setup_device.name] = new Printer(`ipp://${ipv4}/printers/${printers[i].setup_device.name}`, printers[i].setup_device.name);
+                    proxy.addPrinter(airprintProxies[printers[i].setup_device.name])
+                }
+            }
             setTimeout(() => run(), 5000);
         } catch(e) {
             console.error(e);

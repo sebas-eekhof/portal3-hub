@@ -74,9 +74,6 @@ const getPrinterDevice = async (uri) => {
     const setup_device = getSetupPrinters().find(i => i.options['device-uri'] === uri);
     const all_devices = await getAllDevices();
     connected_device = all_devices.find(i => i.uri.includes(uri));
-    console.log(`Need uri ${uri}`)
-    console.log(all_devices)
-    console.log(connected_device)
     let ret = {
         ...connected_device,
         setup: setup_device ? true : false,
@@ -108,6 +105,7 @@ const getPrinters = async () => {
         if(uri)
             list.push(await getPrinterDevice(uri));
     }
+    console.log(list)
     return list;
 }
 const getCommands = () => Printer.getSupportedJobCommands()

@@ -114,6 +114,11 @@ const printText = (text, printer) => Device.exec(`echo "${text}" | lp -d ${print
 const addPrinter = (name, uri, driver) => Device.exec(`lpadmin -p "${name}" -E -v ${uri} -m ${driver}`)
 const getSetupPrinters = () => Printer.getPrinters()
 const getPrinters = async () => {
+    const lpstat = await Device.exec(`lpstat -p -t`);
+    const lines = lpstat.split('\n');
+    for(let i = 0; i < lines.length; i++) {
+        console.log(lines[i].exec(/device for (\w*): (.*)/g))
+    }
     const printers = getSetupPrinters()
     let list = [];
     for(let i = 0; i < printers.length; i++) {

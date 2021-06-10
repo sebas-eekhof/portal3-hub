@@ -9,15 +9,12 @@ let allDevices = null;
 let getPrintersArray = null;
 
 const start_get_printers = () => {
-    let run = 0;
     const run = async () => {
         try {
-            const ipv4 = await Network.getPrivateIp();
             const printers = await getPrinters();
             getPrintersArray = printers;
             setTimeout(() => run(), 5000);
         } catch(e) {
-            run++;
             console.error(e);
             setTimeout(() => run(), 50)
         }

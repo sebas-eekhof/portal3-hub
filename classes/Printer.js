@@ -3,30 +3,21 @@ const Device = require('./Device');
 const _ = require('lodash');
 const { v4: uuidv4 } = require('uuid');
 const { downloadFile, removeFile } = require('./FileStorage');
-const APProxy = require("airprint-proxy");
 const Network = require('../commands/Network');
-const AirPrinter = APProxy.Printer;
-const proxy = new APProxy.PrinterProxy();
 
 let allDevices = null;
 let getPrintersArray = null;
-let airprintProxies = {};
 
 const start_get_printers = () => {
+    let run = 0;
     const run = async () => {
         try {
             const ipv4 = await Network.getPrivateIp();
             const printers = await getPrinters();
             getPrintersArray = printers;
-            for(let i = 0; i < printers.length; i++) {
-                if(_.get(airprintProxies, `[Airprint] ${printers[i].setup_device.name} @ portal3hub`, false) === false) {
-                    console.log(`Sharing`, `[Airprint] ${printers[i].setup_device.name} @ portal3hub`)
-                    airprintProxies[`[Airprint] ${printers[i].setup_device.name} @ portal3hub`] = new AirPrinter(`ipp://${ipv4}/printers/${printers[i].setup_device.name}`, `[Airprint] ${printers[i].setup_device.name} @ portal3hub`);
-                    proxy.addPrinter(airprintProxies[`[Airprint] ${printers[i].setup_device.name} @ portal3hub`])
-                }
-            }
             setTimeout(() => run(), 5000);
         } catch(e) {
+            run++;
             console.error(e);
             setTimeout(() => run(), 50)
         }

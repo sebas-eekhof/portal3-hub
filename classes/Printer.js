@@ -3,10 +3,7 @@ const Device = require('./Device');
 const _ = require('lodash');
 const { v4: uuidv4 } = require('uuid');
 const { downloadFile, removeFile } = require('./FileStorage');
-const dns = require('dns');
-const util = require('util');
-
-const dns_lookup = util.promisify(dns.lookup)
+const ping = require('ping');
 
 let allDevices = null;
 let getPrintersArray = null;
@@ -56,7 +53,7 @@ const start_discovery = () => {
                         const hostname = info.uri.match(/ipp:\/\/(.*):/g);
                         if(hostname)
                             try {
-                                info.ip = await dns_lookup(hostname)
+                                info.ip = await ping.promise.probe(hostname)
                             } catch(e) {}
                     }
                 }

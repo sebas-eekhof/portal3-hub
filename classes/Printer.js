@@ -119,7 +119,8 @@ const getPrinters = async () => {
     let printers = [];
     for(let i = 0; i < lines.length; i++) {
         const reg = /device for (\w*): (.*)/g.exec(lines[i]);
-        console.log(reg)
+        if(reg && reg.length === 3)
+            console.log(reg)
         // if(reg.length === 3)
         //     printers.push({name: reg[1], uri: reg[2]})
     }

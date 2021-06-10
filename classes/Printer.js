@@ -53,7 +53,9 @@ const start_discovery = () => {
                         const hostname = /ipp:\/\/(.*):/gm.exec(info.uri);
                         if(hostname[1])
                             try {
-                                info.ip = await ping.promise.probe(hostname[1])
+                                const do_ping = await ping.promise.probe(hostname[1])
+                                if(do_ping.alive && do_ping.numeric_host)
+                                    info.ip = do_ping.numeric_host
                             } catch(e) {}
                     }
                 }

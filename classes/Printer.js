@@ -122,7 +122,7 @@ const getPrinters = async () => {
         if(reg && reg.length === 3)
         printers.push(await getPrinterDevice(reg[2]));
     }
-    return list.filter(item => (typeof item.uri !== 'undefined' && _.get(item, 'setup_device.name', false)));
+    return printers.filter(item => (typeof item.uri !== 'undefined' && _.get(item, 'setup_device.name', false)));
 }
 const getPrintersFast = () => new Promise(resolve => {
     if(getPrintersArray !== null) {

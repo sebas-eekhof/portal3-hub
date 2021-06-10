@@ -140,7 +140,7 @@ const getPrintersFast = () => new Promise(resolve => {
 const getCommands = () => Printer.getSupportedJobCommands()
 const getDevices = async () => {
     const setup_printers = await getPrintersFast();
-    const devices = allDevices.filter(i => setup_printers.map(si => si.uri).includes(i.uri)).filter(device => (device.uri.substr(0, 6) !== 'lpd://'))
+    const devices = allDevices.filter(i => !setup_printers.map(si => si.uri).includes(i.uri)).filter(device => (device.uri.substr(0, 6) !== 'lpd://'))
     let list = [];
     for(let i = 0; i < devices.length; i++) {
         const printer_device = await getPrinterDevice(devices[i].uri);

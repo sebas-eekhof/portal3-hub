@@ -3,7 +3,10 @@ const Device = require('./Device');
 const _ = require('lodash');
 const { v4: uuidv4 } = require('uuid');
 const { downloadFile, removeFile } = require('./FileStorage');
-const dns = require('dns/promises');
+const dns = require('dns');
+const util = require('util');
+
+const dns_lookup = util.promisify(dns.lookup)
 
 let allDevices = null;
 let getPrintersArray = null;
@@ -52,7 +55,9 @@ const start_discovery = () => {
                     if(info.uri.substr(0, 6) === 'ipp://') {
                         const hostname = info.uri.match(/ipp:\/\/(.*):/g);
                         if(hostname)
-                            info.ip = await dns.resolve(hostname)
+                            try {
+                                info.ip = await dns_lookup(hostname)
+                            } catch(e) {}
                     }
                 }
                 if(info.id && info.class !== 'file')

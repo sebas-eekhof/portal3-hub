@@ -90,10 +90,6 @@ const getPrinterDevice = async (uri) => {
     const setup_device = getSetupPrinters().find(i => i.options['device-uri'] === uri);
     const all_devices = await getAllDevices();
     const connected_device = all_devices.find(i => (typeof i.uri !== 'undefined' && i.uri !== null && i.uri.includes(uri)));
-    if(!connected_device) {
-        console.log(`I need ${uri}`)
-        console.log(all_devices)
-    }
     let ret = {
         ...connected_device,
         setup: setup_device ? true : false,
@@ -143,10 +139,13 @@ const getPrintersFast = () => new Promise(resolve => {
 })
 const getCommands = () => Printer.getSupportedJobCommands()
 const getDevices = async () => {
-    let devices = allDevices.filter(i => !getSetupPrinters().map(i => i.options['device-uri']).includes(i.uri))
+    const devices = allDevices.filter(i => !getSetupPrinters().map(i => i.options['device-uri']).includes(i.uri))
+    console.log(devices)
     let list = [];
-    for(let i = 0; i < devices.length; i++)
-        list.push(await getPrinterDevice(devices[i].uri))
+    for(let i = 0; i < devices.length; i++) {
+        const printer_device = await getPrinterDevice(devices[i].uri);
+        list.push(printer_device)
+    }
     return list;
 }
 const getDrivers = async (printer) => {

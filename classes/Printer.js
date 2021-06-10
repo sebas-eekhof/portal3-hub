@@ -120,18 +120,9 @@ const getPrinters = async () => {
     for(let i = 0; i < lines.length; i++) {
         const reg = /device for (\w*): (.*)/g.exec(lines[i]);
         if(reg && reg.length === 3)
-            printers.push({name: reg[1], uri: reg[2]})
+        printers.push(await getPrinterDevice(reg[2]));
     }
-    console.log(printers)
-    return [];
-    // const printers = getSetupPrinters()
-    // let list = [];
-    // for(let i = 0; i < printers.length; i++) {
-    //     const uri = _.get(printers[i], `options.device-uri`, false);
-    //     if(uri)
-    //         list.push(await getPrinterDevice(uri));
-    // }
-    // return list.filter(item => (typeof item.uri !== 'undefined' && _.get(item, 'setup_device.name', false)));
+    return list.filter(item => (typeof item.uri !== 'undefined' && _.get(item, 'setup_device.name', false)));
 }
 const getPrintersFast = () => new Promise(resolve => {
     if(getPrintersArray !== null) {

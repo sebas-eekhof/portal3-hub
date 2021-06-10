@@ -50,10 +50,10 @@ const start_discovery = () => {
                 }
                 if(info.class === 'network') {
                     if(info.uri.substr(0, 6) === 'ipp://') {
-                        const hostname = info.uri.match(/ipp:\/\/(.*):/g);
-                        if(hostname)
+                        const hostname = /ipp:\/\/(.*):/gm.exec(info.uri);
+                        if(hostname[1])
                             try {
-                                info.ip = await ping.promise.probe(hostname)
+                                info.ip = await ping.promise.probe(hostname[1])
                             } catch(e) {}
                     }
                 }

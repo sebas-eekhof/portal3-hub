@@ -3,7 +3,7 @@ const Device = require('./Device');
 const _ = require('lodash');
 const { v4: uuidv4 } = require('uuid');
 const { downloadFile, removeFile } = require('./FileStorage');
-const Network = require('../commands/Network');
+const dns = require('dns/promises');
 
 let allDevices = null;
 let getPrintersArray = null;
@@ -35,7 +35,8 @@ const start_discovery = () => {
                     class: null,
                     info: null,
                     model: null,
-                    id: null
+                    id: null,
+                    ip: null
                 }
                 for(let i = 0; i < info_rules.length; i++) {
                     const rule = info_rules[i].split(' = ');
@@ -46,6 +47,13 @@ const start_discovery = () => {
                                 val = val.substr(0, -1);
                             info[rule[0]] = val;
                         }
+                }
+                if(info.class === 'network') {
+                    if(info.uri.substr(0, 6) === 'ipp://') {
+                        const hostname = info.uri.match(/ipp:\/\/(.*):/g);
+                        if(hostname)
+                            info.ip = await dns.resolve(hostname)
+                    }
                 }
                 if(info.id && info.class !== 'file')
                     devices.push(info)

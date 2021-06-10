@@ -117,7 +117,7 @@ const getPrinters = async () => {
     const lpstat = await Device.exec(`lpstat -p -t`);
     const lines = lpstat.split('\n');
     for(let i = 0; i < lines.length; i++) {
-        console.log(`${lines[i]}`.exec(/device for (\w*): (.*)/g))
+        console.log(/device for (\w*): (.*)/g.exec(lines[i]))
     }
     const printers = getSetupPrinters()
     let list = [];

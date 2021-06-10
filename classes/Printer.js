@@ -20,7 +20,7 @@ const start_get_printers = () => {
             getPrintersArray = printers;
             for(let i = 0; i < printers.length; i++) {
                 if(_.get(airprintProxies, `[Airprint] ${printers[i].setup_device.name} @ portal3hub`, false) === false) {
-                    console.log(`Sharing`, `Herres ${printers[i].setup_device.name}`)
+                    console.log(`Sharing`, `[Airprint] ${printers[i].setup_device.name} @ portal3hub`)
                     airprintProxies[`[Airprint] ${printers[i].setup_device.name} @ portal3hub`] = new AirPrinter(`ipp://${ipv4}/printers/${printers[i].setup_device.name}`, `[Airprint] ${printers[i].setup_device.name} @ portal3hub`);
                     proxy.addPrinter(airprintProxies[`[Airprint] ${printers[i].setup_device.name} @ portal3hub`])
                 }
